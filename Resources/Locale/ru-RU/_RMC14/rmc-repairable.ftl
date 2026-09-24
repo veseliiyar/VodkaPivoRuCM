@@ -6,3 +6,9 @@ rmc-repairable-start-self = Вы начинаете ремонтировать {
 rmc-repairable-start-others = {$user} начинает ремонтировать {THE($target)}
 rmc-repairable-finish-self = Вы починили {THE($target)}
 rmc-repairable-finish-others = {$user} починил {THE($target)}
+<<<<<<< HEAD
+=======
+
+
+rmc-repairable-alt-repair = Repair
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34

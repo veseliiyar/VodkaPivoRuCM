@@ -11,8 +11,13 @@ namespace Content.Shared.Localizations
         [Dependency] private ILocalizationManager _loc = default!;
 
         // If you want to change your codebase's language, do it here.
+<<<<<<< HEAD
         private const string Culture = "ru-RU"; // Corvax-Localization RuCM Localization
         private const string FallbackCulture = "en-US"; // Corvax-Localization RuCM Localization
+=======
+        private const string Culture = "ru-RU"; // RuCM Localization
+        private const string FallbackCulture = "en-US"; // RuCM Localization
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34
 
         /// <summary>
         /// Custom format strings used for parsing and displaying minutes:seconds timespans.
@@ -25,20 +30,32 @@ namespace Content.Shared.Localizations
             @"mm"
         };
 
+        // RuCM Localization change start
         public void Initialize()
         {
             var culture = new CultureInfo(Culture);
+<<<<<<< HEAD
             var fallbackCulture = new CultureInfo(FallbackCulture); // Corvax-Localization
 
             _loc.LoadCulture(culture);
             _loc.LoadCulture(fallbackCulture); // Corvax-Localization
             _loc.SetFallbackCluture(fallbackCulture); // Corvax-Localization
+=======
+            var fallbackCulture = new CultureInfo(FallbackCulture);
+
+            _loc.LoadCulture(culture);
+            _loc.LoadCulture(fallbackCulture);
+
+            _loc.SetFallbackCulture(fallbackCulture);
+
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34
             AddContentFunctions(culture);
             AddContentFunctions(fallbackCulture);
 
             // RMC14
             IoCManager.Resolve<RMCLocalizationManager>().Initialize(culture);
 
+<<<<<<< HEAD
             /*
              * The following language functions are specific to the english localization. When working on your own
              * localization you should NOT modify these, instead add new functions specific to your language/culture.
@@ -63,8 +80,34 @@ namespace Content.Shared.Localizations
             _loc.AddFunction(culture, "NATURALFIXED", args => FormatNaturalFixed(culture, args));
             _loc.AddFunction(culture, "NATURALPERCENT", args => FormatNaturalPercent(culture, args));
             _loc.AddFunction(culture, "PLAYTIME", FormatPlaytime);
+=======
+            // English-only functions.
+            _loc.AddFunction(fallbackCulture, "MAKEPLURAL", FormatMakePlural);
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34
         }
 
+        private void AddContentFunctions(CultureInfo culture)
+        {
+            _loc.AddFunction(culture, "MANY", FormatMany);
+            _loc.AddFunction(culture, "PRESSURE", FormatPressure);
+            _loc.AddFunction(culture, "POWERWATTS", FormatPowerWatts);
+            _loc.AddFunction(culture, "POWERJOULES", FormatPowerJoules);
+            _loc.AddFunction(culture, "ENERGYWATTHOURS", FormatEnergyWattHours);
+            _loc.AddFunction(culture, "UNITS", FormatUnits);
+            _loc.AddFunction(culture, "TOSTRING", args => FormatToString(culture, args));
+            _loc.AddFunction(culture, "LOC", FormatLoc);
+            _loc.AddFunction(culture, "PLAYTIME", FormatPlaytime);
+            _loc.AddFunction(
+                culture,
+                "NATURALFIXED",
+                args => FormatNaturalFixed(culture, args));
+
+            _loc.AddFunction(
+                culture,
+                "NATURALPERCENT",
+                args => FormatNaturalPercent(culture, args));
+        }
+        // RuCM Localization change end
         private ILocValue FormatMany(LocArgs args)
         {
             var count = ((LocValueNumber)args.Args[1]).Value;
@@ -79,15 +122,31 @@ namespace Content.Shared.Localizations
             }
         }
 
+<<<<<<< HEAD
+=======
+        // RuCM Localization change start
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34
         private ILocValue FormatNaturalPercent(CultureInfo culture, LocArgs args)
         {
             var number = ((LocValueNumber)args.Args[0]).Value * 100;
             var maxDecimals = (int)Math.Floor(((LocValueNumber)args.Args[1]).Value);
+<<<<<<< HEAD
             var formatter = (NumberFormatInfo)NumberFormatInfo.GetInstance(culture).Clone();
+=======
+
+            var formatter =
+                (NumberFormatInfo)NumberFormatInfo.GetInstance(culture).Clone();
+
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34
             formatter.NumberDecimalDigits = maxDecimals;
-            return new LocValueString(string.Format(formatter, "{0:N}", number).TrimEnd('0').TrimEnd(char.Parse(formatter.NumberDecimalSeparator)) + "%");
+
+            return new LocValueString(
+                string.Format(formatter, "{0:N}", number)
+                    .TrimEnd('0')
+                    .TrimEnd(char.Parse(formatter.NumberDecimalSeparator)) + "%");
         }
 
+<<<<<<< HEAD
         private ILocValue FormatNaturalFixed(CultureInfo culture, LocArgs args)
         {
             var number = ((LocValueNumber)args.Args[0]).Value;
@@ -96,7 +155,25 @@ namespace Content.Shared.Localizations
             formatter.NumberDecimalDigits = maxDecimals;
             return new LocValueString(string.Format(formatter, "{0:N}", number).TrimEnd('0').TrimEnd(char.Parse(formatter.NumberDecimalSeparator)));
         }
+=======
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34
 
+        private ILocValue FormatNaturalFixed(CultureInfo culture, LocArgs args)
+        {
+            var number = ((LocValueNumber)args.Args[0]).Value;
+            var maxDecimals = (int)Math.Floor(((LocValueNumber)args.Args[1]).Value);
+
+            var formatter =
+                (NumberFormatInfo)NumberFormatInfo.GetInstance(culture).Clone();
+
+            formatter.NumberDecimalDigits = maxDecimals;
+
+            return new LocValueString(
+                string.Format(formatter, "{0:N}", number)
+                    .TrimEnd('0')
+                    .TrimEnd(char.Parse(formatter.NumberDecimalSeparator)));
+        }
+        // RuCM Localization change end
         private static readonly Regex PluralEsRule = new("^.*(s|sh|ch|x|z)$");
 
         private ILocValue FormatMakePlural(LocArgs args)
@@ -145,7 +222,7 @@ namespace Content.Shared.Localizations
                 <= 0 => string.Empty,
                 1 => list[0],
                 2 => $"{list[0]} or {list[1]}",
-                _ => $"{string.Join(" or ", list)}"
+                _ => $"{string.Join(", ", list.GetRange(0, list.Count - 1))}, or {list[^1]}"
             };
         }
 

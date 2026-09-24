@@ -4,7 +4,11 @@ using System.Globalization;
 using System.Linq;
 using System.Text.Json;
 using System.Text.Json.Nodes;
+<<<<<<< HEAD
 using Robust.Shared.Localization; // RuMC edit
+=======
+using Robust.Shared.Localization;
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34
 
 namespace Content.Server.Discord;
 
@@ -43,6 +47,10 @@ public static class RoundStatusWebhook
 {
     private const int DetailValueLength = 96;
     private const int RecentGamemodeLength = 72;
+<<<<<<< HEAD
+=======
+    private static string FooterText => Loc.GetString("discord-round-status-footer");
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34
 
     public static readonly RoundStatusWebhookColors DefaultColors = new(
         0xF0C419,
@@ -71,6 +79,7 @@ public static class RoundStatusWebhook
 
         var fields = new List<WebhookEmbedField>
         {
+<<<<<<< HEAD
             // RuMC edit start
             new() { Name = loc.GetString("discord-round-status-field-status"), Value = GetState(loc, kind), Inline = true },
             new() { Name = loc.GetString("discord-round-status-field-players"), Value = status.PlayerCount.ToString(CultureInfo.InvariantCulture), Inline = true },
@@ -86,6 +95,19 @@ public static class RoundStatusWebhook
         fields.Add(new WebhookEmbedField { Name = loc.GetString("discord-round-status-field-recent-rounds"), Value = FormatRecentGamemodes(loc, status.RecentGamemodes), Inline = false });
         fields.Add(CreateLastUpdatedField(loc, DateTimeOffset.UtcNow));
         // RuMC edit end
+=======
+            new() { Name = Loc.GetString("discord-round-status-field-status"), Value = GetState(kind), Inline = true },
+            new() { Name = Loc.GetString("discord-round-status-field-players"), Value = status.PlayerCount.ToString(CultureInfo.InvariantCulture), Inline = true },
+            new() { Name = Loc.GetString("discord-round-status-field-round"), Value = $"#{status.RoundId}", Inline = true },
+        };
+
+        if (status.Duration is { } duration)
+            fields.Add(new WebhookEmbedField { Name = Loc.GetString("discord-round-status-field-runtime"), Value = FormatDuration(duration), Inline = true });
+
+        fields.Add(new WebhookEmbedField { Name = Loc.GetString("discord-round-status-field-operation"), Value = FormatOperation(status), Inline = false });
+        fields.Add(new WebhookEmbedField { Name = Loc.GetString("discord-round-status-field-recent-rounds"), Value = FormatRecentGamemodes(status.RecentGamemodes), Inline = false });
+        fields.Add(CreateLastUpdatedField(DateTimeOffset.UtcNow));
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34
 
         var payload = new WebhookPayload
         {
@@ -120,15 +142,24 @@ public static class RoundStatusWebhook
             {
                 new()
                 {
+<<<<<<< HEAD
                     // RuMC edit start
                     Title = GetTitle(loc, RoundStatusWebhookKind.Shutdown, 0),
                     Description = GetDescription(loc, RoundStatusWebhookKind.Shutdown),
                     // RuMC edit end
+=======
+                    Title = GetTitle(RoundStatusWebhookKind.Shutdown, 0),
+                    Description = Loc.GetString("discord-round-status-description-offline"),
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34
                     Color = colors.Shutdown,
                     Footer = new WebhookEmbedFooter { Text = loc.GetString("discord-round-status-footer") }, // RuMC edit
                     Fields = new List<WebhookEmbedField>
                     {
+<<<<<<< HEAD
                         new() { Name = loc.GetString("discord-round-status-field-status"), Value = GetState(loc, RoundStatusWebhookKind.Shutdown), Inline = true }, // RuMC edit
+=======
+                        new() { Name = Loc.GetString("discord-round-status-field-status"), Value = Loc.GetString("discord-round-status-state-offline"), Inline = true },
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34
                     },
                 },
             },
@@ -282,7 +313,11 @@ public static class RoundStatusWebhook
     {
         return new WebhookEmbedField
         {
+<<<<<<< HEAD
             Name = loc.GetString("discord-round-status-field-last-updated"), // RuMC edit
+=======
+            Name = Loc.GetString("discord-round-status-field-last-updated"),
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34
             Value = $"<t:{updatedAt.ToUnixTimeSeconds()}:R>",
             Inline = false,
         };
@@ -290,8 +325,10 @@ public static class RoundStatusWebhook
 
     private static string GetTitle(ILocalizationManager loc, RoundStatusWebhookKind kind, int roundId)
     {
+        var round = ("id", (object) roundId.ToString(CultureInfo.InvariantCulture));
         return kind switch
         {
+<<<<<<< HEAD
             // RuMC edit start
             RoundStatusWebhookKind.Starting => loc.GetString("discord-round-status-title-starting"),
             RoundStatusWebhookKind.Lobby => loc.GetString("discord-round-status-title-lobby"),
@@ -300,6 +337,14 @@ public static class RoundStatusWebhook
             RoundStatusWebhookKind.Shutdown => loc.GetString("discord-round-status-title-offline"),
             _ => loc.GetString("discord-round-status-title-unknown"),
             // RuMC edit end
+=======
+            RoundStatusWebhookKind.Starting => Loc.GetString("discord-round-status-title-starting"),
+            RoundStatusWebhookKind.Lobby => Loc.GetString("discord-round-status-title-lobby"),
+            RoundStatusWebhookKind.Running => Loc.GetString("discord-round-status-title-running", round),
+            RoundStatusWebhookKind.Ended => Loc.GetString("discord-round-status-title-ended", round),
+            RoundStatusWebhookKind.Shutdown => Loc.GetString("discord-round-status-title-offline"),
+            _ => Loc.GetString("discord-round-status-title-unknown"),
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34
         };
     }
 
@@ -320,6 +365,7 @@ public static class RoundStatusWebhook
     {
         return kind switch
         {
+<<<<<<< HEAD
             // RuMC edit start
             RoundStatusWebhookKind.Starting => loc.GetString("discord-round-status-description-starting"),
             RoundStatusWebhookKind.Lobby => loc.GetString("discord-round-status-description-lobby"),
@@ -328,6 +374,14 @@ public static class RoundStatusWebhook
             RoundStatusWebhookKind.Shutdown => loc.GetString("discord-round-status-description-offline"),
             _ => loc.GetString("discord-round-status-description-unknown"),
             // RuMC edit end
+=======
+            RoundStatusWebhookKind.Starting => Loc.GetString("discord-round-status-description-starting"),
+            RoundStatusWebhookKind.Lobby => Loc.GetString("discord-round-status-description-lobby"),
+            RoundStatusWebhookKind.Running => Loc.GetString("discord-round-status-description-running"),
+            RoundStatusWebhookKind.Ended => Loc.GetString("discord-round-status-description-ended"),
+            RoundStatusWebhookKind.Shutdown => Loc.GetString("discord-round-status-description-offline"),
+            _ => Loc.GetString("discord-round-status-description-unknown"),
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34
         };
     }
 
@@ -335,6 +389,7 @@ public static class RoundStatusWebhook
     {
         return kind switch
         {
+<<<<<<< HEAD
             // RuMC edit start
             RoundStatusWebhookKind.Starting => loc.GetString("discord-round-status-state-starting"),
             RoundStatusWebhookKind.Lobby => loc.GetString("discord-round-status-state-lobby"),
@@ -343,6 +398,14 @@ public static class RoundStatusWebhook
             RoundStatusWebhookKind.Shutdown => loc.GetString("discord-round-status-state-offline"),
             _ => loc.GetString("discord-round-status-state-unknown"),
             // RuMC edit end
+=======
+            RoundStatusWebhookKind.Starting => Loc.GetString("discord-round-status-state-starting"),
+            RoundStatusWebhookKind.Lobby => Loc.GetString("discord-round-status-state-lobby"),
+            RoundStatusWebhookKind.Running => Loc.GetString("discord-round-status-state-running"),
+            RoundStatusWebhookKind.Ended => Loc.GetString("discord-round-status-state-ended"),
+            RoundStatusWebhookKind.Shutdown => Loc.GetString("discord-round-status-state-offline"),
+            _ => Loc.GetString("discord-round-status-state-unknown"),
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34
         };
     }
 
@@ -350,17 +413,33 @@ public static class RoundStatusWebhook
     {
         return string.Join(
             "\n",
+<<<<<<< HEAD
             // RuMC edit start
             loc.GetString("discord-round-status-operation-map", ("value", Shorten(loc, status.MapName, DetailValueLength))),
             loc.GetString("discord-round-status-operation-govfor", ("value", Shorten(loc, status.Govfor, DetailValueLength))),
             loc.GetString("discord-round-status-operation-mode", ("value", Shorten(loc, status.Gamemode, DetailValueLength))));
             // RuMC edit end
+=======
+            FormatOperationLine("discord-round-status-operation-map", status.MapName),
+            FormatOperationLine("discord-round-status-operation-govfor", status.Govfor),
+            FormatOperationLine("discord-round-status-operation-mode", status.Gamemode));
+    }
+
+    private static string FormatOperationLine(string id, string value)
+    {
+        var shortened = Shorten(value, DetailValueLength);
+        return Loc.GetString(id, ("value", (object) shortened));
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34
     }
 
     private static string FormatRecentGamemodes(ILocalizationManager loc, IReadOnlyList<RoundStatusRecentGamemode> recentGamemodes) // RuMC edit
     {
         if (recentGamemodes.Count == 0)
+<<<<<<< HEAD
             return loc.GetString("discord-round-status-no-recent-rounds");
+=======
+            return Loc.GetString("discord-round-status-no-recent-rounds");
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34
 
         return string.Join(
             "\n",
@@ -372,7 +451,11 @@ public static class RoundStatusWebhook
     private static string UnknownIfEmpty(ILocalizationManager loc, string value) // RuMC edit
     {
         return string.IsNullOrWhiteSpace(value)
+<<<<<<< HEAD
             ? loc.GetString("discord-round-status-unknown-value") // RuMC edit
+=======
+            ? Loc.GetString("discord-round-status-unknown-value")
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34
             : value.Trim();
     }
 
@@ -405,6 +488,7 @@ public static class RoundStatusWebhook
 
     private static string FormatDuration(ILocalizationManager loc, TimeSpan duration) // RuMC edit
     {
+<<<<<<< HEAD
         // RuMC edit start
         return loc.GetString(
             "discord-round-status-duration-long",
@@ -412,11 +496,21 @@ public static class RoundStatusWebhook
             ("minutes", duration.Minutes.ToString(CultureInfo.InvariantCulture)),
             ("seconds", duration.Seconds.ToString(CultureInfo.InvariantCulture)));
         // RuMC edit end
+=======
+        var hours = (int) duration.TotalHours;
+        return Loc.GetString(
+            "discord-round-status-duration-long",
+            ("hours", (object) hours.ToString(CultureInfo.InvariantCulture)),
+            ("minutes", (object) duration.Minutes.ToString(CultureInfo.InvariantCulture)),
+            ("seconds", (object) duration.Seconds.ToString(CultureInfo.InvariantCulture)));
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34
     }
 
     private static string FormatShortDuration(ILocalizationManager loc, TimeSpan duration) // RuMC edit
     {
+        var hours = (int) duration.TotalHours;
         return duration.TotalHours >= 1
+<<<<<<< HEAD
         // RuMC edit start
             ? loc.GetString(
                 "discord-round-status-duration-short-hours",
@@ -427,5 +521,15 @@ public static class RoundStatusWebhook
                 ("minutes", duration.Minutes.ToString(CultureInfo.InvariantCulture)),
                 ("seconds", duration.Seconds.ToString("D2", CultureInfo.InvariantCulture)));
         // RuMC edit end
+=======
+            ? Loc.GetString(
+                "discord-round-status-duration-short-hours",
+                ("hours", (object) hours.ToString(CultureInfo.InvariantCulture)),
+                ("minutes", (object) duration.Minutes.ToString("D2", CultureInfo.InvariantCulture)))
+            : Loc.GetString(
+                "discord-round-status-duration-short-minutes",
+                ("minutes", (object) duration.Minutes.ToString(CultureInfo.InvariantCulture)),
+                ("seconds", (object) duration.Seconds.ToString("D2", CultureInfo.InvariantCulture)));
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34
     }
 }

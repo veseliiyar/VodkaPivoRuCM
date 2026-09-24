@@ -1,22 +1,19 @@
 using System.Collections.Frozen;
-using Content.Shared._CMU14.Chat;
+using Content.Shared.CMU14.Chat;
 using Content.Shared._RMC14.Voicelines;
 using Content.Shared.Chat.Prototypes;
-using Content.Shared.Speech;
-using Robust.Shared.Audio;
 using Robust.Shared.Player;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
 namespace Content.Server.Chat.Systems;
 
-// emotes using emote prototype
-public partial class ChatSystem
+public sealed partial class ChatSystem
 {
     private const string ScreamEmoteId = "Scream";
 
     private static readonly string[] RunechatPainMessages =
     [
+<<<<<<< HEAD
         // RuMC edit start
         "rmc-runechat-pain-ow",
         "rmc-runechat-pain-agh",
@@ -25,10 +22,19 @@ public partial class ChatSystem
         "rmc-runechat-pain-ack",
         "rmc-runechat-pain-ouf",
         // RuMC edit end
+=======
+        "АУ!!",
+        "АГХ!!",
+        "АРГХ!!",
+        "АУЧ!!",
+        "АЙ!!",
+        "УФ!",
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34
     ];
 
     private static readonly string[] RunechatScreamMessages =
     [
+<<<<<<< HEAD
         // RuMC edit start
         "rmc-runechat-scream-fuck",
         "rmc-runechat-scream-agh",
@@ -39,6 +45,16 @@ public partial class ChatSystem
         "rmc-runechat-scream-nnhh",
         "rmc-runechat-scream-shit",
         // RuMC edit end
+=======
+        "БЛЯТЬ!!!",
+        "АГХ!!!",
+        "АРГХ!!!",
+        "АААА!!!",
+        "НГХ!!!",
+        "НГХХХХ!!!",
+        "ННХХ!!!",
+        "СУКА!!!",
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34
     ];
 
     private static readonly FrozenSet<string> PainEmoteIds = new[]
@@ -48,77 +64,11 @@ public partial class ChatSystem
         "TroubleStanding",
     }.ToFrozenSet();
 
-    private FrozenDictionary<string, EmotePrototype> _wordEmoteDict = FrozenDictionary<string, EmotePrototype>.Empty;
-
     [Dependency] private HumanoidVoicelinesSystem _humanoidVoicelines = default!;
 
-    protected override void OnPrototypeReload(PrototypesReloadedEventArgs obj)
-    {
-        base.OnPrototypeReload(obj);
-        if (obj.WasModified<EmotePrototype>())
-            CacheEmotes();
-    }
-
-    private void CacheEmotes()
-    {
-        var dict = new Dictionary<string, EmotePrototype>();
-        var emotes = _prototypeManager.EnumeratePrototypes<EmotePrototype>();
-        foreach (var emote in emotes)
-        {
-            foreach (var word in emote.ChatTriggers)
-            {
-                var lowerWord = word.ToLower();
-                if (dict.TryGetValue(lowerWord, out var value))
-                {
-                    var errMsg = $"Duplicate of emote word {lowerWord} in emotes {emote.ID} and {value.ID}";
-                    Log.Error(errMsg);
-                    continue;
-                }
-
-                dict.Add(lowerWord, emote);
-            }
-        }
-
-        _wordEmoteDict = dict.ToFrozenDictionary();
-    }
-
-    /// <summary>
-    ///     Makes selected entity to emote using <see cref="EmotePrototype"/> and sends message to chat.
-    /// </summary>
-    /// <param name="source">The entity that is speaking</param>
-    /// <param name="emoteId">The id of emote prototype. Should has valid <see cref="EmotePrototype.ChatMessages"/></param>
-    /// <param name="hideLog">Whether or not this message should appear in the adminlog window</param>
-    /// <param name="range">Conceptual range of transmission, if it shows in the chat window, if it shows to far-away ghosts or ghosts at all...</param>
-    /// <param name="nameOverride">The name to use for the speaking entity. Usually this should just be modified via <see cref="TransformSpeakerNameEvent"/>. If this is set, the event will not get raised.</param>
-    /// <param name="forceEmote">Bypasses whitelist/blacklist/availibility checks for if the entity can use this emote</param>
-    public void TryEmoteWithChat(
-        EntityUid source,
-        string emoteId,
-        ChatTransmitRange range = ChatTransmitRange.Normal,
-        bool hideLog = false,
-        string? nameOverride = null,
-        bool ignoreActionBlocker = false,
-        bool forceEmote = false
-        )
-    {
-        if (!_prototypeManager.TryIndex<EmotePrototype>(emoteId, out var proto))
-            return;
-        TryEmoteWithChat(source, proto, range, hideLog: hideLog, nameOverride, ignoreActionBlocker: ignoreActionBlocker, forceEmote: forceEmote);
-    }
-
-    /// <summary>
-    ///     Makes selected entity to emote using <see cref="EmotePrototype"/> and sends message to chat.
-    /// </summary>
-    /// <param name="source">The entity that is speaking</param>
-    /// <param name="emote">The emote prototype. Should has valid <see cref="EmotePrototype.ChatMessages"/></param>
-    /// <param name="hideLog">Whether or not this message should appear in the adminlog window</param>
-    /// <param name="hideChat">Whether or not this message should appear in the chat window</param>
-    /// <param name="range">Conceptual range of transmission, if it shows in the chat window, if it shows to far-away ghosts or ghosts at all...</param>
-    /// <param name="nameOverride">The name to use for the speaking entity. Usually this should just be modified via <see cref="TransformSpeakerNameEvent"/>. If this is set, the event will not get raised.</param>
-    /// <param name="forceEmote">Bypasses whitelist/blacklist/availibility checks for if the entity can use this emote</param>
-    public void TryEmoteWithChat(
-        EntityUid source,
+    protected override void GetEmotePresentation(
         EmotePrototype emote,
+<<<<<<< HEAD
         ChatTransmitRange range = ChatTransmitRange.Normal,
         bool hideLog = false,
         string? nameOverride = null,
@@ -154,39 +104,45 @@ public partial class ChatSystem
     }
 
     private string? GetRunechatEmoteMessage(EmotePrototype emote, out string? speechStyleClass)
+=======
+        out string? speechBubbleMessage,
+        out string? speechStyleClass)
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34
     {
         if (emote.ID == ScreamEmoteId)
         {
+            speechBubbleMessage = _random.Pick(RunechatScreamMessages);
             speechStyleClass = CMURunechatStyles.Scream;
+<<<<<<< HEAD
             return Loc.GetString(_random.Pick(RunechatScreamMessages)); // RuMC edit
+=======
+            return;
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34
         }
 
         if (PainEmoteIds.Contains(emote.ID))
         {
+            speechBubbleMessage = _random.Pick(RunechatPainMessages);
             speechStyleClass = CMURunechatStyles.Pain;
+<<<<<<< HEAD
             return Loc.GetString(_random.Pick(RunechatPainMessages)); // RuMC edit
+=======
+            return;
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34
         }
 
+        speechBubbleMessage = null;
         speechStyleClass = null;
-        return null;
     }
 
-    /// <summary>
-    ///     Makes selected entity to emote using <see cref="EmotePrototype"/> without sending any messages to chat.
-    /// </summary>
-    public void TryEmoteWithoutChat(EntityUid uid, string emoteId, bool ignoreActionBlocker = false)
+    protected override bool CanInvokeChatEmote(EntityUid source, EmotePrototype emote)
     {
-        if (!_prototypeManager.TryIndex<EmotePrototype>(emoteId, out var proto))
-            return;
-
-        TryEmoteWithoutChat(uid, proto, ignoreActionBlocker);
+        return _rmcEmote.TryEmote(source);
     }
 
-    /// <summary>
-    ///     Makes selected entity to emote using <see cref="EmotePrototype"/> without sending any messages to chat.
-    /// </summary>
-    public void TryEmoteWithoutChat(EntityUid uid, EmotePrototype proto, bool ignoreActionBlocker = false)
+    protected override Filter GetEmoteSoundFilter(EntityUid source)
     {
+<<<<<<< HEAD
         proto = GetEmoteOverride(uid, proto);
 
         if (!_actionBlocker.CanEmote(uid) && !ignoreActionBlocker)
@@ -339,5 +295,9 @@ public struct EmoteEvent
     {
         Emote = emote;
         Handled = false;
+=======
+        return Filter.Pvs(source)
+            .RemoveWhere(session => !_humanoidVoicelines.ShouldPlayEmote(source, session));
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34
     }
 }

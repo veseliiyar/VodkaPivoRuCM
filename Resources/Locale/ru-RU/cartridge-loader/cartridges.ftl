@@ -103,3 +103,9 @@ wanted-list-status-label = [color=darkgray]статус:[/color] { $status ->
 wanted-list-history-table-time-col = Время
 wanted-list-history-table-reason-col = Преступление
 wanted-list-history-table-initiator-col = Инициатор
+<<<<<<< HEAD
+=======
+
+
+crew-manifest-cartridge-loading-failed = Failed to load crew manifest!
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34

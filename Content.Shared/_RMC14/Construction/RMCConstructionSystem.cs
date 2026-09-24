@@ -1,4 +1,4 @@
-using Content.Shared._AU14.ZLevelBuilding;
+using Content.Shared.CMU14.ZLevelBuilding;
 using Content.Shared._RMC14.Construction.Prototypes;
 using Content.Shared._RMC14.Dropship;
 using Content.Shared._RMC14.Emplacements;
@@ -7,6 +7,7 @@ using Content.Shared._RMC14.Ladder;
 using Content.Shared._RMC14.Map;
 using Content.Shared._RMC14.Marines.Skills;
 using Content.Shared._RMC14.Vehicle;
+using Content.Shared.CMU14.ZLevels.Core.EntitySystems;
 using Content.Shared.Construction;
 using Content.Shared.Construction.Components;
 using Content.Shared.Coordinates;
@@ -19,6 +20,7 @@ using Content.Shared.Physics;
 using Content.Shared.Popups;
 using Content.Shared.Stacks;
 using Robust.Shared.Map;
+using Robust.Shared.GameStates;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Network;
 using Robust.Shared.Physics.Collision.Shapes;
@@ -32,6 +34,7 @@ namespace Content.Shared._RMC14.Construction;
 public sealed partial class RMCConstructionSystem : EntitySystem
 {
     [Dependency] private IComponentFactory _componentFactory = default!;
+    [Dependency] private CMUSharedZLevelsSystem _zLevels = default!;
     [Dependency] private FixtureSystem _fixture = default!;
     [Dependency] private SharedMapSystem _map = default!;
     [Dependency] private TurfSystem _turf = default!;
@@ -60,6 +63,8 @@ public sealed partial class RMCConstructionSystem : EntitySystem
         SubscribeLocalEvent<DropshipHijackLandedEvent>(OnDropshipHijackLanded);
 
         SubscribeLocalEvent<RMCConstructionPreventCollideComponent, PreventCollideEvent>(OnConstructionPreventCollide);
+        SubscribeLocalEvent<RMCConstructionPreventCollideComponent, ComponentGetState>(OnPreventCollideGetState);
+        SubscribeLocalEvent<RMCConstructionPreventCollideComponent, ComponentHandleState>(OnPreventCollideHandleState);
 
         SubscribeLocalEvent<RMCConstructionItemComponent, UseInHandEvent>(OnUseInHand);
         SubscribeLocalEvent<RMCConstructionItemComponent, RMCConstructionBuildDoAfterEvent>(OnBuildDoAfter);
@@ -87,7 +92,8 @@ public sealed partial class RMCConstructionSystem : EntitySystem
         var query = EntityQueryEnumerator<RMCReplaceOnHijackLandComponent>();
         while (query.MoveNext(out var uid, out var comp))
         {
-            if (!TryComp(uid, out TransformComponent? xform) || xform.MapUid != ev.Map)
+            if (!TryComp(uid, out TransformComponent? xform)
+                || !_zLevels.IsSameZNetwork(xform.MapUid, ev.Map)) // CMU14
                 continue;
 
             if (comp.Id is not { } id)
@@ -257,7 +263,7 @@ public sealed partial class RMCConstructionSystem : EntitySystem
             var costEv = new RMCConstructionCostEvent(args.User, stack.StackTypeId, baseCost, baseCost);
             RaiseLocalEvent(args.User, ref costEv, true);
             var paidCost = Math.Max(1, costEv.Cost);
-            if (!_stack.Use(ent.Owner, paidCost, stack))
+            if (!_stack.TryUse((ent.Owner, stack), paidCost))
             {
                 var message = Loc.GetString("rmc-construction-more-material", ("material", ent.Owner), ("object", entry.Name));
                 _popup.PopupEntity(message, args.User, args.User, PopupType.SmallCaution);

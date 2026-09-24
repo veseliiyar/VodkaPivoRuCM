@@ -6,7 +6,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared._RMC14.Chemistry.Effects;
 
-public sealed partial class RMCAlchemistPurgeNonToxins : EntityEffect
+public sealed partial class RMCAlchemistPurgeNonToxins : EntityEffectBase<RMCAlchemistPurgeNonToxins>
 {
     [DataField]
     public FixedPoint2 Amount = 0.2f;
@@ -20,21 +20,34 @@ public sealed partial class RMCAlchemistPurgeNonToxins : EntityEffect
         "Stimulants",
     };
 
-    public override void Effect(EntityEffectBaseArgs args)
+    public override string? EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
     {
-        if (args is not EntityEffectReagentArgs { Source: { } source } reagentArgs)
+        return $"Purges [color=red]{Amount}[/color] units of matching non-toxin chemicals per second.";
+    }
+}
+
+public sealed partial class RMCAlchemistPurgeNonToxinsEntityEffectSystem
+    : EntityEffectSystem<MetaDataComponent, RMCAlchemistPurgeNonToxins>
+{
+    [Dependency] private readonly RMCReagentSystem _reagent = default!;
+
+    protected override void Effect(
+        Entity<MetaDataComponent> entity,
+        ref EntityEffectEvent<RMCAlchemistPurgeNonToxins> args)
+    {
+        if (args.ReagentContext is not { Source: { } source })
             return;
 
-        var amount = Amount * reagentArgs.Scale;
+        var effect = args.Effect;
+        var amount = effect.Amount * args.Scale;
         if (amount <= FixedPoint2.Zero)
             return;
 
-        var reagents = args.EntityManager.System<RMCReagentSystem>();
         foreach (var quantity in source.Contents.ToArray())
         {
-            if (!reagents.TryIndex(quantity.Reagent, out var reagent) ||
+            if (!_reagent.TryIndex(quantity.Reagent, out var reagent) ||
                 reagent.Toxin ||
-                !Groups.Contains(reagent.Group))
+                !effect.Groups.Contains(reagent.Group))
             {
                 continue;
             }
@@ -42,9 +55,12 @@ public sealed partial class RMCAlchemistPurgeNonToxins : EntityEffect
             source.RemoveReagent(quantity.Reagent, amount);
         }
     }
+<<<<<<< HEAD
 
     protected override string? ReagentEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
     {
         return Loc.GetString("reagent-effect-guidebook-rmc-alchemist-purge", ("amount", Amount)); // RuMC edit
     }
+=======
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34
 }

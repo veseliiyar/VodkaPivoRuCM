@@ -10,22 +10,26 @@ using Content.Shared._RMC14.Xenonids;
 using Content.Shared._RMC14.Xenonids.Announce;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
-using Content.Shared._CMU14.Yautja;
-using Content.Shared._CMU14.Threats;
+using Content.Shared.CMU14.Marines; // CMU14
+using Content.Shared.CMU14.ZLevels.Core.EntitySystems; // CMU14
+using Content.Shared.CMU14.Yautja;
+using Content.Shared.CMU14.Threats;
 using Robust.Shared.Configuration;
 using Robust.Shared.Map;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
-using AbominationComponent = Content.Shared._CMU14.Threats.Mobs.Abomination.AbominationComponent;
-using InsurgencyRuleComponent = Content.Shared._CMU14.Threats.InsurgencyRuleComponent;
+using BiomorphComponent = Content.Shared.CMU14.Threats.Mobs.Biomorph.BiomorphComponent; // CMU14
+using BiomorphMimicTransformedComponent = Content.Shared.CMU14.Threats.Mobs.Biomorph.BiomorphMimicTransformedComponent; // CMU14
+using InsurgencyRuleComponent = Content.Shared.CMU14.Threats.InsurgencyRuleComponent;
 
 namespace Content.Shared._RMC14.Bioscan;
 
 public sealed partial class BioscanSystem : EntitySystem
 {
     [Dependency] private AreaSystem _area = default!;
+    [Dependency] private CMUSharedZLevelsSystem _zLevels = default!; // CMU14
     [Dependency] private IConfigurationManager _config = default!;
     [Dependency] private SharedMarineAnnounceSystem _marineAnnounce = default!;
     [Dependency] private MobStateSystem _mobState = default!;
@@ -67,12 +71,9 @@ public sealed partial class BioscanSystem : EntitySystem
     private bool TargetIsMarine(EntityUid uid) => HasComp<MarineComponent>(uid);
     private bool TargetIsThreat(EntityUid uid)
     {
-        // Disguised mimics (AbominationMimicTransformedComponent) are
-        // deliberately NOT counted here: ARES announcing their presence and
-        // location would give the threat away and kill the colony-fall
-        // paranoia. Only natural-form abominations show up on bioscan.
         return HasComp<XenoComponent>(uid)
-            || HasComp<AbominationComponent>(uid)
+            || HasComp<BiomorphComponent>(uid) // CMU14
+            || HasComp<BiomorphMimicTransformedComponent>(uid) // CMU14
             || HasComp<YautjaComponent>(uid)
             || HasComp<YautjaAbominationComponent>(uid);
     }
@@ -105,11 +106,13 @@ public sealed partial class BioscanSystem : EntitySystem
 
         var planetQuery = EntityQueryEnumerator<RMCPlanetComponent, TransformComponent>();
         while (planetQuery.MoveNext(out _, out var xform))
-            _planetMaps.Add(xform.MapID);
+            // CMU14: planets are z-networks, each deck is its own map
+            _planetMaps.AddRange(_zLevels.GetAllNetworkMapIds(xform.MapID));
 
-        var warshipQuery = EntityQueryEnumerator<AlmayerComponent, TransformComponent>();
+        var warshipQuery = EntityQueryEnumerator<WarshipComponent, TransformComponent>(); // CMU14
         while (warshipQuery.MoveNext(out _, out var xform))
-            _warshipMaps.Add(xform.MapID);
+            // CMU14: warship decks live on separate z-network maps, count them all
+            _warshipMaps.AddRange(_zLevels.GetAllNetworkMapIds(xform.MapID));
 
         var playersQuery = EntityQueryEnumerator<ActorComponent, MobStateComponent, TransformComponent>();
         while (playersQuery.MoveNext(out var uid, out _, out var mobState, out var xform))

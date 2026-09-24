@@ -26,3 +26,9 @@ disposal-unit-state-Pressurizing = Нагнетание
 
 # putting people in
 disposal-unit-being-inserted = { CAPITALIZE($user) } пытается затолкать вас в мусоропровод!
+<<<<<<< HEAD
+=======
+
+
+disposal-unit-is-full = There's no more room inside.
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34

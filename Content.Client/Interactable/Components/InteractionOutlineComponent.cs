@@ -1,9 +1,9 @@
-using Robust.Client.GameObjects;
-using Robust.Client.Graphics;
-using Robust.Shared.Prototypes;
+namespace Content.Client.Interactable.Components;
 
-namespace Content.Client.Interactable.Components
+[RegisterComponent]
+public sealed partial class InteractionOutlineComponent : Component
 {
+<<<<<<< HEAD
     [RegisterComponent]
     public sealed partial class InteractionOutlineComponent : Component
     {
@@ -91,4 +91,9 @@ namespace Content.Client.Interactable.Components
             return instance;
         }
     }
+=======
+    public bool InRange;
+    public int LastRenderScale;
+    public bool Active;
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34
 }

@@ -1,7 +1,12 @@
 # Chat window radio wrap (prefix and postfix)
+<<<<<<< HEAD
 chat-radio-message-wrap = [color={$color}][font={$fontType} size={$fontSize}]{$channel}: [BubbleHeader]{$name}[/BubbleHeader] {$verb}, "{$message}"[/font][/color]
 chat-radio-message-wrap-bold = [color={$color}][font={$fontType} size={$fontSize}]{$channel}: [BubbleHeader]{$name}[/BubbleHeader] {$verb}, [bold]"{$message}"[/bold][/font][/color]
 
+=======
+chat-radio-message-wrap = [color={$color}][font={$fontType} size={$fontSize}]{$channel} [bold]{$name}[/bold] {$verb}, { chat-manager-speech-double-quote-begin }{$message}{ chat-manager-speech-double-quote-end }[/font][/color]
+chat-radio-message-wrap-bold = [color={$color}][font={$fontType} size={$fontSize}]{$channel} [bold]{$name}[/bold] {$verb}, [bold]{ chat-manager-speech-double-quote-begin }{$message}{ chat-manager-speech-double-quote-end }[/bold][/font][/color]
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34
 examine-headset-default-channel = Use {$prefix} for the default channel ([color={$color}]{$channel}[/color]).
 
 chat-radio-common = Common

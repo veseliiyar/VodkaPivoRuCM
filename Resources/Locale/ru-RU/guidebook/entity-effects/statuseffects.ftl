@@ -29,3 +29,9 @@ entity-effect-status-effect-RadiationProtection = защита от радиац
 entity-effect-status-effect-Drowsiness = сонливость
 
 entity-effect-status-effect-Adrenaline = адреналин
+<<<<<<< HEAD
+=======
+
+
+entity-effect-status-effect-Unconscious = unconsciousness
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34

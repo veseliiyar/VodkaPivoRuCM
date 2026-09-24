@@ -105,3 +105,11 @@ petting-failure-tesla = Вы тянетесь погладить { $target }, н
 
 petting-success-mail-teleporter = Вы гладите { $target } по { POSS-ADJ($target) } послушной, холодной обшивке.
 petting-failure-mail-teleporter = Вы тянетесь погладить { $target }, но { SUBJECT($target) } занимается сортировкой почты!
+<<<<<<< HEAD
+=======
+
+
+petting-success-sheep = You pet {THE($target)} on {POSS-ADJ($target)} soft fluffy head.
+
+petting-failure-sheep = You reach out to pet {THE($target)}, but {SUBJECT($target)} stubbornly {CONJUGATE-BASIC($target, "refuse", "refuses")}!
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34

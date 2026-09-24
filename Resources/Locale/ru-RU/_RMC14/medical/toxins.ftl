@@ -42,3 +42,9 @@ reagent-desc-rmc-xenoalch-freeze = Ксенонидный алхимически
 
 reagent-name-rmc-xenoalch-purge = Ксеностерин
 reagent-desc-rmc-xenoalch-purge = Ксенонидный алхимический токсин, выводящий нетоксичные вещества из кровотока жертвы.
+<<<<<<< HEAD
+=======
+
+
+reagent-name-rmcgenerictoxin = Generic Toxin
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34

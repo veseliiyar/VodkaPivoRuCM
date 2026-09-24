@@ -68,3 +68,15 @@ lathe-category-white = Белый
 lathe-category-wood = Дерево
 
 # Science
+<<<<<<< HEAD
+=======
+
+
+lathe-category-shuttle-tile = Shuttle
+
+lathe-category-plastic-tile = Plastic
+
+lathe-category-precious-tile = Precious
+
+lathe-category-industrial-tile = Industrial
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34

@@ -1,0 +1,47 @@
+- type: department
+  parent: CMDepartmentBase
+  id: AU14DepartmentOpfor
+  name: au14-department-opfor
+  description: au14-department-opfor-description
+  color: "#9e1a0b"
+  faction: opfor
+  roles:
+  - AU14JobOPFORPlatCo
+  - AU14JobOPFORAdjutant
+  - AU14JobOPFORPlatOp
+  - AU14JobOPFORadvisor
+  - AU14JobOPFOROfficerIntel
+  - AU14JobOPFORSectionSergeant
+  - AU14JobOPFORSquadSergeant
+  - AU14JobOPFORRadioTelephoneOperator
+  - AU14JobOPFORRadioTrafficOperator
+  - AU14JobOPFORSquadRifleman
+  - CMUJobOPFORDroneOperator
+  - AU14JobOPFORWeaponsSpecialist
+  - AU14JobOPFORSquadAutomaticRifleman
+  - AU14JobOPFORSquadCombatTech
+<<<<<<< HEAD:Resources/Prototypes/_CMU14/Roles/Shared/Departments/AU14DepartmentOpfor.yml
+  - AU14JobOPFORWeaponsSpecialist # RuMC edit
+  - AU14JobOPFORVehicleCrewman
+  - AU14JobOPFORPlatoonCorpsman
+=======
+  - AU14JobOPFOREngineeringTech
+  - AU14JobOPFOROfficerLogistics
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34:Content.CMU/Resources/Prototypes/CMU14/Roles/Shared/Departments/AU14DepartmentOpfor.yml
+  - AU14JobOPFORAuxTech
+  - AU14JobOPFOROfficerMedical
+  - AU14JobOPFORMilitaryDoctor
+  - AU14JobOPFORPlatoonCorpsman
+  - AU14JobOPFORNurse
+  - AU14JobOPFOROfficerMP
+  - AU14JobOPFORMilitaryPoliceMan
+  - AU14JobOPFOROfficerEngi
+  - AU14JobOPFORVehicleCrewman
+  - AU14JobOPFORVehicleCommander
+  - AU14JobOPFORDSPilot
+  - AU14JobOPFORDCC
+  - AU14JobOPFORAuxSupportSynth
+  - AU14JobOPFORWorkingJoe
+  - AU14JobOPFORCombatCorrespondent
+  departmentRadio: null
+  headOfDepartment: null

@@ -28,3 +28,11 @@ forensics-verb-message = Счистить отпечатки пальцев и �
 forensics-cleaning = Вы начинаете счищать улики с { $target }...
 
 forensics-cleaning-cannot-clean = Ничего нельзя счистить с { $target }!
+<<<<<<< HEAD
+=======
+
+
+forensics-cleaning-user = You begin cleaning the evidence off of {THE($target)}...
+
+forensics-cleaning-others = {CAPITALIZE($user)} begins cleaning the evidence off of {THE($target)}.
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34

@@ -1,0 +1,37 @@
+<Document>
+	# Исследования
+	
+	В этом разделе описано всё, что связано с исследованиями.
+	
+	## Руководства
+	- [textlink="Химические исследования" link="CMUResearch"]
+	- [textlink="Терминал исследовательских данных" link="CMURDT"]
+	- [textlink="XRF-сканер" link="CMUXRF"]
+	- [textlink="Симулятор синтеза" link="CMUSIM"]
+	- [textlink="Гидропоника" link="CMUBotany"]
+	
+	## Краткий справочник
+	- [textlink="Химические вещества" link="RMCChemicals"]
+	
+	### Источники химических веществ в гидропонике
+	
+	<Table Columns="2" MinForcedColumnWidth="64">
+		<ColorBox Color="#202028">
+			<Box Margin="4">[bold]Вещество[/bold]</Box>
+		</ColorBox>
+		<ColorBox Color="#202028">
+			<Box Margin="4">[bold]Источник(и)[/bold]</Box>
+		</ColorBox>
+		<ColorBox><Box>Аматоксин</Box></ColorBox><ColorBox><Box>Линчжи/рейши, мухомор</Box></ColorBox>
+		<ColorBox><Box>Атропин</Box></ColorBox><ColorBox><Box>Мутировавший мак; семена мака, семена картофеля</Box></ColorBox>
+		<ColorBox><Box>Кониин</Box></ColorBox><ColorBox><Box>Мутировавшая морковь; семена моркови</Box></ColorBox>
+		<ColorBox><Box>Цианид</Box></ColorBox><ColorBox><Box>Мутировавшие ядовитые яблоки; семена яблони, семена вишни</Box></ColorBox>
+		<ColorBox><Box>Дигоксин</Box></ColorBox><ColorBox><Box>Мутировавшие «Слёзы Мессы»; семена подсолнуха</Box></ColorBox>
+		<ColorBox><Box>Фенол</Box></ColorBox><ColorBox><Box>Мутировавшая морковь; семена моркови</Box></ColorBox>
+		<ColorBox><Box>Псорален</Box></ColorBox><ColorBox><Box>Мутировавшая капуста; семена капусты, семена цитрусовых</Box></ColorBox>
+		<ColorBox><Box>Тимол</Box></ColorBox><ColorBox><Box>Мутировавшие ягоды смерти, мутировавшие ядовитые ягоды; семена ягод</Box></ColorBox>
+		<ColorBox><Box>Урушиол</Box></ColorBox><ColorBox><Box>Мутировавшая смертельная крапива; семена манго</Box></ColorBox>
+		<ColorBox><Box>Зигацин</Box></ColorBox><ColorBox><Box>Мутировавший линчжи/рейши; споры линчжи/рейши</Box></ColorBox>
+	</Table>
+
+</Document>

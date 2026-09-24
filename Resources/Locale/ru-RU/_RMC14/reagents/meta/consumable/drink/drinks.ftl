@@ -13,3 +13,9 @@ rmc-reagent-desc-soy-milk = Непрозрачная белая жидкость
 rmc-reagent-name-chocolate-drink = шоколадный напиток
 
 rmc-reagent-desc-chocolate-drink = Нежный и нежный шоколадный напиток.
+<<<<<<< HEAD
+=======
+
+
+rmc-reagent-name-juice-bug = bug juice
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34

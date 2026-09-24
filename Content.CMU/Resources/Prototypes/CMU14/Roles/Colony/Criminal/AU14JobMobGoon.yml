@@ -1,0 +1,65 @@
+- type: job
+<<<<<<< HEAD:Resources/Prototypes/_CMU14/Roles/Colony/Criminal/AU14JobMobGoon.yml
+  parent: RMCJobRibbonBase # RuCM замена медалей на ленточки для колонистов
+=======
+  parent: RMCJobRibbonBase
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34:Content.CMU/Resources/Prototypes/CMU14/Roles/Colony/Criminal/AU14JobMobGoon.yml
+  id: AU14JobMobGoon
+  displayWeight: 8
+  roundSide: ThirdParty
+  roundForce: MOB
+  roundRole: MobGoon
+  roundComponents:
+  - type: Skills
+    skills:
+      RMCSkillFireman: 1
+      RMCSkillVehicles: 1
+      RMCSkillDomestics: 1
+      RMCSkillFirearms: 2
+  - type: JobPrefix
+    prefix: au14-job-prefix-mobboss
+  - type: TacticalMapIcon
+    icon:
+      sprite: /Textures/CMU14/Interface/au14colonyjobicons.rsi
+      state: colonist
+  - type: FactionLanguageMember
+    factionTag: Mob
+
+  name: au14-job-name-mobgoon
+  description: au14-job-description-mobgoon
+  setPreference: true
+  playTimeTracker: AU14JobMobGoon
+  startingGear: AU14GearMobGoon
+  icon: "AU14JobIconColonyMobGoon"
+  hasIcon: false
+  requireAdminNotify: false
+  joinNotifyCrew: false
+  supervisors: au14-job-supervisors-mobgoon
+  accessGroups:
+  - aumob
+  roleWeight: 0.25
+  ranks:
+    RMCRankCivilian: []
+
+- type: startingGear
+  id: AU14GearMobGoon
+  equipment:
+    jumpsuit: CMJumpsuitLiaisonCharcoal
+    shoes: RMCShoesLaceup
+    id: AU14IDCardMobGoon
+    ears: AU14HeadsetMob
+    back: CMSatchel
+
+- type: entity
+  parent: CMSpawnPointJobBase
+  id: AU14SpawnPointMobGoon
+  name: Spawn Point Mob Goon
+  components:
+  - type: SpawnPoint
+    job_id: AU14JobMobGoon
+  - type: Sprite
+    state: syn_spawn
+
+- type: playTimeTracker
+  id: AU14JobMobGoon
+  isHumanoid: true

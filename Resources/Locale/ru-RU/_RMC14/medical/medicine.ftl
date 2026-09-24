@@ -107,3 +107,11 @@ reagent-desc-rmcantized = Химическое вещество, разрабо�
 reagent-name-rmclipozine = Липозин
 
 reagent-desc-rmclipozine = Снижает чувство насыщения и уменьшает массу тела за счет увеличения кетоза и скорости метаболизма жира. Используйте для лечения ожирения. Большие дозы могут вызвать чрезмерную потерю веса.
+<<<<<<< HEAD
+=======
+
+
+rmc-fentanyl-container-label-text = FE
+
+rmc-methamphetamine-container-label-text = MA
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34

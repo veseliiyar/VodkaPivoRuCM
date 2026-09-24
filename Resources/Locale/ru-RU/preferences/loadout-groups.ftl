@@ -219,3 +219,17 @@ loadout-group-medical-glasses = Медицинские очки
 loadout-group-boxer-jumpsuit = Боксёрский комбинезон
 
 loadout-group-boxer-gloves = Боксерские перчатки
+<<<<<<< HEAD
+=======
+
+
+loadout-group-assistive-items = Assistive items
+
+loadout-group-tramdriver-jumpsuit = Tram driver jumpsuit
+
+loadout-group-tramdriver-outerclothing = Tram driver suit
+
+loadout-group-tramdriver-hat = Tram driver hat
+
+loadout-group-tramdriver-gloves = Tram driver gloves
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34

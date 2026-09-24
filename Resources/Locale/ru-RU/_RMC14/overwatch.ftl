@@ -122,3 +122,9 @@ rmc-overwatch-tripod-camera-collapsed = Полевая камера на тре�
 rmc-overwatch-tripod-camera-destroyed = Полевая камера на треноге уничтожена.
 rmc-overwatch-tripod-camera-examine-label = Надпись гласит: [color=cyan]{$label}[/color].
 rmc-overwatch-tripod-camera-examine-squad = В данный момент закреплена за отрядом: [color=cyan]{$squad}[/color].
+<<<<<<< HEAD
+=======
+
+
+rmc-overwatch-console-fireteams = Fireteams
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34

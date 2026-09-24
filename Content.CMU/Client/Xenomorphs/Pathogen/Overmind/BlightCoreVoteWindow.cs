@@ -1,0 +1,100 @@
+using Robust.Client.UserInterface.Controls;
+using Robust.Client.UserInterface;
+using Robust.Shared.IoC;
+using Robust.Shared.Timing;
+using Content.Shared.CMU14.Xenomorphs.Pathogen.Overmind;
+using Robust.Client.UserInterface.CustomControls;
+using Robust.Client.UserInterface.XAML;
+
+namespace Content.Client.CMU14.Xenomorphs.Pathogen.Overmind;
+
+public sealed partial class BlightCoreVoteWindow : DefaultWindow
+{
+    [Dependency] private  IGameTiming _timing = default!;
+
+    private readonly Label _timerLabel;
+    private readonly BoxContainer _candidateList;
+
+    private NetEntity? _myVote;
+    private TimeSpan _endsAt;
+
+    public event Action<NetEntity>? OnVote;
+
+    public BlightCoreVoteWindow()
+    {
+        IoCManager.InjectDependencies(this);
+
+        Title = Loc.GetString("cmu14-blight-core-vote-title"); // RuMC edit
+        Resizable = false;
+
+        var root = new BoxContainer
+        {
+            Orientation = BoxContainer.LayoutOrientation.Vertical,
+            SeparationOverride = 8,
+            Margin = new Thickness(8)
+        };
+
+        root.AddChild(new Label
+        {
+            Text = Loc.GetString("cmu14-blight-core-vote-body") // RuMC edit
+        });
+
+        _timerLabel = new Label
+        {
+            Text = Loc.GetString("cmu14-blight-core-seconds-remaining", ("seconds", 35)) // RuMC edit
+        };
+        root.AddChild(_timerLabel);
+
+        _candidateList = new BoxContainer
+        {
+            Orientation = BoxContainer.LayoutOrientation.Vertical,
+            SeparationOverride = 4
+        };
+        root.AddChild(_candidateList);
+
+        Contents.AddChild(root);
+    }
+
+    public void SetEndTime(TimeSpan endsAt)
+    {
+        _endsAt = endsAt;
+    }
+
+    protected override void FrameUpdate(FrameEventArgs args)
+    {
+        base.FrameUpdate(args);
+
+        var remaining = (float)(_endsAt - _timing.CurTime).TotalSeconds;
+        _timerLabel.Text = Loc.GetString("cmu14-blight-core-seconds-remaining", ("seconds", (int) Math.Max(0, remaining))); // RuMC edit
+    }
+
+    public void UpdateCandidates(List<BlightCoreVoteCandidate> candidates)
+    {
+        _candidateList.RemoveAllChildren();
+
+        foreach (var candidate in candidates)
+        {
+            var isMine = candidate.Candidate == _myVote;
+
+            var button = new Button
+            {
+                // RuMC edit start
+                Text = Loc.GetString("cmu14-blight-core-vote-candidate", ("name", candidate.Name), ("votes", candidate.Votes)) +
+                       (isMine ? " " + Loc.GetString("cmu14-blight-core-vote-your-vote") : ""),
+                // RuMC edit end
+                ToggleMode = true,
+                Pressed = isMine
+            };
+
+            var captured = candidate.Candidate;
+            button.OnPressed += _ =>
+            {
+                _myVote = captured;
+                OnVote?.Invoke(captured);
+                UpdateCandidates(candidates);
+            };
+
+            _candidateList.AddChild(button);
+        }
+    }
+}

@@ -39,3 +39,11 @@ reagent-desc-catessence = Тип канцерогенного фермента, 
 
 reagent-name-canidessence = каниназ
 reagent-desc-canidessence = Тип канцерогенного фермента, который, как известно, расщепляет белки, содержащиеся в голосовых связках большинства животных. НЕ рекомендуется смешивать.
+<<<<<<< HEAD
+=======
+
+
+reagent-name-brass = brass
+
+reagent-desc-brass = Smells like clockwork.
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34

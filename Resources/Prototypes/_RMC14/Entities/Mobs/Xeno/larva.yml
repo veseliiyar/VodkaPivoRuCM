@@ -16,11 +16,11 @@
     name: cm-job-name-xeno-larva
   - type: LarvaQueueable
   - type: Sprite
-    sprite: _AU14/Mobs/Xenos/Larva/larva.rsi # AU14-Edit
+    sprite: CMU14/Mobs/Xenos/Larva/larva.rsi # AU14-Edit
     layers:
     - state: alive
       map: [ "enum.XenoVisualLayers.Base" ]
-    - sprite: _CMU14/Mobs/Xenonids/bloody_larva.rsi
+    - sprite: CMU14/Mobs/Xenonids/bloody_larva.rsi
       state: alive_bloody
       map: ["bloody"]
       visible: false
@@ -107,13 +107,17 @@
     - RMCSynthGrabbable
   - type: RMCBuckleOffset
     offset: 0, 0
-  - type: XenoRankNames
+  - type: XenoRankNames # CMU14
     rankNames:
       0: rmc-xeno-young-larva
       2: rmc-xeno-mature-larva
       3: rmc-xeno-elder-larva
-      4: rmc-xeno-elder-larva
-      5: rmc-xeno-elder-larva
+      4: rmc-xeno-ancient-larva
+      5: rmc-xeno-prime-larva
+      6: rmc-xeno-apex-larva
+      7: rmc-xeno-royal-larva
+      8: rmc-xeno-nemesis
+      9: rmc-xeno-nemesis
   - type: FixedIdentity
     name: cmu-job-name-xeno-unknown
   - type: VentCrawler
@@ -132,6 +136,6 @@
   description: All slimy and yucky.
   components:
     - type: Sprite
-      sprite: _AU14/Mobs/Xenos/Larva/larva.rsi # AU14-Edit
+      sprite: CMU14/Mobs/Xenos/Larva/larva.rsi # AU14-Edit
       noRot: true
       state: embryo

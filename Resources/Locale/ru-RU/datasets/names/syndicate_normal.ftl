@@ -23,3 +23,9 @@ names-syndicate-normal-dataset-22 = Виктор
 names-syndicate-normal-dataset-23 = Виски
 names-syndicate-normal-dataset-24 = Икс-Рей
 names-syndicate-normal-dataset-25 = Зулу
+<<<<<<< HEAD
+=======
+
+
+names-syndicate-normal-dataset-26 = Zulu
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34

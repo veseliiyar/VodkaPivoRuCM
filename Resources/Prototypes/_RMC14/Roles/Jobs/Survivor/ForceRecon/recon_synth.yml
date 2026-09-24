@@ -16,7 +16,12 @@
   roleWeight: 0.25
   icon: "RMCJobIconReconSynthetic"
   whitelisted: true
+<<<<<<< HEAD
   whitelistParent: RMCWhitelistMedium
+=======
+  whitelistParent: RuCMWhitelistMedium
+  isSynthetic: true
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34
   special:
   - !type:AddComponentSpecial
     components:

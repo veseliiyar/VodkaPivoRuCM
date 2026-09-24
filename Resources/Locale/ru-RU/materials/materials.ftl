@@ -41,3 +41,9 @@ materials-raw-uranium = руда урана
 materials-raw-bananium = руда бананиума
 materials-raw-salt = каменная соль
 materials-raw-diamond = необработанные алмазы
+<<<<<<< HEAD
+=======
+
+
+materials-xenoborg-crystal = xenoborg crystal
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34

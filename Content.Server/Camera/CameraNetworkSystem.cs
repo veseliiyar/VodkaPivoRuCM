@@ -5,6 +5,7 @@ using Content.Shared.Camera;
 using Content.Shared._RMC14.Camera;
 using Content.Shared.GameTicking;
 using Content.Shared.Power;
+using Content.Shared.SurveillanceCamera.Components;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
@@ -116,7 +117,10 @@ public sealed class CameraNetworkSystem : EntitySystem
     private void OnNetworkShutdown(Entity<CameraNetworkIdentityComponent> ent, ref ComponentShutdown args)
     {
         if (ent.Comp.Seed is { } seed && _seedNetworks.GetValueOrDefault(seed) == ent.Owner)
+        {
             _seedNetworks.Remove(seed);
+            _seedNetworksInitialized = false;
+        }
 
         RemoveNetworkIdentity(ent.Owner);
     }
@@ -132,6 +136,7 @@ public sealed class CameraNetworkSystem : EntitySystem
         // other round-cleanup subscribers cannot manufacture duplicate identities.
         _pendingMarkerReceivers.Clear();
         _mobileMarkerUpdates.Clear();
+        _seedNetworksInitialized = false;
         MarkerRevision = 0;
     }
 

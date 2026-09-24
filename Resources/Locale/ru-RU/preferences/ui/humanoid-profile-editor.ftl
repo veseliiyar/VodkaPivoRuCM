@@ -159,3 +159,37 @@ humanoid-profile-editor-threat-wendigo = Вендиго
 humanoid-profile-editor-threat-abomination = Мерзости
 humanoid-profile-editor-threat-tribal = Дикари
 
+<<<<<<< HEAD
+=======
+
+
+humanoid-profile-editor-randomize = Randomize
+
+humanoid-profile-editor-randomize-unlocked-button = Randomize unlocked
+
+humanoid-profile-editor-randomize-name-button = Name
+
+humanoid-profile-editor-randomize-species-button = Species
+
+humanoid-profile-editor-randomize-age-button = Age
+
+humanoid-profile-editor-randomize-sex-button = Sex
+
+humanoid-profile-editor-randomize-skin-button = Skin color
+
+humanoid-profile-editor-randomize-eye-button = Eye color
+
+humanoid-profile-editor-randomize-markings-button = Markings
+
+humanoid-profile-editor-voice-label = Voice:
+
+humanoid-profile-editor-randomizer-lock-tooltip = Prevents the value from being randomized
+
+humanoid-profile-editor-voice-masculine = Masculine
+
+humanoid-profile-editor-voice-feminine = Feminine
+
+humanoid-profile-editor-voice-neutral = Neutral
+
+humanoid-profile-editor-voice-none = Unnamed Voice
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34

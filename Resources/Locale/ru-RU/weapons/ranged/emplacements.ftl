@@ -27,3 +27,9 @@ emplacement-mount-RuMCMachineGunUTES-C-description = Разобранный пу
 emplacement-mount-RuMCMachineGunUTES-C-description-mounted = Тяжёлый пулемёт СПН калибра 12,7×108 мм. Нет пощады врагам Родины!
 
 emplacement-mount-undeploy = Отменить развертывание
+<<<<<<< HEAD
+=======
+
+
+emplacement-mount-deploy-vehicle = You can't set this up inside a vehicle!
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34

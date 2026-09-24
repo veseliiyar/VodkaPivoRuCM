@@ -4,3 +4,10 @@ command-description-storage-insert =
     Inserts the piped entity into the given storage entity.
 command-description-storage-query =
     Gets the entities in the storagebase of the piped entities and passes them along.
+<<<<<<< HEAD
+=======
+
+
+command-description-storage-contents =
+    Gets the entities in the storagebase of the piped entities and passes them along.
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34

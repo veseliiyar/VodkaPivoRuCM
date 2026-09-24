@@ -26,3 +26,9 @@ rmc-health-analyzer-advice-dylovene = [color=#3fc92a][font="Emoji"]💉[/font][/
 # Missing entries synced from en-US
 
 rmc-health-analyzer-advice-larva-bursted = [color=red][font="Emoji"]☠[/font][/color] Разрыв грудной клетки — хирургическое восстановление пациента невозможно.
+<<<<<<< HEAD
+=======
+
+
+rmc-health-analyzer-additional-reagents = { $count } additional known reagents omitted. Overdose warnings are listed first.
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34

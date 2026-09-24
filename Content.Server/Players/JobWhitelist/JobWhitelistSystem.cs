@@ -1,4 +1,4 @@
-using System.Collections.Immutable;
+﻿using System.Collections.Immutable;
 using Content.Server.GameTicking.Events;
 using Content.Server.Station.Events;
 using Content.Shared.Roles;
@@ -12,7 +12,6 @@ public sealed partial class JobWhitelistSystem : EntitySystem
 {
     [Dependency] private JobWhitelistManager _manager = default!;
     [Dependency] private IPlayerManager _player = default!;
-    [Dependency] private IPrototypeManager _prototypes = default!;
 
     private ImmutableArray<ProtoId<JobPrototype>> _whitelistedJobs = [];
 
@@ -20,7 +19,7 @@ public sealed partial class JobWhitelistSystem : EntitySystem
     {
         SubscribeLocalEvent<PrototypesReloadedEventArgs>(OnPrototypesReloaded);
         SubscribeLocalEvent<StationJobsGetCandidatesEvent>(OnStationJobsGetCandidates);
-        SubscribeLocalEvent<IsJobAllowedEvent>(OnIsJobAllowed);
+        SubscribeLocalEvent<IsRoleAllowedEvent>(OnIsRoleAllowed);
         SubscribeLocalEvent<GetDisallowedJobsEvent>(OnGetDisallowedJobs);
 
         CacheJobs();
@@ -45,11 +44,18 @@ public sealed partial class JobWhitelistSystem : EntitySystem
         }
     }
 
-    private void OnIsJobAllowed(ref IsJobAllowedEvent ev)
+    private void OnIsRoleAllowed(ref IsRoleAllowedEvent ev)
     {
-        if (!_manager.IsAllowed(ev.Player, ev.JobId))
-            ev.Cancelled = true;
+        if (ev.Jobs is null)
+            return;
+
+        foreach (var proto in ev.Jobs)
+        {
+            if (!_manager.IsAllowed(ev.Player, proto))
+                ev.Cancelled = true;
+        }
     }
+    //TODO: Antagonist role whitelists?
 
     private void OnGetDisallowedJobs(ref GetDisallowedJobsEvent ev)
     {
@@ -63,7 +69,7 @@ public sealed partial class JobWhitelistSystem : EntitySystem
     private void CacheJobs()
     {
         var builder = ImmutableArray.CreateBuilder<ProtoId<JobPrototype>>();
-        foreach (var job in _prototypes.EnumeratePrototypes<JobPrototype>())
+        foreach (var job in ProtoMan.EnumeratePrototypes<JobPrototype>())
         {
             if (job.Whitelisted)
                 builder.Add(job.ID);

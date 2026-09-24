@@ -61,3 +61,15 @@ rmc-trait-swedish-language-desc = Вы знаете шведский.
 
 
 
+<<<<<<< HEAD
+=======
+
+
+rmc-trait-mobster-accent-name = Mobster accent
+
+rmc-trait-mobster-accent-desc = ey gabagool fugeddaboutit I'm walkin here
+
+rmc-trait-scottish-accent-name = Scottish accent
+
+rmc-trait-scottish-accent-desc = Fer tha folk who come fae a Hielan clan.
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34

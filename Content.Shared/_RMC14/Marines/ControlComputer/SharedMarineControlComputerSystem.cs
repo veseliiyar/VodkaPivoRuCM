@@ -11,6 +11,7 @@ using Content.Shared._RMC14.Xenonids;
 using Content.Shared.CCVar;
 using Content.Shared.Database;
 using Content.Shared.Ghost;
+using Content.Shared.Ghost.Components;
 using Content.Shared.Popups;
 using Content.Shared.UserInterface;
 using System.Globalization;
@@ -303,14 +304,13 @@ public abstract partial class SharedMarineControlComputerSystem : EntitySystem
             return;
 
         ent.Comp.LastShipAnnouncement = _timing.CurTime;
-        var map = _warship.TryGetWarshipMap(ent, out var warshipMap) ? warshipMap : _transform.GetMapId(ent.Owner);
         var faction = SharedMarineAnnounceSystem.ResolveAnnouncementFaction(ent.Comp.Faction);
         _marineAnnounce.AnnounceSigned(
             user,
             args.Message,
             Loc.GetString("rmc-announcement-author-shipside"),
             sound: SharedMarineAnnounceSystem.AresAnnouncementSound,
-            filter: Filter.BroadcastMap(map).RemoveWhereAttachedEntity(e => !IsShipAnnouncementRecipient(e, faction)),
+            filter: GetShipAnnouncementFilter(ent), // CMU14: include every deck of this ship.
             excludeSurvivors: false,
             faction: faction
         );

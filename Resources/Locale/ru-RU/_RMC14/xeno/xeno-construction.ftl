@@ -96,3 +96,9 @@ rmc-xeno-designer-greater-surge-cooldown = Нам нужно подождать 
 rmc-xeno-designer-greater-surge-none = Проектных узлов поблизости нет.
 rmc-xeno-designer-greater-surge-success = Мы превращаем {$count} узлов проектирования в отражающие смоляные стены.
 rmc-xeno-designer-infuse-node = Вы наполняете узел плазмой.
+<<<<<<< HEAD
+=======
+
+
+rmc-xeno-construction-failed-needs-hole = We can only spin this across a hole in the ground.
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34

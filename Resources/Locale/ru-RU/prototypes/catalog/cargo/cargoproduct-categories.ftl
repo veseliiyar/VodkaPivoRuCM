@@ -14,3 +14,13 @@ cargoproduct-category-name-science = Наука
 cargoproduct-category-name-security = Охрана
 cargoproduct-category-name-service = Сервис
 cargoproduct-category-name-shuttle = Шаттл
+<<<<<<< HEAD
+=======
+
+
+cargoproduct-category-name-instruments = Instruments
+
+cargoproduct-category-name-janitorial = Janitorial
+
+cargoproduct-category-name-space = Space
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34

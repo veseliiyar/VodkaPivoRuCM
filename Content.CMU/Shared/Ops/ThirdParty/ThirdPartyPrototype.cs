@@ -1,0 +1,94 @@
+using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Array;
+using Robust.Shared.Utility;
+
+namespace Content.Shared.CMU14.Threats;
+
+[Prototype]
+public sealed partial class ThirdPartyPrototype : IPrototype, IInheritingPrototype
+{
+    [ParentDataField(typeof(AbstractPrototypeIdArraySerializer<ThirdPartyPrototype>))]
+    public string[]? Parents { get; private set; }
+
+    [NeverPushInheritance]
+    [AbstractDataField]
+    public bool Abstract { get; private set; }
+    /// <summary>
+    ///     Player-facing display name for this third party (e.g., "UPP GROM Special Forces").
+    ///     If not set, falls back to ID.
+    /// </summary>
+    [DataField("displayName")]
+    public string? DisplayName { get; private set; }
+
+    [DataField("blacklistedThreats")]
+    public List<string> BlacklistedThreats { get; private set; } = new();
+
+    [DataField("whitelistedThreats")]
+    public List<string> WhitelistedThreats { get; private set; } = new();
+
+    // The preferred field is the string 'entrymethod' (values: "ground", "shuttle", "parachute").
+    [DataField("entrymethod", required: false)]
+    public string? EntryMethod { get; private set; }
+
+    [DataField("dropshippath", required: false)]
+    public ResPath dropshippath { get; private set; } = new("/Maps/CMU14/Shuttles/black_ert.yml");
+
+    // used if enterbyshuttle is true
+
+    [DataField("blacklistedgamemodes")]
+    public List<string> BlacklistedGamemodes { get; private set; } = new();
+
+    [DataField("whitelistedgamemodes")]
+    public List<string> whitelistedgamemodes { get; private set; } = new();
+
+    [DataField("weight", required: false)]
+    public int weight { get; private set; } = 1;
+
+    [DataField("maxplayers")]
+    public int MaxPlayers { get; private set; } = 100;
+
+    [DataField("minplayers")]
+    public int MinPlayers { get; private set; }
+
+// for rolling
+
+    [DataField("GhostsNeeded")]
+    public int GhostsNeeded { get; private set; } = 10;
+
+    // used if this isn't a roundstart spawn
+
+    [DataField("blacklistedPlatoons", required: false)]
+    public List<string> BlacklistedPlatoons { get; private set; } = new();
+
+    [DataField("WhitelistedPlatoons", required: false)]
+    public List<string> WhitelistedPlatoons { get; private set; } = new();
+
+    [DataField("roundstart", required: false)]
+    public bool RoundStart { get; private set; }
+
+    /// <summary>
+    ///     Whether this party belongs to a faction included in the Distress Signal survivor announcement.
+    /// </summary>
+    [DataField]
+    public bool AnnounceAsSurvivors { get; private set; }
+
+    [DataField("partyspawn", required: true)]
+    public ProtoId<PartySpawnPrototype> PartySpawn { get; private set; }
+
+    [DataField("announcearrival", required: false)]
+<<<<<<< HEAD:Content.Shared/_CMU14/Ops/ThirdParty/ThirdPartyPrototype.cs
+    public string? AnnounceArrival { get; private set; } = "cmu14-third-party-announce-arrival"; // RuMC edit
+=======
+    public string? AnnounceArrival { get; private set; } = "A responding force has made their entrance into the conflict zone.";
+
+    /// <summary>
+    ///     Announced when a scheduled party goes ready and starts gathering ghost volunteers,
+    ///     before it deploys. Worded as responders en route so a delayed landing reads as intended.
+    /// </summary>
+    [DataField("announceinbound", required: false)]
+    public string? AnnounceInbound { get; private set; } = "Long range arrays detect an unidentified force moving to answer the distress call. Arrival expected shortly.";
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34:Content.CMU/Shared/Ops/ThirdParty/ThirdPartyPrototype.cs
+
+    [IdDataField]
+    public string ID { get; private set; } = default!;
+}

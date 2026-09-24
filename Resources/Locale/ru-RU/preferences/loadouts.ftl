@@ -16,3 +16,17 @@ loadouts-count-items-in-group = { $item } и { $count } { $count ->
 }
 
 loadouts-points-restriction = Не хватает очков
+<<<<<<< HEAD
+=======
+
+
+loadouts-selection-limit-reached = Selection limit reached
+
+loadouts-repeatable-name = {$name} ({$count}/{$max})
+
+loadouts-repeatable-name-cost = {$name} ({$count}/{$max}) — {$cost} points each
+
+loadouts-skill-upgrade-name = {$name} +{$amount}
+
+loadouts-skill-upgrade-invalid = This skill upgrade is not configured correctly
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34

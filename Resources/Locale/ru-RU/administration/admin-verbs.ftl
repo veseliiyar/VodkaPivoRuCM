@@ -63,3 +63,9 @@ admin-verbs-dialog-redescribe-description = Описание
 admin-verbs-dialog-rename-and-redescribe-title = Изменить имя и описание
 admin-verbs-dialog-set-bullet-amount-title = Установить кол-во патронов
 admin-verbs-dialog-set-bullet-amount-amount = Количество (стандарт { $cap })
+<<<<<<< HEAD
+=======
+
+
+admin-verbs-admin-logs-player = Player Logs
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34

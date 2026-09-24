@@ -96,3 +96,11 @@ reagent-desc-mopwata = Грязная, застоявшаяся вода из-п
 
 reagent-name-orange-lime-soda = цитрусовый трёп
 reagent-desc-orange-lime-soda = Газировка должна быть апельсиновая! Нет, она должна быть лимон-лайм!
+<<<<<<< HEAD
+=======
+
+
+reagent-name-milk-sheep = sheep's milk
+
+reagent-desc-milk-sheep = An opaque white liquid produced by a sheep. High in fat.
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34

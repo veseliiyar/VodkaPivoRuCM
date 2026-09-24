@@ -1,0 +1,19 @@
+- type: loadoutGroup
+  id: SynthEquipmentAU14
+  name: au14-loadout-group-synth-equipment
+  minLimit: 0
+<<<<<<< HEAD:Resources/Prototypes/_CMU14/Roles/Shared/Loadouts/Groups/SynthEquipmentAU14.yml
+  maxLimit: 2 # RuMC edit
+=======
+  maxLimit: 2
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34:Content.CMU/Resources/Prototypes/CMU14/Roles/Shared/Loadouts/Groups/SynthEquipmentAU14.yml
+  loadouts:
+  - SynthBreachingHammerAU14
+  - MaintenanceJackAU14
+  - PortableDialysisAU14
+  - AU14SprayCleanerExperimentalAU14
+  - AU14CMScalpelManager
+  - AU14telebatonloadout
+  - AU14CompactNailgunKit
+  - CMUDefibrillatorCompactSynthLoadout
+  - RMCWelderExperimentalLoadout

@@ -77,3 +77,9 @@ research-technology-bluespace-cargo-transport = Блюспейс-транспо�
 research-technology-clowning-utilities = Клоунские принадлежности
 research-technology-quantum-fiber-weaving = Плетение квантового волокна
 research-technology-bluespace-chemistry = Блюспейс-химия
+<<<<<<< HEAD
+=======
+
+
+research-technology-telesci = TeleSci
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34

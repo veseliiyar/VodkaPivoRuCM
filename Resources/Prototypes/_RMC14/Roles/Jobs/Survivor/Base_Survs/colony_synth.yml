@@ -10,7 +10,11 @@
   icon: "RMCJobIconSynth"
   joinNotifyCrew: true
   whitelisted: true
+<<<<<<< HEAD
   whitelistParent: RMCWhitelistMedium
+=======
+  whitelistParent: RuCMWhitelistMedium
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34
   isSynthetic: true
   supervisors: cm-job-supervisors-colonists
   accessGroups:

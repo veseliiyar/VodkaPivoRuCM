@@ -16,3 +16,9 @@ borg-slot-modules-empty = Модули
 borg-slot-powercell-empty = Батареи
 borg-slot-inflatable-door-empty = Надувная дверь
 borg-slot-inflatable-wall-empty = Надувная стена
+<<<<<<< HEAD
+=======
+
+
+borg-slot-xenoborg-crystal-empty = Xenoborg crystals
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34

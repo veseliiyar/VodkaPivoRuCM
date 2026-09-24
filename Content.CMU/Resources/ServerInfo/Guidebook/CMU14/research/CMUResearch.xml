@@ -1,0 +1,26 @@
+<Document>
+# Химические исследования
+Этот раздел руководства описывает оборудование, с которым вам предстоит работать во время исследований.
+
+Далее предполагается, что вы уже знакомы с базовым химическим оборудованием (химическим раздатчиком и ChemMaster).
+
+## Обзор
+
+В исследованиях используются три устройства.
+
+<GuideEntityEmbed Entity="CMUResearchDataTerminal" Caption="Терминал исследовательских данных"/>
+<Box>[textlink="Руководство" link="CMURDT"]</Box>
+<GuideEntityEmbed Entity="CMUXRFScanner" Caption="XRF-сканер"/>
+<Box>[textlink="Руководство" link="CMUXRF"]</Box>
+<GuideEntityEmbed Entity="CMUChemSimulator" Caption="Симулятор синтеза"/>
+<Box>[textlink="Руководство" link="CMUSIM"]</Box>
+
+Все три устройства можно получить у любого лифта ASRS.
+
+GOVFOR, OPFOR, the colony, and Weyland-Yutani have independent research networks. Each faction's ASRS supplies its own terminal. Contract offers, cooldowns, research points, clearance, and saved reports are shared only within that faction.
+
+Scanning chemicals awards research points to the scanner's faction. Synthesis simulators use the nearest research terminal on the same map, so place your faction's terminal beside your simulator.
+
+After taking a chemical contract, use the cooldown button to spend 1 research point and remove 60 seconds from the remaining wait. You can repeat this purchase while points and cooldown remain. Removing the last seconds immediately refreshes the contract offers.
+
+</Document>

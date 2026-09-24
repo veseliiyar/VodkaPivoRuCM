@@ -16,7 +16,7 @@ using Content.Shared._RMC14.TacticalMap;
 using Content.Shared.Administration;
 using Content.Shared.Database;
 using Content.Shared.GameTicking;
-using Content.Shared.Ghost;
+using Content.Shared.Ghost.Components;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Mind.Components;
 using Content.Shared.Preferences;

@@ -159,3 +159,11 @@ reagent-desc-heparin = Обычно используется в качестве
 reagent-name-necrosol = некрозол
 
 reagent-desc-necrosol = Некротическое вещество, способное исцелять замороженные трупы. При применении в небольших дозах он способен лечить и омолаживать растения.
+<<<<<<< HEAD
+=======
+
+
+reagent-name-romerodone = romerodone
+
+reagent-desc-romerodone = A byproduct of centrifuging zombie blood, perhaps you could make a cure with this.
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34

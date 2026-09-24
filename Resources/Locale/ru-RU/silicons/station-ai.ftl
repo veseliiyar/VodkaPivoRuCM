@@ -54,3 +54,9 @@ station-ai-hologram-male = Мужской образ
 station-ai-hologram-face = Бестелесная голова
 station-ai-hologram-cat = Форма кота
 station-ai-hologram-dog = Форма корги
+<<<<<<< HEAD
+=======
+
+
+station-ai-core-taking-damage = Your AI core is sustaining physical damage.
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34

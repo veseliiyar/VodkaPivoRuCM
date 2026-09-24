@@ -1,0 +1,28 @@
+// SPDX-License-Identifier: AGPL-3.0-only
+// Copyright (c) 2026 wray-git
+// SPDX-License-Identifier: AGPL-3.0-only
+using Robust.Shared.Console;
+
+namespace Content.Client.CMU14.SavedBuilds;
+
+/// <summary>
+/// Opens (or closes) the saved-build selection panel and enters selection mode. Bindable to a key.
+/// </summary>
+public sealed class BuildSaveCommand : IConsoleCommand
+{
+    public string Command => "buildsave";
+<<<<<<< HEAD:Content.Client/_AU14/SavedBuilds/BuildSaveCommand.cs
+    public string Description => Loc.GetString("cmd-buildsave-desc");
+    public string Help => Loc.GetString("cmd-buildsave-help");
+=======
+    public string Description => Loc.GetString("cmu-cmd-buildsave-desc");
+    public string Help => Loc.GetString("cmu-cmd-buildsave-help");
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34:Content.CMU/Client/SavedBuilds/BuildSaveCommand.cs
+
+    public void Execute(IConsoleShell shell, string argStr, string[] args)
+    {
+        IoCManager.Resolve<IEntitySystemManager>()
+            .GetEntitySystem<BuildSaveModeSystem>()
+            .ToggleWindow();
+    }
+}

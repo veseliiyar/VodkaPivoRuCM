@@ -105,3 +105,9 @@ cargo-console-menu-order-reason-description = Причины: {$reason}
 cargo-console-menu-cargo-order-row-approve-button = Утвердить
 
 cargo-console-menu-cargo-order-row-cancel-button = Отмена
+<<<<<<< HEAD
+=======
+
+
+cargo-console-menu-order-capacity-number = {$count}/{$capacity}
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34

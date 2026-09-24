@@ -451,7 +451,9 @@ public sealed partial class AttachableToggleableSystem : EntitySystem
             used: args.Holder)
         {
             NeedHand = attachable.Comp.DoAfterNeedHand,
-            BreakOnMove = attachable.Comp.DoAfterBreakOnMove
+            BreakOnMove = attachable.Comp.DoAfterBreakOnMove,
+            // The attachable is contained by its holder, so generic world-range checks reject it.
+            DistanceThreshold = null,
         });
 
         Dirty(attachable);
@@ -837,6 +839,9 @@ public sealed partial class AttachableToggleableSystem : EntitySystem
         foreach (var actionUid in actionsContainerComponent.Container.ContainedEntities)
         {
             if (!_entityWhitelistSystem.IsWhitelistPass(attachable.Comp.ActionsToRelayWhitelist, actionUid))
+                continue;
+
+            if (!TryComp(actionUid, out ActionComponent? action) || action.AttachedEntity != user) // CMU14
                 continue;
 
             _actionsSystem.RemoveProvidedAction(user, attachable.Owner, actionUid);

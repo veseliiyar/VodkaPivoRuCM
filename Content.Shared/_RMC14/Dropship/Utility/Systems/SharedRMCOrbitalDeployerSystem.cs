@@ -1,5 +1,5 @@
-using Content.Shared._CMU14.Dropship.AttachmentPoint;
-using Content.Shared._CMU14.Dropship.TacticalLand;
+using Content.Shared.CMU14.Dropship.AttachmentPoint;
+using Content.Shared.CMU14.Dropship.TacticalLand;
 using Content.Shared._RMC14.Dropship.Utility.Components;
 using Content.Shared._RMC14.Sentry;
 using Content.Shared._RMC14.SupplyDrop;
@@ -94,8 +94,19 @@ public abstract partial class SharedRMCOrbitalDeployerSystem : EntitySystem
                 var deployingEntity = Spawn(deployPrototype);
                 deploying = deployingEntity;
 
-                _dropship.TryGetGridFaction(deployer, out var faction);
-                _sentryTargeting.TryApplyDefaultFaction(deployingEntity, faction);
+                // CMU14 Begin: always configure launched sentries for the force that launched them.
+                var configured = _dropship.TryGetGridFaction(deployer, out var faction) &&
+                                 _sentryTargeting.TryApplyDefaultFaction(deployingEntity, faction);
+                if (!configured)
+                {
+                    _sentryTargeting.ApplyDeployerFactions(deployingEntity, user);
+                    if (TryComp<SentryTargetingComponent>(deployingEntity, out var targeting) &&
+                        !_sentryTargeting.IsConfigured((deployingEntity, targeting)))
+                    {
+                        _sentryTargeting.TryApplyDefaultFaction(deployingEntity);
+                    }
+                }
+                // CMU14 End
             }
 
             deployable.RemainingDeployCount--;

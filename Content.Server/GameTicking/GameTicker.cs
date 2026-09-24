@@ -1,8 +1,8 @@
 using Content.Server._RMC14.Rules;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
-using Content.Server._CMU14.Round.Objectives;
-using Content.Server.AU14.Round;
+using Content.Server.CMU14.Round.Objectives;
+using Content.Server.CMU14.Round;
 using Content.Server.Chat.Managers;
 using Content.Server.Chat.Systems;
 using Content.Server.Database;
@@ -18,7 +18,6 @@ using Content.Shared.GameTicking;
 using Content.Shared.Mind;
 using Content.Shared.Roles;
 using Robust.Server;
-using Robust.Server.GameObjects;
 using Robust.Server.GameStates;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Console;
@@ -70,6 +69,7 @@ namespace Content.Server.GameTicking
         [Dependency] private ServerDbEntryManager _dbEntryManager = default!;
         [Dependency] private CMDistressSignalRuleSystem _distressSignal = default!;
         [Dependency] private ObjectiveControlSystem _auobjectivesystem = default!;
+        [Dependency] private ForceOnForceFactionSystem _fof = default!;
         [ViewVariables] private bool _initialized;
         [ViewVariables] private bool _postInitialized;
 
@@ -95,9 +95,10 @@ namespace Content.Server.GameTicking
             InitializeStatusShell();
             InitializeCVars();
             InitializePlayer();
+            _prefsManager.SelectedCharacterChanged += OnLineupCharacterChanged;
             InitializeLobbyBackground();
             InitializeGamePreset();
-            DebugTools.Assert(_prototypeManager.Index(FallbackOverflowJob).Name == FallbackOverflowJobName,
+            DebugTools.Assert(ProtoMan.Index(FallbackOverflowJob).Name == FallbackOverflowJobName,
                 "Overflow role does not have the correct name!");
             InitializeGameRules();
             InitializeReplays();
@@ -120,6 +121,7 @@ namespace Content.Server.GameTicking
 
         public override void Shutdown()
         {
+            _prefsManager.SelectedCharacterChanged -= OnLineupCharacterChanged;
             base.Shutdown();
 
             SendServerShutdownDiscordMessage();
@@ -151,6 +153,11 @@ namespace Content.Server.GameTicking
 
             // Send the requesting player to the lobby
             PlayerJoinLobby(args.SenderSession);
+        }
+
+        public static int GetRoundId(IEntitySystemManager esm)
+        {
+            return esm.GetEntitySystemOrNull<GameTicker>()?.RoundId ?? 0;
         }
     }
 }

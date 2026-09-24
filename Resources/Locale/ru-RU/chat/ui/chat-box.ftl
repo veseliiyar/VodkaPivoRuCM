@@ -83,3 +83,13 @@ hud-chatbox-display-color-whole-message-help = Применяет цвета к�
 
 hud-chatbox-display-legacy = Использовать старый чат
 hud-chatbox-display-legacy-help = Показывает старую панель прокрутки и скрывает структурированные вкладки и разделённый чат.
+<<<<<<< HEAD
+=======
+
+
+hud-chatbox-split-direction = Layout:
+
+hud-chatbox-split-direction-stacked = Stacked
+
+hud-chatbox-split-direction-side = Side by side
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34

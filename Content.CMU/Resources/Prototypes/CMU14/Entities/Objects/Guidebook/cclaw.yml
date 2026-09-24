@@ -1,0 +1,173 @@
+- type: guideEntry
+  parent: RMC
+  id: AU14CCLaw
+<<<<<<< HEAD:Resources/Prototypes/_CMU14/Entities/Objects/Guidebook/cclaw.yml
+  name: Колониальный гражданский кодекс
+  text: "/ServerInfo/Guidebook/_AU14/CCLaw/AU14CCLaw.xml"
+=======
+  name: cmu-guide-entry-cclaw
+  text: "/ServerInfo/Guidebook/CMU14/CCLaw/AU14CCLaw.xml"
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34:Content.CMU/Resources/Prototypes/CMU14/Entities/Objects/Guidebook/cclaw.yml
+  priority: 3
+  children:
+  - AU14CCLawGeneral
+  - AU14CCLawCorporate
+  - AU14CCLawProcedures
+  - AU14CCLawMilitary
+  - AU14CCLawCriminalCode
+  - AU14CCLawMilitia
+  - AU14CCLawExecutions
+
+- type: guideEntry
+  parent: RMC
+  id: AU14CCLawGeneral
+<<<<<<< HEAD:Resources/Prototypes/_CMU14/Entities/Objects/Guidebook/cclaw.yml
+  name: Общие положения
+=======
+  name: cmu-guide-entry-cclaw-general
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34:Content.CMU/Resources/Prototypes/CMU14/Entities/Objects/Guidebook/cclaw.yml
+  priority: 1
+  text: "/ServerInfo/Guidebook/CMU14/CCLaw/AU14CCLawGeneral.xml"
+
+- type: guideEntry
+  parent: RMC
+  id: AU14CCLawCorporate
+<<<<<<< HEAD:Resources/Prototypes/_CMU14/Entities/Objects/Guidebook/cclaw.yml
+  name: Корпоративная и фронтирная юрисдикция
+=======
+  name: cmu-guide-entry-cclaw-corporate
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34:Content.CMU/Resources/Prototypes/CMU14/Entities/Objects/Guidebook/cclaw.yml
+  priority: 2
+  text: "/ServerInfo/Guidebook/CMU14/CCLaw/AU14CCLawCorporate.xml"
+
+- type: guideEntry
+  parent: RMC
+  id: AU14CCLawProcedures
+<<<<<<< HEAD:Resources/Prototypes/_CMU14/Entities/Objects/Guidebook/cclaw.yml
+  name: Гражданские предписания и процедуры задержания
+=======
+  name: cmu-guide-entry-cclaw-procedures
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34:Content.CMU/Resources/Prototypes/CMU14/Entities/Objects/Guidebook/cclaw.yml
+  priority: 3
+  text: "/ServerInfo/Guidebook/CMU14/CCLaw/AU14CCLawProcedures.xml"
+
+- type: guideEntry
+  parent: RMC
+  id: AU14CCLawMilitary
+<<<<<<< HEAD:Resources/Prototypes/_CMU14/Entities/Objects/Guidebook/cclaw.yml
+  name: Военное присутствие
+=======
+  name: cmu-guide-entry-cclaw-military
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34:Content.CMU/Resources/Prototypes/CMU14/Entities/Objects/Guidebook/cclaw.yml
+  priority: 4
+  text: "/ServerInfo/Guidebook/CMU14/CCLaw/AU14CCLawMilitary.xml"
+
+- type: guideEntry
+  parent: RMC
+  id: AU14CCLawMilitia
+  name: cmu-guide-entry-cclaw-militia
+  priority: 5
+  text: "/ServerInfo/Guidebook/CMU14/CCLaw/AU14CCLawMilitia.xml"
+
+- type: guideEntry
+  parent: RMC
+  id: AU14CCLawExecutions
+  name: cmu-guide-entry-cclaw-executions
+  priority: 6
+  text: "/ServerInfo/Guidebook/CMU14/CCLaw/AU14CCLawExecutions.xml"
+
+- type: guideEntry
+  parent: RMC
+  id: AU14CCLawCriminalCode
+<<<<<<< HEAD:Resources/Prototypes/_CMU14/Entities/Objects/Guidebook/cclaw.yml
+  name: Уголовный кодекс
+=======
+  name: cmu-guide-entry-cclaw-criminal-code
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34:Content.CMU/Resources/Prototypes/CMU14/Entities/Objects/Guidebook/cclaw.yml
+  priority: 5
+  text: "/ServerInfo/Guidebook/CMU14/CCLaw/AU14CCLawCriminalCode.xml"
+  children:
+  - AU14CCLawOptionalCharges
+  - AU14CCLawMinorCrimes
+  - AU14CCLawArmsControl
+  - AU14CCLawMajorCrimes
+  - AU14CCLawCapitalCrimes
+  - AU14CCLawPrecautionary
+  - AU14CCLawEmergency
+
+- type: guideEntry
+  parent: RMC
+  id: AU14CCLawOptionalCharges
+<<<<<<< HEAD:Resources/Prototypes/_CMU14/Entities/Objects/Guidebook/cclaw.yml
+  name: Дополнительные обвинения
+=======
+  name: cmu-guide-entry-cclaw-optional
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34:Content.CMU/Resources/Prototypes/CMU14/Entities/Objects/Guidebook/cclaw.yml
+  priority: 1
+  text: "/ServerInfo/Guidebook/CMU14/CCLaw/Crimes/AU14CCLawOptionalCharges.xml"
+
+- type: guideEntry
+  parent: RMC
+  id: AU14CCLawMinorCrimes
+<<<<<<< HEAD:Resources/Prototypes/_CMU14/Entities/Objects/Guidebook/cclaw.yml
+  name: Незначительные преступления
+=======
+  name: cmu-guide-entry-cclaw-minor
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34:Content.CMU/Resources/Prototypes/CMU14/Entities/Objects/Guidebook/cclaw.yml
+  priority: 2
+  text: "/ServerInfo/Guidebook/CMU14/CCLaw/Crimes/AU14CCLawMinorCrimes.xml"
+
+- type: guideEntry
+  parent: RMC
+  id: AU14CCLawArmsControl
+<<<<<<< HEAD:Resources/Prototypes/_CMU14/Entities/Objects/Guidebook/cclaw.yml
+  name: Контроль вооружения и законодательство об оружии
+=======
+  name: cmu-guide-entry-cclaw-arms-control
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34:Content.CMU/Resources/Prototypes/CMU14/Entities/Objects/Guidebook/cclaw.yml
+  priority: 3
+  text: "/ServerInfo/Guidebook/CMU14/CCLaw/Crimes/AU14CCLawArmsControl.xml"
+
+- type: guideEntry
+  parent: RMC
+  id: AU14CCLawMajorCrimes
+<<<<<<< HEAD:Resources/Prototypes/_CMU14/Entities/Objects/Guidebook/cclaw.yml
+  name: Тяжкие преступления
+=======
+  name: cmu-guide-entry-cclaw-major
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34:Content.CMU/Resources/Prototypes/CMU14/Entities/Objects/Guidebook/cclaw.yml
+  priority: 4
+  text: "/ServerInfo/Guidebook/CMU14/CCLaw/Crimes/AU14CCLawMajorCrimes.xml"
+
+- type: guideEntry
+  parent: RMC
+  id: AU14CCLawCapitalCrimes
+<<<<<<< HEAD:Resources/Prototypes/_CMU14/Entities/Objects/Guidebook/cclaw.yml
+  name: Преступления, караемые смертной казнью
+=======
+  name: cmu-guide-entry-cclaw-capital
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34:Content.CMU/Resources/Prototypes/CMU14/Entities/Objects/Guidebook/cclaw.yml
+  priority: 5
+  text: "/ServerInfo/Guidebook/CMU14/CCLaw/Crimes/AU14CCLawCapitalCrimes.xml"
+
+- type: guideEntry
+  parent: RMC
+  id: AU14CCLawPrecautionary
+<<<<<<< HEAD:Resources/Prototypes/_CMU14/Entities/Objects/Guidebook/cclaw.yml
+  name: Превентивное заключение
+=======
+  name: cmu-guide-entry-cclaw-precautionary
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34:Content.CMU/Resources/Prototypes/CMU14/Entities/Objects/Guidebook/cclaw.yml
+  priority: 6
+  text: "/ServerInfo/Guidebook/CMU14/CCLaw/Crimes/AU14CCLawPrecautionary.xml"
+
+- type: guideEntry
+  parent: RMC
+  id: AU14CCLawEmergency
+<<<<<<< HEAD:Resources/Prototypes/_CMU14/Entities/Objects/Guidebook/cclaw.yml
+  name: Чрезвычайные административные полномочия
+=======
+  name: cmu-guide-entry-cclaw-emergency
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34:Content.CMU/Resources/Prototypes/CMU14/Entities/Objects/Guidebook/cclaw.yml
+  priority: 7
+  text: "/ServerInfo/Guidebook/CMU14/CCLaw/Crimes/AU14CCLawEmergency.xml"

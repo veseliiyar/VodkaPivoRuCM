@@ -11,6 +11,11 @@
   startingGear: RMCGearPMCSynthetic
   icon: "RMCJobIconPMCSynthetic"
   joinNotifyCrew: false
+<<<<<<< HEAD
+=======
+  whitelisted: true
+  whitelistParent: RuCMWhitelistMedium
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34
   isSynthetic: true
   accessGroups:
   - RMCWeYa

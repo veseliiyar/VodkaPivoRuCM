@@ -8,3 +8,25 @@ gas-plasma-abbreviation = P
 gas-tritium-abbreviation = T
 gas-water-vapor-abbreviation = H₂O
 gas-unknown-abbreviation = X
+<<<<<<< HEAD
+=======
+
+
+gas-oxygen = Oxygen
+
+gas-nitrogen = Nitrogen
+
+gas-carbon-dioxide = Carbon Dioxide
+
+gas-plasma = Plasma
+
+gas-tritium = Tritium
+
+gas-water-vapor = Water Vapor
+
+gas-ammonia = Ammonia
+
+gas-nitrous-oxide = Nitrous Oxide
+
+gas-frezon = Frezon
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34

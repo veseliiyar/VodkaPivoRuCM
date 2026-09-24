@@ -44,3 +44,11 @@ rmc-announcement-title-red-alert = КРАСНАЯ ТРЕВОГА
 rmc-announcement-title-unknown-broadcast = >> НЕИЗВЕСТНАЯ ТРАНСЛЯЦИЯ <<
 rmc-announcement-title-priority-notice = >> ПРИОРИТЕТНОЕ УВЕДОМЛЕНИЕ <<
 rmc-announcement-title-queen = >> КОРОЛЕВА <<
+<<<<<<< HEAD
+=======
+
+
+cmu-announcement-queen-mother = [font size=16][bold][color=#7575F3]Queen Mother Psychic Directive[/color][/bold][/font][font size=16][color=red]
+
+    {$message}[/font][/color]
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34

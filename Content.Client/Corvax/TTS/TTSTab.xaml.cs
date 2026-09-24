@@ -47,6 +47,14 @@ public sealed partial class TTSTab : Control
         ReferenceSpeakerName.OnTextChanged += _ => UpdateReferenceUploadButton();
         SelectReferenceButton.OnPressed += _ => SelectReferenceFile();
         UploadReferenceButton.OnPressed += _ => UploadReferenceVoice();
+<<<<<<< HEAD
+=======
+    }
+
+    protected override void EnteredTree()
+    {
+        base.EnteredTree();
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34
         var tts = _entityManager.System<TTSSystem>();
         tts.ReferenceVoiceResultReceived += OnReferenceVoiceResult;
         tts.ReferenceVoiceCatalogUpdated += OnReferenceVoiceCatalogUpdated;
@@ -55,6 +63,7 @@ public sealed partial class TTSTab : Control
         _adminManager.AdminStatusUpdated += OnReferenceVoiceAccessUpdated;
         tts.RequestReferenceVoiceCatalog();
         OnReferenceVoiceAccessUpdated();
+<<<<<<< HEAD
     }
 
     [Obsolete("Controls should only be removed from UI tree instead of being disposed")]
@@ -73,6 +82,23 @@ public sealed partial class TTSTab : Control
         base.Dispose(disposing);
     }
 
+=======
+        UpdateResults();
+    }
+
+    protected override void ExitedTree()
+    {
+        var tts = _entityManager.System<TTSSystem>();
+        tts.ReferenceVoiceResultReceived -= OnReferenceVoiceResult;
+        tts.ReferenceVoiceCatalogUpdated -= OnReferenceVoiceCatalogUpdated;
+        tts.ReferenceVoiceAccessUpdated -= OnReferenceVoiceAccessUpdated;
+        tts.ReferenceVoiceDeleteResultReceived -= OnReferenceVoiceDeleteResult;
+        _adminManager.AdminStatusUpdated -= OnReferenceVoiceAccessUpdated;
+        _referenceUploadPending = false;
+        _referenceAudio = null;
+        base.ExitedTree();
+    }
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34
     private async void SelectReferenceFile()
     {
         try
@@ -255,13 +281,22 @@ public sealed partial class TTSTab : Control
     public void UpdateControls(HumanoidCharacterProfile? profile, Sex sex)
     {
         if (profile != null)
+<<<<<<< HEAD
             _selectedVoiceId = profile.Voice;
+=======
+            _selectedVoiceId = profile.TTSVoice;
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34
 
         // 🔥 ВАЖНО: грузим ВСЕ голоса здесь
         _allVoices = _prototypeManager
             .EnumeratePrototypes<TTSVoicePrototype>()
+<<<<<<< HEAD
             .Where(o => o.RoundStart && HumanoidCharacterProfile.CanHaveVoice(o, sex))
             .OrderBy(o => Loc.GetString(o.Name))
+=======
+            .Where(o => HumanoidCharacterProfile.IsSelectableTTSVoice(o))
+            .OrderBy(o => o.Name)
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34
             .ToList();
 
         BuildCategories();
@@ -275,7 +310,11 @@ public sealed partial class TTSTab : Control
 
         foreach (var voice in _allVoices)
         {
+<<<<<<< HEAD
             var name = Loc.GetString(voice.Name).ToLowerInvariant();
+=======
+            var name = voice.Name.ToLowerInvariant();
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34
 
             var category = string.IsNullOrWhiteSpace(voice.Category)
                 ? Loc.GetString("humanoid-profile-editor-voice-other")
@@ -329,7 +368,11 @@ public sealed partial class TTSTab : Control
 
         foreach (var voice in _allVoices)
         {
+<<<<<<< HEAD
             var name = Loc.GetString(voice.Name).ToLowerInvariant();
+=======
+            var name = voice.Name.ToLowerInvariant();
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34
 
             var matchesSearch =
                 string.IsNullOrEmpty(searchText)
@@ -348,7 +391,11 @@ public sealed partial class TTSTab : Control
 
         foreach (var voice in _filteredVoices)
         {
+<<<<<<< HEAD
             var displayName = Loc.GetString(voice.Name);
+=======
+            var displayName = voice.Name;
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34
             var canSelectVoice = CanUseVoice(voice);
 
             var container = new BoxContainer
@@ -370,7 +417,11 @@ public sealed partial class TTSTab : Control
             };
 
             if (voice.ID == _selectedVoiceId)
+<<<<<<< HEAD
                 selectButton.AddStyleClass(StyleBase.ButtonCaution);
+=======
+                selectButton.AddStyleClass(StyleNano.ButtonCaution);
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34
 
             selectButton.OnPressed += _ =>
             {
@@ -425,7 +476,11 @@ public sealed partial class TTSTab : Control
                     StyleClasses = { StyleNano.ButtonOpenRight },
                 };
                 if (voiceId == _selectedVoiceId)
+<<<<<<< HEAD
                     selectButton.AddStyleClass(StyleBase.ButtonCaution);
+=======
+                    selectButton.AddStyleClass(StyleNano.ButtonCaution);
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34
                 selectButton.OnPressed += _ => OnVoiceSelected?.Invoke(voiceId);
 
                 var previewButton = new Button
@@ -462,7 +517,11 @@ public sealed partial class TTSTab : Control
 
     private bool CanUseVoice(TTSVoicePrototype voice)
     {
+<<<<<<< HEAD
         return true; // оставлено без изменений (дебаг / без ограничений)
+=======
+        return HumanoidCharacterProfile.IsSelectableTTSVoice(voice);
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34
     }
 
     public void SetSelectedVoice(string voiceId)

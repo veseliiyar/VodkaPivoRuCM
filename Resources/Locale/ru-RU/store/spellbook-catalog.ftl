@@ -87,3 +87,11 @@ spellbook-upgrade-fireball-description = Позволяет улучшить О�
 
 spellbook-upgrade-jaunt-name = Улучшение Эфирной прогулки
 spellbook-upgrade-jaunt-description = Позволяет улучшить Эфирную прогулку до максимального 3-го уровня!
+<<<<<<< HEAD
+=======
+
+
+spellbook-guardian-deck-name = Tarot Deck
+
+spellbook-guardian-deck-description = A bizarre deck of card that grants you a spectral guardian when used.
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34

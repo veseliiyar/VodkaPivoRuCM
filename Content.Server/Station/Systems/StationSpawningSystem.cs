@@ -1,14 +1,19 @@
 using System.Collections.Frozen;
 using Content.Server.Access.Systems;
-using Content.Server.AU14.Roles;
-using Content.Server.AU14.Round;
+using Content.Server.CMU14.Roles;
+using Content.Server.CMU14.Diagnostics.Performance; // CMU14
+using Content.Server.CMU14.Round;
 using Content.Server.Humanoid;
-using Content.Server.IdentityManagement;
 using Content.Server.Jobs;
 using Content.Server.Mind.Commands;
+using Content.Server.Mind;
 using Content.Server.PDA;
 using Content.Server.Station.Components;
+<<<<<<< HEAD
 using Content.Server._CMU14.Yautja;
+=======
+using Content.Shared.CMU14.Round.Roles;
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34
 using Content.Shared._RMC14.Marines;
 using Content.Shared._CMU14.Yautja;
 using Content.Shared._RMC14.Marines.Squads;
@@ -17,7 +22,8 @@ using Content.Shared.Access;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
 using Content.Shared.Administration.Logs;
-using Content.Shared._CMU14.CharacterDescription;
+using Content.Shared.CMU14.CharacterDescription;
+using Content.Shared.Body;
 using Content.Shared.CCVar;
 using Content.Shared.Clothing;
 using Content.Shared.Database;
@@ -25,6 +31,7 @@ using Content.Shared.DetailExaminable;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
 using Content.Shared.Humanoid.Prototypes;
+using Content.Shared.IdentityManagement;
 using Content.Shared.PDA;
 using Content.Shared.Preferences;
 using Content.Shared.Preferences.Loadouts;
@@ -38,7 +45,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
-using Content.Shared.AU14.util;
+using Content.Shared.CMU14.util;
 using Content.Shared.NPC.Components;
 using Content.Shared.NPC.Prototypes;
 using Content.Shared.NPC.Systems;
@@ -59,7 +66,9 @@ public sealed partial class StationSpawningSystem : SharedStationSpawningSystem
     [Dependency] private ActorSystem _actors = default!;
     [Dependency] private IdCardSystem _cardSystem = default!;
     [Dependency] private IConfigurationManager _configurationManager = default!;
-    [Dependency] private HumanoidAppearanceSystem _humanoidSystem = default!;
+    [Dependency] private HumanoidOrganAppearanceSystem _humanoidAppearance = default!;
+    [Dependency] private HumanoidProfileSystem _humanoidProfile = default!;
+    [Dependency] private SharedVisualBodySystem _visualBody = default!;
     [Dependency] private IdentitySystem _identity = default!;
     [Dependency] private MetaDataSystem _metaSystem = default!;
     [Dependency] private RoundJobProfileSystem _roundJobProfiles = default!;
@@ -71,6 +80,8 @@ public sealed partial class StationSpawningSystem : SharedStationSpawningSystem
     [Dependency] private MarkingManager _markingManager = default!;
     [Dependency] private YautjaProfileApplySystem _yautjaProfile = default!;
     [Dependency] private ISharedAdminLogManager _adminLog = default!;
+    [Dependency] private MindSystem _mindSystem = default!;
+    [Dependency] private ICMUServerPerformanceDiagnostics _performance = default!; // CMU14
 
     private static readonly PlatoonJobClass[] PlatoonJobClasses = Enum.GetValues<PlatoonJobClass>();
     private static readonly FrozenDictionary<PlatoonJobClass, string> PlatoonJobClassNames =
@@ -95,7 +106,10 @@ public sealed partial class StationSpawningSystem : SharedStationSpawningSystem
         "CMO",
         "ChiefMP",
         "LogisticsOfficer",
-        "EngineeringOfficer"
+        "EngineeringOfficer",
+        "AdjutantDress",
+        "BrigadierGeneral",
+        "VipEscort"
     };
 
     private static readonly HashSet<string> AuxiliarySquadRoundRoles = new(StringComparer.OrdinalIgnoreCase)
@@ -182,6 +196,7 @@ public sealed partial class StationSpawningSystem : SharedStationSpawningSystem
         YautjaProfileCapabilities? authoritativeYautjaCapabilities = null)
     {
         // --- Platoon job override logic start ---
+        using var operation = _performance.MeasureOperation("player-spawn", job?.Id); // CMU14: retain slow spawn attribution.
         string? jobId = job?.ToString();
         var originalJob = job;
         _prototypeManager.Resolve(originalJob, out JobPrototype? originalPrototype);
@@ -250,11 +265,15 @@ public sealed partial class StationSpawningSystem : SharedStationSpawningSystem
         {
             DebugTools.Assert(entity is null);
             var jobEntity = Spawn(prototype.JobEntity, coordinates);
-            MakeSentientCommand.MakeSentient(jobEntity, EntityManager);
+            _mindSystem.MakeSentient(jobEntity);
 
-            if (profile != null && prototype is not { UsePlayerProfile: false } && TryComp(jobEntity, out HumanoidAppearanceComponent? humanoid))
+            if (profile != null &&
+                prototype is not { UsePlayerProfile: false } &&
+                TryComp(jobEntity, out HumanoidProfileComponent? humanoid))
             {
-                _humanoidSystem.LoadProfile(jobEntity, profile.WithSpecies(humanoid.Species), humanoid);
+                var jobProfile = profile.WithSpecies(humanoid.Species);
+                _visualBody.ApplyProfileTo(jobEntity, jobProfile);
+                _humanoidProfile.ApplyProfileTo(jobEntity, jobProfile);
                 _metaSystem.SetEntityName(jobEntity, profile.Name);
 
                 if (profile.FlavorText != "" && _configurationManager.GetCVar(CCVars.FlavorText))
@@ -292,11 +311,12 @@ public sealed partial class StationSpawningSystem : SharedStationSpawningSystem
             if (originalPrototype != null && TryComp(jobEntity, out MetaDataComponent? metaDataJobEntity))
                 SetPdaAndIdCardData(jobEntity, metaDataJobEntity.EntityName, originalPrototype, station);
 
-            AssignRoundStartSquad(jobEntity, coordinates, job, originalPrototype, jobId, team);
+            AssignRoundStartSquad(jobEntity, coordinates, job, originalPrototype, jobId, team, profile); // CMU14
             return jobEntity;
         }
 
-        string speciesId = profile != null ? profile.Species : SharedHumanoidAppearanceSystem.DefaultSpecies;
+        string speciesId = profile != null ? profile.Species : HumanoidCharacterProfile.DefaultSpecies;
+
         if (!_prototypeManager.TryIndex<SpeciesPrototype>(speciesId, out var species))
             throw new ArgumentException($"Invalid species prototype was used: {speciesId}");
 
@@ -304,7 +324,8 @@ public sealed partial class StationSpawningSystem : SharedStationSpawningSystem
 
         if (profile != null && prototype is not { UsePlayerProfile: false })
         {
-            _humanoidSystem.LoadProfile(entity.Value, profile);
+            _visualBody.ApplyProfileTo(entity.Value, profile);
+            _humanoidProfile.ApplyProfileTo(entity.Value, profile);
             _metaSystem.SetEntityName(entity.Value, profile.Name);
 
             if (profile.FlavorText != "" && _configurationManager.GetCVar(CCVars.FlavorText))
@@ -319,7 +340,7 @@ public sealed partial class StationSpawningSystem : SharedStationSpawningSystem
 
         if (prototype?.StartingGear != null)
         {
-            var startingGear = _prototypeManager.Index<StartingGearPrototype>(prototype.StartingGear);
+            var startingGear = ProtoMan.Index<StartingGearPrototype>(prototype.StartingGear);
             EquipStartingGear(entity.Value, startingGear, raiseEvent: false);
         }
 
@@ -405,7 +426,7 @@ public sealed partial class StationSpawningSystem : SharedStationSpawningSystem
         ApplyRegulationAppearance(entity.Value, profile);
         _identity.QueueIdentityUpdate(entity.Value);
 
-        AssignRoundStartSquad(entity.Value, coordinates, job, originalPrototype, jobId, team);
+        AssignRoundStartSquad(entity.Value, coordinates, job, originalPrototype, jobId, team, profile); // CMU14
 
         ApplyTeamFaction(entity.Value, team);
         return entity.Value;
@@ -417,7 +438,8 @@ public sealed partial class StationSpawningSystem : SharedStationSpawningSystem
         ProtoId<JobPrototype>? job,
         JobPrototype? originalPrototype,
         string? originalJobId,
-        string? team)
+        string? team,
+        HumanoidCharacterProfile? profile) // CMU14
     {
         if (team == null || !ShouldAssignToSquad(originalPrototype, originalJobId))
             return;
@@ -445,8 +467,26 @@ public sealed partial class StationSpawningSystem : SharedStationSpawningSystem
                                    originalJobId?.Contains("rto", StringComparison.OrdinalIgnoreCase) == true ||
                                    originalJobId?.EndsWith("radiotelephoneoperator", StringComparison.OrdinalIgnoreCase) == true;
 
-            // Sergeants: try to place into a squad without a leader where possible (existing behavior)
-            if (isSergeant)
+            // CMU14: Player preference wins over distribution when the squad belongs to this side.
+            // Sergeants still skip a preferred squad that already has a leader so the sitting leader is not demoted.
+            // The menu only offers GovFor squads; force-balanced OpFor players get the mirrored squad by slot.
+            var preferred = profile?.SquadPreference?.Id;
+            if (team == "opfor" && preferred != null)
+            {
+                var mirror = Array.IndexOf(_govforSquads, preferred);
+                if (mirror >= 0)
+                    preferred = _opforSquads[mirror];
+            }
+
+            if (preferred != null // CMU14
+                && Array.IndexOf(candidates, preferred) != -1
+                && (!isSergeant
+                || !_squadSystem.TryEnsureSquad(preferred, out var preferredSquad)
+                || !_squadSystem.TryGetSquadLeader(preferredSquad, out _)))
+                protoId = preferred;
+
+            // CMU14: Sergeants: try to place into a squad without a leader where possible
+            else if (isSergeant)
             {
                 string? chosen = null;
                 foreach (var candidate in candidates)
@@ -804,42 +844,41 @@ public sealed partial class StationSpawningSystem : SharedStationSpawningSystem
         if (profile == null || !HasComp<RegulationAppearanceComponent>(uid))
             return;
 
-        if (!TryComp<HumanoidAppearanceComponent>(uid, out var humanoid))
+        if (!TryComp<HumanoidProfileComponent>(uid, out var humanoid))
             return;
 
         var appearance = profile.Appearance;
-        ApplyRegulationHairLayer(uid, humanoid, MarkingCategories.Hair, HumanoidVisualLayers.Hair,
+        ApplyRegulationHairLayer(uid, humanoid, HumanoidVisualLayers.Hair,
             appearance.RegulationHairStyleId, appearance.RegulationHairColor);
-        ApplyRegulationHairLayer(uid, humanoid, MarkingCategories.FacialHair, HumanoidVisualLayers.FacialHair,
+        ApplyRegulationHairLayer(uid, humanoid, HumanoidVisualLayers.FacialHair,
             appearance.RegulationFacialHairStyleId, appearance.RegulationFacialHairColor);
-
-        Dirty(uid, humanoid);
     }
 
     private void ApplyRegulationHairLayer(
         EntityUid uid,
-        HumanoidAppearanceComponent humanoid,
-        MarkingCategories category,
+        HumanoidProfileComponent humanoid,
         HumanoidVisualLayers layer,
         string styleId,
         Color color)
     {
-        humanoid.MarkingSet.RemoveCategory(category);
-
-        if (styleId == HairStyles.DefaultHairStyle.Id || styleId == HairStyles.DefaultFacialHairStyle.Id)
+        if (!_humanoidAppearance.TryGetMarkings(uid, layer, out var organ, out var markingData, out _))
             return;
 
-        if (!_markingManager.Markings.TryGetValue(styleId, out var prototype) ||
-            !_markingManager.CanBeApplied(humanoid.Species, humanoid.Sex, prototype, _prototypeManager))
+        List<Marking> markings = [];
+        if (styleId == HairStyles.DefaultHairStyle.Id || styleId == HairStyles.DefaultFacialHairStyle.Id)
         {
+            _humanoidAppearance.SetMarkings(uid, organ, layer, markings);
             return;
         }
 
-        var appliedColor = _markingManager.MustMatchSkin(humanoid.Species, layer, out var alpha, _prototypeManager)
-            ? humanoid.SkinColor.WithAlpha(alpha)
-            : color;
+        if (_prototypeManager.TryIndex<MarkingPrototype>(styleId, out var prototype) &&
+            prototype.BodyPart == layer &&
+            _markingManager.CanBeApplied(markingData.Group, humanoid.Sex, prototype))
+        {
+            markings.Add(prototype.AsMarking().WithColor(color));
+        }
 
-        _humanoidSystem.AddMarking(uid, styleId, appliedColor, false, false, humanoid);
+        _humanoidAppearance.SetMarkings(uid, organ, layer, markings);
     }
 
     private bool IsBadBloodFactionMember(EntityUid uid)

@@ -5,3 +5,15 @@ cmd-delaystart-invalid-seconds = { $value } — недопустимое кол�
 cmd-delaystart-paused = Приостановил обратный отсчет.
 cmd-delaystart-unpaused = Возобновил обратный отсчет.
 cmd-delaystart-too-late = Старт раунда не удалось отложить по времени!
+<<<<<<< HEAD
+=======
+
+
+delaystart-preround-only = This can only be executed while the game is in the pre-round lobby.
+
+delaystart-paused = Paused the countdown.
+
+delaystart-resumed = Resumed the countdown.
+
+delaystart-invalid-seconds = {$seconds} isn't a valid amount of seconds.
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34

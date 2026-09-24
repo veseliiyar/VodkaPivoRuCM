@@ -92,3 +92,16 @@ entity-condition-guidebook-internals =
         [true] using internals
         *[false] breathing atmospheric air
     }
+<<<<<<< HEAD
+=======
+
+
+entity-condition-guidebook-total-satiation =
+    { $max ->
+        [2147483648] the target has at least {NATURALFIXED($min, 2)} total {$type}
+        *[other] { $min ->
+                    [0] the target has at most {NATURALFIXED($max, 2)} total {$type}
+                    *[other] the target has between {NATURALFIXED($min, 2)} and {NATURALFIXED($max, 2)} total {$type}
+                 }
+    }
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34

@@ -1,0 +1,8 @@
+- type: loadout
+  id: AU14telebatonloadout
+<<<<<<< HEAD:Resources/Prototypes/_CMU14/Roles/Shared/Loadouts/Items/RoleSpecific/Synthetic/AU14CMTelebaton.yml
+  # cost: 15 # RuMC edit
+=======
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34:Content.CMU/Resources/Prototypes/CMU14/Roles/Shared/Loadouts/Items/RoleSpecific/Synthetic/AU14CMTelebaton.yml
+  inhand:
+  - AU14TeleBaton

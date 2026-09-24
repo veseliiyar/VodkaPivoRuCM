@@ -25,3 +25,11 @@ cm-xeno-nest-resecure-target = {$user} укрепляет смолу вокру�
 cm-xeno-nest-resecure-observer = {$user} укрепляет смолу вокруг {$target}.
 
 rmc-xeno-nest-freed = Вы освобождены из гнезда и можете вернуться в своё тело!
+<<<<<<< HEAD
+=======
+
+
+rmc-xeno-nest-unnest-verb = Release host
+
+rmc-xeno-nest-unnest-start = We begin working {$target} free from the nest...
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34

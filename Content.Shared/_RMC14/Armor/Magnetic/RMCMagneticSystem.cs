@@ -85,10 +85,10 @@ public sealed partial class RMCMagneticSystem : EntitySystem
 
             foreach (var slotContainer in _container.GetAllContainers(slotItem))
             {
-                if (!_slots.TryGetSlot(slotItem, slotContainer.ID, out var itemSlot, itemSlotsComp))
+                if (!_slots.TryGetSlot((slotItem, itemSlotsComp), slotContainer.ID, out var itemSlot))
                     continue;
 
-                if (!_slots.CanInsert(ent, args.Args.Item, args.Args.User, itemSlot, false))
+                if (!_slots.CanInsert(ent.Owner, itemSlot, args.Args.Item, args.Args.User, false))
                     continue;
 
                 args.Args.Magnetizer = ent;
@@ -115,22 +115,19 @@ public sealed partial class RMCMagneticSystem : EntitySystem
 
     private bool CanReturn(Entity<RMCMagneticItemComponent> ent, EntityUid user, out EntityUid magnetizer, out EntityUid? receivingItem, out string receivingContainer)
     {
-        // CMU14: receivers must see the event even without a magnetic field, or the broiler never reclaims a dropped flamer
-        //if (!ent.Comp.NeedsMagneticField)
-        //{
-        //    magnetizer = user;
-        //    receivingItem = null;
-        //    receivingContainer = "";
-        //    return true;
-        //}
-
         var ev = new RMCMagnetizeItemEvent(user, ent.Owner, ent.Comp.MagnetizeToSlots, SlotFlags.OUTERCLOTHING | SlotFlags.POCKET);
         RaiseLocalEvent(user, ref ev);
 
         magnetizer = ev.Magnetizer ?? default;
         receivingItem = ev.ReceivingItem;
         receivingContainer = ev.ReceivingContainer;
-        return ent.Comp.NeedsMagneticField ? magnetizer != default : true; // CMU14
+
+        // CMU14: receivers must see the event even without a magnetic field, or the broiler never reclaims a dropped flamer.
+        // A regular sling falls back to the wearer when no receiver handled it.
+        if (!ent.Comp.NeedsMagneticField && magnetizer == default)
+            magnetizer = user;
+
+        return magnetizer != default;
     }
 
     private bool TryReturn(Entity<RMCMagneticItemComponent> ent, EntityUid user)
@@ -158,6 +155,22 @@ public sealed partial class RMCMagneticSystem : EntitySystem
     {
         ent.Comp.ReturnOnThrow = returnOnThrow;
         Dirty(ent);
+    }
+
+    // CMU Related Change
+    public void UnlinkForForcedDrop(EntityUid item)
+    {
+        if (TryComp(item, out RMCSlingPouchItemComponent? sling) &&
+            TryComp(sling.Pouch, out RMCSlingPouchComponent? pouch) &&
+            pouch.Item == item)
+        {
+            pouch.Item = null;
+            Dirty(sling.Pouch, pouch);
+        }
+
+        RemComp<RMCReturnToInventoryComponent>(item);
+        RemComp<RMCMagneticItemComponent>(item);
+        RemComp<RMCSlingPouchItemComponent>(item);
     }
 
     public void OnSlingDrop(Entity<RMCSlingPouchComponent> pouch, ref InventoryRelayedEvent<RMCMagnetizeItemEvent> args)
@@ -287,38 +300,45 @@ public sealed partial class RMCMagneticSystem : EntitySystem
 
             var user = comp.User;
             var magnetizer = comp.Magnetizer;
-            if (!TerminatingOrDeleted(user) && !TerminatingOrDeleted(magnetizer))
+            // CMU14: dead references can never receive the item, and while they last they
+            // spam PVS resolve errors on every state send.
+            if (TerminatingOrDeleted(user)
+                || TerminatingOrDeleted(magnetizer)
+                || (comp.ReceivingItem is { } receiving && TerminatingOrDeleted(receiving)))
             {
-                if (comp.ReceivingItem is { } insertInto)
+                RemCompDeferred<RMCReturnToInventoryComponent>(uid);
+                continue;
+            }
+
+            if (comp.ReceivingItem is { } insertInto)
+            {
+                if (_container.TryGetContainer(insertInto, comp.ReceivingContainer, out var container) &&
+                    _container.Insert(uid, container, force: true))
                 {
-                    if (_container.TryGetContainer(insertInto, comp.ReceivingContainer, out var container) &&
-                        _container.Insert(uid, container, force: true))
+                    var popup = Loc.GetString("rmc-magnetize-return",
+                        ("item", uid),
+                        ("magnetizer", insertInto));
+                    _popup.PopupClient(popup, user, user, PopupType.Medium);
+
+                    comp.Returned = true;
+                    Dirty(uid, comp);
+                }
+            }
+            else
+            {
+                var slots = _inventory.GetSlotEnumerator(user, SlotFlags.SUITSTORAGE);
+                while (slots.MoveNext(out var slot))
+                {
+                    if (_inventory.TryEquip(user, uid, slot.ID, force: true))
                     {
                         var popup = Loc.GetString("rmc-magnetize-return",
                             ("item", uid),
-                            ("magnetizer", insertInto));
+                            ("magnetizer", magnetizer));
                         _popup.PopupClient(popup, user, user, PopupType.Medium);
 
                         comp.Returned = true;
                         Dirty(uid, comp);
-                    }
-                }
-                else
-                {
-                    var slots = _inventory.GetSlotEnumerator(user, SlotFlags.SUITSTORAGE);
-                    while (slots.MoveNext(out var slot))
-                    {
-                        if (_inventory.TryEquip(user, uid, slot.ID, force: true))
-                        {
-                            var popup = Loc.GetString("rmc-magnetize-return",
-                                ("item", uid),
-                                ("magnetizer", magnetizer));
-                            _popup.PopupClient(popup, user, user, PopupType.Medium);
-
-                            comp.Returned = true;
-                            Dirty(uid, comp);
-                            break;
-                        }
+                        break;
                     }
                 }
             }

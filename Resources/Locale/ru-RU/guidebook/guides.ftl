@@ -207,3 +207,9 @@ guide-entry-rules-ban-durations = Длительности банов
 
 guide-entry-writing = Разметка письма
 guide-entry-glossary = Словарь терминов
+<<<<<<< HEAD
+=======
+
+
+guide-entry-changelings = Changelings
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34

@@ -1,16 +1,30 @@
 using System;
+<<<<<<< HEAD
 using System.Collections.Generic; // RuMC edit
+=======
+using System.Globalization;
+using System.IO;
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34
 using System.Linq;
+using System.Text;
 using Content.Server.Discord;
 using Moq; // RuMC edit
 using NUnit.Framework;
+<<<<<<< HEAD
 using Robust.Shared.Localization; // RuMC edit
+=======
+using Robust.Shared.ContentPack;
+using Robust.Shared.IoC;
+using Robust.Shared.Localization;
+using Robust.Shared.Utility;
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34
 
 namespace Content.Tests.Server.Discord;
 
 [TestFixture]
-public sealed class RoundStatusWebhookTest
+public sealed class RoundStatusWebhookTest : ContentUnitTest
 {
+<<<<<<< HEAD
     // RuMC edit start
     private static readonly Dictionary<string, string> Templates = new()
     {
@@ -78,6 +92,35 @@ public sealed class RoundStatusWebhookTest
     }
     // RuMC edit end
 
+=======
+    [OneTimeSetUp]
+    public void SetupLocalization()
+    {
+        var resources = IoCManager.Resolve<IResourceManager>();
+        var ftlPath = Path.Combine(FindRepoRoot(), "Resources", "Locale", "en-US", "discord", "round-status.ftl");
+        var stream = new MemoryStream(Encoding.UTF8.GetBytes(File.ReadAllText(ftlPath)));
+        var mount = resources.GetType().GetMethod("MountStreamAt", new[] { typeof(MemoryStream), typeof(ResPath) });
+        Assert.That(mount, Is.Not.Null);
+        mount!.Invoke(resources, new object[] { stream, new ResPath("/Locale/en-US/discord/round-status.ftl") });
+
+        var loc = IoCManager.Resolve<ILocalizationManager>();
+        var culture = new CultureInfo("en-US", false);
+        loc.LoadCulture(culture);
+        loc.SetCulture(culture);
+    }
+
+    private static string FindRepoRoot()
+    {
+        var dir = new DirectoryInfo(TestContext.CurrentContext.TestDirectory);
+        while (dir != null && !Directory.Exists(Path.Combine(dir.FullName, "Resources", "Locale")))
+        {
+            dir = dir.Parent;
+        }
+
+        return dir?.FullName ?? throw new DirectoryNotFoundException("Repository root not found");
+    }
+
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34
     [Test]
     public void RoundEndPayloadIncludesStatusEmbedAndConfiguredRolePings()
     {

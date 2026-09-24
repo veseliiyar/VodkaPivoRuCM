@@ -184,7 +184,14 @@ public sealed class ItemGridPiece : Control, IEntityControl
 
             var sizeDifference = ((boundingGrid.Size + Vector2i.One) * _centerTexture.Size * 2 - sprite.Size) * UIScale;
 
+<<<<<<< HEAD
             var spriteBox = new Box2Rotated(new Box2(0f, 0f, sprite.Width * scale, sprite.Height * scale), -iconRotation, Vector2.Zero); // RuMC edit
+=======
+            var spriteBox = new Box2Rotated(
+                Box2.FromTwoPoints(Vector2.Zero, new Vector2(sprite.Width * scale, sprite.Height * scale)),
+                -iconRotation,
+                Vector2.Zero);
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34
             var root = spriteBox.CalcBoundingBox().BottomLeft;
             var pos = PixelPosition * 2
                       + (Parent?.GlobalPixelPosition ?? Vector2.Zero)

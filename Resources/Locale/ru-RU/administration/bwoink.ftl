@@ -33,3 +33,11 @@ bwoink-system-player-banned = был забанен за: { $banReason }
 
 bwoink-message-admin-only = (Только Админ)
 bwoink-message-silent = (S)
+<<<<<<< HEAD
+=======
+
+
+bwoink-system-introductory-header = Before you send this:
+
+bwoink-message-name-link = (?)
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34

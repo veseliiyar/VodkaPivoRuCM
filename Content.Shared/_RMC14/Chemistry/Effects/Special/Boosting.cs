@@ -10,7 +10,7 @@ public sealed partial class Boosting : RMCChemicalEffect
         return Loc.GetString("reagent-effect-guidebook-rmc-boosting", ("amount", Potency * 0.5f)); // RuMC edit
     }
 
-    protected override void ReagentBoost(EntityEffectReagentArgs args, ref float boost)
+    protected override void ReagentBoost(RMCChemicalEffectSystem system, RMCReagentEffectArgs args, ref float boost)
     {
         boost += Potency * 0.5f;
     }

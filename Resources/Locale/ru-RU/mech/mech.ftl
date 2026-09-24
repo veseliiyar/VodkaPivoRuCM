@@ -21,3 +21,9 @@ mech-no-enter = Вы не можете пилотировать это.
 mech-eject-pilot-alert = { $user } вытаскивает пилота из { $item }!
 
 mech-construction-guide-string = Все механические детали должны быть прикреплены к каркасу.
+<<<<<<< HEAD
+=======
+
+
+mech-construction-guide-string-vim = Two borg legs and an EVA helmet must be attached to the harness.
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34

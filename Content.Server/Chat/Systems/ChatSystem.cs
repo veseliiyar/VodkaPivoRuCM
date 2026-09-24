@@ -1,6 +1,4 @@
 using System.Globalization;
-using System.Linq;
-using System.Text;
 using Content.Server._RMC14.Admin;
 using Content.Server._RMC14.Chat.Chat;
 using Content.Server._RMC14.Emote;
@@ -10,53 +8,37 @@ using Content.Server.Administration.Managers;
 using Content.Server.Chat.Managers;
 using Content.Server.Chat.V2;
 using Content.Server.GameTicking;
-using Content.Server.Players.RateLimiting;
-using Content.Server.Speech.Components;
-using Content.Server.Speech.EntitySystems;
-using Content.Server.Speech.Prototypes;
-using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
+using Content.Shared.CMU14.Marines.Orders;
 using Content.Shared._RMC14.CCVar;
-using Content.Shared._RMC14.Chat;
-using Content.Shared._RMC14.Language;
-using Content.Shared._RMC14.Language.Prototypes;
-using Content.Shared._RMC14.Language.Systems;
-using Content.Shared._RMC14.Stun;
-using Content.Shared._RMC14.Xenonids;
-using Content.Shared._AU14.Marines.Orders;
+using Content.Shared._RMC14.Mentor.ImaginaryFriend;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
 using Content.Shared.Chat;
-using Content.Shared.Database;
 using Content.Shared.Examine;
 using Content.Shared.Ghost;
-using Content.Shared.IdentityManagement;
+using Content.Shared.Ghost.Components;
 using Content.Shared.Mobs.Systems;
-using Content.Shared.Players;
 using Content.Shared.Players.RateLimiting;
 using Content.Shared.Radio;
+using Content.Shared.Speech.EntitySystems;
 using Content.Shared.Whitelist;
 using Robust.Server.Player;
-using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
 using Robust.Shared.Console;
-using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Replays;
-using Robust.Shared.Utility;
-using Content.Shared._CMU14.Yautja;
-using Content.Shared._RMC14.Mentor.ImaginaryFriend;
 
 namespace Content.Server.Chat.Systems;
 
 // TODO refactor whatever active warzone this class and chatmanager have become
 /// <summary>
-///     ChatSystem is responsible for in-simulation chat handling, such as whispering, speaking, emoting, etc.
-///     ChatSystem depends on ChatManager to actually send the messages.
+/// ChatSystem is responsible for in-simulation chat handling, such as whispering, speaking, emoting, etc.
+/// ChatSystem depends on ChatManager to actually send the messages.
 /// </summary>
 public sealed partial class ChatSystem : SharedChatSystem
 {
@@ -76,43 +58,35 @@ public sealed partial class ChatSystem : SharedChatSystem
     [Dependency] private ReplacementAccentSystem _wordreplacement = default!;
     [Dependency] private EntityWhitelistSystem _whitelistSystem = default!;
     [Dependency] private ExamineSystemShared _examineSystem = default!;
+    [Dependency] private EntityQuery<GhostHearingComponent> _ghostHearingQuery = default!;
     [Dependency] private CMChatSystem _cmChat = default!;
     [Dependency] private RMCEmoteSystem _rmcEmote = default!;
     [Dependency] private INetConfigurationManager _netConfigManager = default!;
-
-    // RMC14
     [Dependency] private LanguageSystem _language = default!;
     [Dependency] private RMCChatBansManager _rmcChatBans = default!;
-    // RMC14
-
-    public const int VoiceRange = 10; // how far voice goes in world units
-    public const int WhisperClearRange = 2; // how far whisper goes while still being understandable, in world units
-    public const int WhisperMuffledRange = 5; // how far whisper goes at all, in world units
-    private static readonly SoundPathSpecifier DefaultAnnouncementSound = new("/Audio/Announcements/announce.ogg");
 
     private bool _loocEnabled = true;
     private bool _deadLoocEnabled;
     private bool _critLoocEnabled;
-    private bool _critWhisperEnabled; // CMU14
-    private bool _DeadchatEnabled; // RMC14
     private readonly bool _adminLoocEnabled = true;
+    private bool _deadChatEnabled = true;
 
     public override void Initialize()
     {
         base.Initialize();
-        CacheEmotes();
+
         Subs.CVar(_configurationManager, CCVars.LoocEnabled, OnLoocEnabledChanged, true);
         Subs.CVar(_configurationManager, CCVars.DeadLoocEnabled, OnDeadLoocEnabledChanged, true);
         Subs.CVar(_configurationManager, CCVars.CritLoocEnabled, OnCritLoocEnabledChanged, true);
-        Subs.CVar(_configurationManager, CCVars.CritWhisper, OnCritWhisperEnabledChanged, true); // CMU14
-        Subs.CVar(_configurationManager, RMCCVars.RMCDeadChatEnabled, OnDeadChatEnabledChanged, true); // RMC14
+        Subs.CVar(_configurationManager, CCVars.DeadChatEnabled, OnDeadChatEnabledChanged, true);
 
         SubscribeLocalEvent<GameRunLevelChangedEvent>(OnGameChange);
     }
 
     private void OnLoocEnabledChanged(bool val)
     {
-        if (_loocEnabled == val) return;
+        if (_loocEnabled == val)
+            return;
 
         _loocEnabled = val;
         _chatManager.DispatchServerAnnouncement(
@@ -121,7 +95,8 @@ public sealed partial class ChatSystem : SharedChatSystem
 
     private void OnDeadLoocEnabledChanged(bool val)
     {
-        if (_deadLoocEnabled == val) return;
+        if (_deadLoocEnabled == val)
+            return;
 
         _deadLoocEnabled = val;
         _chatManager.DispatchServerAnnouncement(
@@ -138,20 +113,15 @@ public sealed partial class ChatSystem : SharedChatSystem
             Loc.GetString(val ? "chat-manager-crit-looc-chat-enabled-message" : "chat-manager-crit-looc-chat-disabled-message"));
     }
 
-    // CMU14 method
-    private void OnCritWhisperEnabledChanged(bool val) => _critWhisperEnabled = val;
-
-    // RMC14
     private void OnDeadChatEnabledChanged(bool val)
     {
-        if (_DeadchatEnabled == val)
+        if (_deadChatEnabled == val)
             return;
 
-        _DeadchatEnabled = val;
+        _deadChatEnabled = val;
         _chatManager.DispatchServerAnnouncement(
-            Loc.GetString(val ? "set-dchat-command-dchat-enabled" : "set-dchat-command-dchat-disabled"));
+            Loc.GetString(val ? "chat-manager-dead-chat-enabled-message" : "chat-manager-dead-chat-disabled-message"));
     }
-    // RMC14
 
     private void OnGameChange(GameRunLevelChangedEvent ev)
     {
@@ -169,42 +139,34 @@ public sealed partial class ChatSystem : SharedChatSystem
         }
     }
 
-    /// <summary>
-    ///     Sends an in-character chat message to relevant clients.
-    /// </summary>
-    /// <param name="source">The entity that is speaking</param>
-    /// <param name="message">The message being spoken or emoted</param>
-    /// <param name="desiredType">The chat type</param>
-    /// <param name="hideChat">Whether or not this message should appear in the chat window</param>
-    /// <param name="hideLog">Whether or not this message should appear in the adminlog window</param>
-    /// <param name="shell"></param>
-    /// <param name="player">The player doing the speaking</param>
-    /// <param name="nameOverride">The name to use for the speaking entity. Usually this should just be modified via <see cref="TransformSpeakerNameEvent"/>. If this is set, the event will not get raised.</param>
-    public void TrySendInGameICMessage(
+    /// <inheritdoc />
+    public override void TrySendInGameICMessage(
         EntityUid source,
         string message,
         InGameICChatType desiredType,
-        bool hideChat, bool hideLog = false,
+        bool hideChat,
+        bool hideLog = false,
         IConsoleShell? shell = null,
-        ICommonSession? player = null, string? nameOverride = null,
+        ICommonSession? player = null,
+        string? nameOverride = null,
         bool checkRadioPrefix = true,
         bool ignoreActionBlocker = false)
     {
-        TrySendInGameICMessage(source, message, desiredType, hideChat ? ChatTransmitRange.HideChat : ChatTransmitRange.Normal, hideLog, shell, player, nameOverride, checkRadioPrefix, ignoreActionBlocker);
+        TrySendInGameICMessage(
+            source,
+            message,
+            desiredType,
+            hideChat ? ChatTransmitRange.HideChat : ChatTransmitRange.Normal,
+            hideLog,
+            shell,
+            player,
+            nameOverride,
+            checkRadioPrefix,
+            ignoreActionBlocker);
     }
 
-    /// <summary>
-    ///     Sends an in-character chat message to relevant clients.
-    /// </summary>
-    /// <param name="source">The entity that is speaking</param>
-    /// <param name="message">The message being spoken or emoted</param>
-    /// <param name="desiredType">The chat type</param>
-    /// <param name="range">Conceptual range of transmission, if it shows in the chat window, if it shows to far-away ghosts or ghosts at all...</param>
-    /// <param name="shell"></param>
-    /// <param name="player">The player doing the speaking</param>
-    /// <param name="nameOverride">The name to use for the speaking entity. Usually this should just be modified via <see cref="TransformSpeakerNameEvent"/>. If this is set, the event will not get raised.</param>
-    /// <param name="ignoreActionBlocker">If set to true, action blocker will not be considered for whether an entity can send this message.</param>
-    public void TrySendInGameICMessage(
+    /// <inheritdoc />
+    public override void TrySendInGameICMessage(
         EntityUid source,
         string message,
         InGameICChatType desiredType,
@@ -214,51 +176,46 @@ public sealed partial class ChatSystem : SharedChatSystem
         ICommonSession? player = null,
         string? nameOverride = null,
         bool checkRadioPrefix = true,
-        bool ignoreActionBlocker = false,
-        bool ignoreXenos = false
-        )
+        bool ignoreActionBlocker = false)
     {
-        if (HasComp<GhostComponent>(source) && !HasComp<ImaginaryFriendComponent>(source)) //RMC14
+        if (HasComp<GhostComponent>(source) && !HasComp<ImaginaryFriendComponent>(source))
         {
-            // Ghosts can only send dead chat messages, so we'll forward it to InGame OOC.
-            TrySendInGameOOCMessage(source, message, InGameOOCChatType.Dead, range == ChatTransmitRange.HideChat, shell, player);
+            // Ghosts can only send dead chat messages, so forward it to in-game OOC.
+            TrySendInGameOOCMessage(
+                source,
+                message,
+                InGameOOCChatType.Dead,
+                range == ChatTransmitRange.HideChat,
+                shell,
+                player);
             return;
         }
 
         if (player != null && _chatManager.HandleRateLimit(player) != RateLimitStatus.Allowed)
             return;
 
-        // Sus
         if (player?.AttachedEntity is { Valid: true } entity && source != entity)
-        {
             return;
-        }
 
         if (!CanSendInGame(message, shell, player))
             return;
 
         ignoreActionBlocker = CheckIgnoreSpeechBlocker(source, ignoreActionBlocker);
 
-        // this method is a disaster
-        // every second i have to spend working with this code is fucking agony
-        // scientists have to wonder how any of this was merged
-        // coding any game admin feature that involves chat code is pure torture
-        // changing even 10 lines of code feels like waterboarding myself
-        // and i dont feel like vibe checking 50 code paths
-        // so we set this here
-        // todo free me from chat code
         if (player != null)
-        {
             _chatManager.EnsurePlayer(player.UserId).AddEntity(GetNetEntity(source));
-        }
 
-        // RMC14
+        // CMU14: cancellable pre-send hook, mirrors InGameOocMessageAttemptEvent below
+        var icAttempt = new InGameICMessageAttemptEvent(player, desiredType, message);
+        RaiseLocalEvent(source, ref icAttempt, true);
+        if (icAttempt.Cancelled)
+            return;
+
         var currentLanguage = GetCurrentLanguageForSpeech(source);
-        // RMC14
 
         if (desiredType == InGameICChatType.Speak && message.StartsWith(LocalPrefix))
         {
-            // prevent radios and remove prefix.
+            // Prevent radios and remove the prefix.
             checkRadioPrefix = false;
             message = message[1..];
         }
@@ -269,24 +226,21 @@ public sealed partial class ChatSystem : SharedChatSystem
             checkRadioPrefix = false;
         }
 
-        if (desiredType == InGameICChatType.Speak // CMU14: CM13 parity, crit players whisper instead of speaking
-            && _critWhisperEnabled
-            && _mobStateSystem.IsCritical(source))
-        {
-            desiredType = InGameICChatType.Whisper;
-            checkRadioPrefix = false;
-            // reuse the radio matcher to strip any prefix (;, :h, .h) so it doesn't leak into the whisper
-            TryProccessRadioMessage(source, message, out var strippedText, out _, quiet: true);
-            message = strippedText;
-        }
+        var shouldCapitalize = desiredType != InGameICChatType.Emote;
+        var shouldPunctuate = _configurationManager.GetCVar(CCVars.ChatPunctuation) ||
+                              player != null &&
+                              _netConfigManager.GetClientCVar(player.Channel, RMCCVars.RMCAutoPunctuate);
+        // Capitalizing the word I only happens in English, so check the current culture here.
+        var shouldCapitalizeTheWordI =
+            !CultureInfo.CurrentCulture.IsNeutralCulture && CultureInfo.CurrentCulture.Parent.Name == "en" ||
+            CultureInfo.CurrentCulture.IsNeutralCulture && CultureInfo.CurrentCulture.Name == "en";
 
-        bool shouldCapitalize = (desiredType != InGameICChatType.Emote);
-        bool shouldPunctuate = _configurationManager.GetCVar(CCVars.ChatPunctuation) || player != null && _netConfigManager.GetClientCVar(player.Channel, RMCCVars.RMCAutoPunctuate);
-        // Capitalizing the word I only happens in English, so we check language here
-        bool shouldCapitalizeTheWordI = (!CultureInfo.CurrentCulture.IsNeutralCulture && CultureInfo.CurrentCulture.Parent.Name == "en")
-            || (CultureInfo.CurrentCulture.IsNeutralCulture && CultureInfo.CurrentCulture.Name == "en");
+        if (checkRadioPrefix)
+            message = _cmChat.NormalizeLocalizedRadioKey(source, message);
 
-        var isRadioMessage = checkRadioPrefix && TryProccessRadioMessage(source, message, out var radioText, out _) && !string.IsNullOrWhiteSpace(radioText);
+        var isRadioMessage = checkRadioPrefix &&
+                             TryProcessRadioMessage(source, message, out var radioText, out _) &&
+                             !string.IsNullOrWhiteSpace(radioText);
 
         message = SanitizeInGameICMessage(
             source,
@@ -297,92 +251,101 @@ public sealed partial class ChatSystem : SharedChatSystem
             shouldCapitalizeTheWordI,
             skipEmoteShorthands: isRadioMessage);
 
-        // Was there an emote in the message? If so, send it.
         if (player != null && emoteStr != message && emoteStr != null)
-        {
-            SendEntityEmote(source, emoteStr, range, nameOverride, ignoreActionBlocker);
-        }
+            SendEntityEmote(source, emoteStr, range, nameOverride, ignoreActionBlocker: ignoreActionBlocker);
 
-        // This can happen if the entire string is sanitized out.
         if (string.IsNullOrEmpty(message))
             return;
 
-        // RMC14
-        // This message may have a radio prefix, and should then be whispered to the resolved radio channel
         if (checkRadioPrefix)
         {
             var messages = _cmChat.TryMultiBroadcast(source, message);
             if (messages != null)
             {
                 var channelsSent = new HashSet<ProtoId<RadioChannelPrototype>>();
-                foreach (var msg in messages)
+                foreach (var radioMessage in messages)
                 {
-                    if (!TryProccessRadioMessage(source, msg, out var modMsg, out var modChannel))
+                    if (!TryProcessRadioMessage(source, radioMessage, out var broadcastMessage, out var broadcastChannel))
                         continue;
 
-                    if (modChannel != null && channelsSent.Contains(modChannel.ID))
+                    if (broadcastChannel != null && channelsSent.Contains(broadcastChannel.ID))
                         continue;
 
                     SendEntityWhisperWithLanguage(
                         source,
-                        modMsg,
+                        broadcastMessage,
                         range,
-                        modChannel,
+                        broadcastChannel,
                         nameOverride,
                         hideLog,
                         ignoreActionBlocker,
-                        currentLanguage,
-                        ignoreXenos);
+                        currentLanguage);
 
-                    if (modChannel != null)
-                        channelsSent.Add(modChannel.ID);
+                    if (broadcastChannel != null)
+                        channelsSent.Add(broadcastChannel.ID);
                 }
 
                 return;
             }
 
-            if (TryProccessRadioMessage(source, message, out var modMessage, out var channel))
+            if (TryProcessRadioMessage(source, message, out var modifiedMessage, out var channel))
             {
                 SendEntityWhisperWithLanguage(
                     source,
-                    modMessage,
+                    modifiedMessage,
                     range,
                     channel,
                     nameOverride,
                     hideLog,
                     ignoreActionBlocker,
-                    currentLanguage,
-                    ignoreXenos);
+                    currentLanguage);
                 return;
             }
         }
-        // RMC14
 
-        // RMC14
-        // Otherwise, send whatever type.
         switch (desiredType)
         {
             case InGameICChatType.Speak:
-                SendEntitySpeakWithLanguage(source, message, range, nameOverride, hideLog, ignoreActionBlocker, currentLanguage);
+                SendEntitySpeakWithLanguage(
+                    source,
+                    message,
+                    range,
+                    nameOverride,
+                    hideLog,
+                    ignoreActionBlocker,
+                    currentLanguage);
                 break;
             case InGameICChatType.Whisper:
-                SendEntityWhisperWithLanguage(source, message, range, null, nameOverride, hideLog, ignoreActionBlocker, currentLanguage, ignoreXenos);
+                SendEntityWhisperWithLanguage(
+                    source,
+                    message,
+                    range,
+                    null,
+                    nameOverride,
+                    hideLog,
+                    ignoreActionBlocker,
+                    currentLanguage);
                 break;
             case InGameICChatType.Emote:
-                SendEntityEmote(source, message, range, nameOverride, hideLog: hideLog, ignoreActionBlocker: ignoreActionBlocker);
+                SendEntityEmote(
+                    source,
+                    message,
+                    range,
+                    nameOverride,
+                    hideLog: hideLog,
+                    ignoreActionBlocker: ignoreActionBlocker);
                 break;
         }
-        // RMC14
     }
 
-    public void TrySendInGameOOCMessage(
+    /// <inheritdoc />
+    public override void TrySendInGameOOCMessage(
         EntityUid source,
         string message,
         InGameOOCChatType type,
         bool hideChat,
         IConsoleShell? shell = null,
-        ICommonSession? player = null
-        )
+        ICommonSession? player = null)
     {
         if (!CanSendInGame(message, shell, player))
             return;
@@ -390,25 +353,27 @@ public sealed partial class ChatSystem : SharedChatSystem
         if (player != null && _chatManager.HandleRateLimit(player) != RateLimitStatus.Allowed)
             return;
 
-        // It doesn't make any sense for a non-player to send in-game OOC messages, whereas non-players may be sending
-        // in-game IC messages.
+        // Non-players can send IC messages, but in-game OOC always requires an attached player.
         if (player?.AttachedEntity is not { Valid: true } entity || source != entity)
             return;
 
         message = SanitizeInGameOOCMessage(message);
 
         var sendType = type;
-        // If dead player LOOC is disabled, unless you are an admin with Moderator perms, send dead messages to dead chat
-        if ((_adminManager.IsAdmin(player) && _adminManager.HasAdminFlag(player, AdminFlags.Moderator)) // Override if admin
-            || _deadLoocEnabled
-            || (!HasComp<GhostComponent>(source) && !_mobStateSystem.IsDead(source))) // Check that player is not dead
+        // If dead-player LOOC is disabled, redirect it to dead chat unless a moderator is speaking.
+        if (!((_adminManager.IsAdmin(player) && _adminManager.HasAdminFlag(player, AdminFlags.Moderator)) ||
+              _deadLoocEnabled ||
+              (!HasComp<GhostComponent>(source) && !_mobStateSystem.IsDead(source))))
         {
-        }
-        else
             sendType = InGameOOCChatType.Dead;
+        }
 
-        // If crit player LOOC is disabled, don't send the message at all.
         if (!_critLoocEnabled && _mobStateSystem.IsCritical(source))
+            return;
+
+        var ev = new InGameOocMessageAttemptEvent(player, sendType);
+        RaiseLocalEvent(source, ref ev, true);
+        if (ev.Cancelled)
             return;
 
         switch (sendType)
@@ -421,6 +386,7 @@ public sealed partial class ChatSystem : SharedChatSystem
                 break;
         }
     }
+<<<<<<< HEAD
 
     #region Announcements
 
@@ -988,104 +954,14 @@ public sealed partial class ChatSystem : SharedChatSystem
     }
 
     #endregion
+=======
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34
 }
 
 /// <summary>
-///     This event is raised before chat messages are sent out to clients. This enables some systems to send the chat
-///     messages to otherwise out-of view entities (e.g. for multiple viewports from cameras).
+/// Raised before chat messages are sent to clients so systems can add otherwise out-of-view recipients.
 /// </summary>
-public record ExpandICChatRecipientsEvent(EntityUid Source, float VoiceRange, Dictionary<ICommonSession, ChatSystem.ICChatRecipientData> Recipients)
-{
-}
-
-/// <summary>
-///     Raised broadcast in order to transform speech.transmit
-/// </summary>
-public sealed partial class TransformSpeechEvent : EntityEventArgs
-{
-    public EntityUid Sender;
-    public string Message;
-
-    public TransformSpeechEvent(EntityUid sender, string message)
-    {
-        Sender = sender;
-        Message = message;
-    }
-}
-
-public sealed partial class CheckIgnoreSpeechBlockerEvent : EntityEventArgs
-{
-    public EntityUid Sender;
-    public bool IgnoreBlocker;
-
-    public CheckIgnoreSpeechBlockerEvent(EntityUid sender, bool ignoreBlocker)
-    {
-        Sender = sender;
-        IgnoreBlocker = ignoreBlocker;
-    }
-}
-
-/// <summary>
-///     Raised on an entity when it speaks, either through 'say' or 'whisper'.
-/// </summary>
-public sealed partial class EntitySpokeEvent : EntityEventArgs
-{
-    public readonly EntityUid Source;
-    public readonly string Message;
-    public readonly string? ObfuscatedMessage; // not null if this was a whisper
-    // RMC14
-    public readonly ProtoId<LanguagePrototype> Language;
-    // RMC14
-
-    /// <summary>
-    ///     If the entity was trying to speak into a radio, this was the channel they were trying to access. If a radio
-    ///     message gets sent on this channel, this should be set to null to prevent duplicate messages.
-    /// </summary>
-    public RadioChannelPrototype? Channel;
-
-    // RMC14
-    public EntitySpokeEvent(EntityUid source, string message, RadioChannelPrototype? channel, string? obfuscatedMessage, ProtoId<LanguagePrototype>? language = null)
-    {
-        Source = source;
-        Message = message;
-        Channel = channel;
-        ObfuscatedMessage = obfuscatedMessage;
-        Language = language ?? SharedLanguageSystem.CommonLanguage;
-    }
-    // RMC14
-}
-
-/// <summary>
-///     InGame IC chat is for chat that is specifically ingame (not lobby) but is also in character, i.e. speaking.
-/// </summary>
-// ReSharper disable once InconsistentNaming
-public enum InGameICChatType : byte
-{
-    Speak,
-    Emote,
-    Whisper
-}
-
-/// <summary>
-///     InGame OOC chat is for chat that is specifically ingame (not lobby) but is OOC, like deadchat or LOOC.
-/// </summary>
-public enum InGameOOCChatType : byte
-{
-    Looc,
-    Dead
-}
-
-/// <summary>
-///     Controls transmission of chat.
-/// </summary>
-public enum ChatTransmitRange : byte
-{
-    /// Acts normal, ghosts can hear across the map, etc.
-    Normal,
-    /// Normal but ghosts are still range-limited.
-    GhostRangeLimit,
-    /// Hidden from the chat window.
-    HideChat,
-    /// Ghosts can't hear or see it at all. Regular players can if in-range.
-    NoGhosts
-}
+public record ExpandICChatRecipientsEvent(
+    EntityUid Source,
+    float VoiceRange,
+    Dictionary<ICommonSession, ChatSystem.ICChatRecipientData> Recipients);

@@ -4,7 +4,6 @@ using Robust.Shared.Audio;
 using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Shared.Radio.Components;
 
@@ -17,32 +16,22 @@ public sealed partial class EncryptionKeyHolderComponent : Component
     /// <summary>
     ///     Whether or not encryption keys can be removed from the headset.
     /// </summary>
-    [ViewVariables(VVAccess.ReadWrite)]
-    [DataField("keysUnlocked")]
-    [AutoNetworkedField]
+    [DataField]
     public bool KeysUnlocked = true;
 
     /// <summary>
     ///     The tool required to extract the encryption keys from the headset.
     /// </summary>
-    [ViewVariables(VVAccess.ReadWrite)]
-    [DataField("keysExtractionMethod", customTypeSerializer: typeof(PrototypeIdSerializer<ToolQualityPrototype>))]
-    [AutoNetworkedField]
-    public string KeysExtractionMethod = "Screwing";
+    [DataField]
+    public ProtoId<ToolQualityPrototype> KeysExtractionMethod = "Screwing";
 
-    [ViewVariables(VVAccess.ReadWrite)]
-    [DataField("keySlots")]
-    [AutoNetworkedField]
+    [DataField]
     public int KeySlots = 2;
 
-    [ViewVariables(VVAccess.ReadWrite)]
-    [DataField("keyExtractionSound")]
-    [AutoNetworkedField]
+    [DataField]
     public SoundSpecifier KeyExtractionSound = new SoundPathSpecifier("/Audio/Items/pistol_magout.ogg");
 
-    [ViewVariables(VVAccess.ReadWrite)]
-    [DataField("keyInsertionSound")]
-    [AutoNetworkedField]
+    [DataField]
     public SoundSpecifier KeyInsertionSound = new SoundPathSpecifier("/Audio/Items/pistol_magin.ogg");
 
     [ViewVariables]
@@ -52,22 +41,18 @@ public sealed partial class EncryptionKeyHolderComponent : Component
     /// <summary>
     ///     Combined set of radio channels provided by all contained keys.
     /// </summary>
-    [ViewVariables]
-    [AutoNetworkedField]
+    [ViewVariables, AutoNetworkedField]
     public HashSet<ProtoId<RadioChannelPrototype>> Channels = new();
 
     /// <summary>
     ///     This is the channel that will be used when using the default/department prefix (<see cref="SharedChatSystem.DefaultChannelKey"/>).
     /// </summary>
-    [ViewVariables]
-    [DataField("defaultChannel", customTypeSerializer: typeof(PrototypeIdSerializer<RadioChannelPrototype>))]
-    [AutoNetworkedField]
+    [DataField, AutoNetworkedField]
     public string? DefaultChannel;
 
     /// <summary>
     ///     Combined set of radio channels provided by all contained keys that are ReadOnly.
     /// </summary>
-    [ViewVariables]
     [AutoNetworkedField]
     public HashSet<ProtoId<RadioChannelPrototype>> ReadOnlyChannels = new();
 }

@@ -18,7 +18,9 @@ using Content.Shared.Item;
 using Content.Shared.Interaction;
 using Content.Shared.Power;
 using Content.Shared.Pinpointer;
+using Content.Shared.Speech;
 using Content.Shared.SurveillanceCamera;
+using Content.Shared.SurveillanceCamera.Components;
 using Content.Shared.Verbs;
 using Content.Shared.Wires;
 using Robust.Server.GameObjects;
@@ -131,6 +133,40 @@ public sealed class CameraNetworkSystemTest
         finally
         {
             await pair.CleanReturnAsync();
+        }
+    }
+
+    [TestCase(true)]
+    [TestCase(false)]
+    public async Task SeedNetworkDeletionRecreatesSeedsBeforeReceiversSpawn(bool roundCleanup)
+    {
+        var (server, _) = await PoolManager.GenerateServer(new PoolSettings(), TestContext.Out);
+        try
+        {
+            await LoadPrototypes(server);
+            await server.WaitRunTicks(1);
+            await server.WaitAssertion(() =>
+            {
+                var entities = server.EntMan;
+                if (roundCleanup)
+                    entities.EventBus.RaiseEvent(EventSource.Local, new RoundRestartCleanupEvent());
+                foreach (var network in entities.EntityQuery<CameraNetworkIdentityComponent>().ToArray())
+                    entities.DeleteEntity(network.Owner);
+            });
+            await server.WaitRunTicks(1);
+            await server.WaitAssertion(() =>
+            {
+                var identities = server.EntMan.EntityQuery<CameraNetworkIdentityComponent>().ToArray();
+                foreach (var prototype in server.ProtoMan.EnumeratePrototypes<CameraNetworkPrototype>())
+                {
+                    Assert.That(identities.Count(identity => identity.Seed?.Id == prototype.ID), Is.EqualTo(1),
+                        $"{prototype.ID} must be seeded before any camera or receiver spawns in the new round");
+                }
+            });
+        }
+        finally
+        {
+            server.Dispose();
         }
     }
 

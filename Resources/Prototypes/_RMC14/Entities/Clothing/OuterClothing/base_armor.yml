@@ -86,9 +86,9 @@
     whitelist:
       components:
       - Gun
-      - Stunbaton
       - BallisticAmmoProvider #Note should get all maganizes
       tags:
+      - Stunbaton
       - Handcuffs
       - GasTank
       - Flashlight
@@ -109,10 +109,10 @@
       - Bible
       - Gun
       - BallisticAmmoProvider #Note should get all maganizes
-      - Stunbaton
       - CrewMonitoringConsole
       - CassettePlayer
       tags:
+      - Stunbaton
       - Handcuffs
       - GasTank
       - Flashlight
@@ -160,10 +160,10 @@
       - RMCLighter
       - Bible
       - BallisticAmmoProvider #Note should get all maganizes
-      - Stunbaton
       - Gun
       - CassettePlayer
       tags:
+      - Stunbaton
       - Handcuffs
       - GasTank
       - CigPack
@@ -194,10 +194,10 @@
       - RMCLighter
       - Bible
       - BallisticAmmoProvider #Note should get all maganizes
-      - Stunbaton
       - Gun
       - CassettePlayer
       tags:
+      - Stunbaton
       - Handcuffs
       - GasTank
       - CigPack
@@ -352,8 +352,8 @@
       id: blinking
       interpolate: Nearest
       maxDuration: 1.0
-      minValue: 0.1
-      maxValue: 2.0
+      startValue: 0.1
+      endValue: 2.0
       isLooped: true
       property: Radius
       enabled: false
@@ -361,7 +361,6 @@
     maxCharge: 600
     startingCharge: 600
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 2
   - type: WebbingClothing
     whitelist:
@@ -458,8 +457,8 @@
       id: blinking
       interpolate: Nearest
       maxDuration: 1.0
-      minValue: 0.1
-      maxValue: 2.0
+      startValue: 0.1
+      endValue: 2.0
       isLooped: true
       property: Radius
       enabled: false
@@ -467,7 +466,6 @@
     maxCharge: 600 #lights drain 3/s but recharge of 2 makes this 1/s. Therefore 600 is 10 minutes of light.
     startingCharge: 600
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 2 #recharge of 2 makes total drain 1w / s so max charge is 1:1 with time. Time to fully charge should be 5 minutes. Having recharge gives light an extended flicker period which gives you some warning to return to light area.
 
 - type: entity

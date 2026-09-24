@@ -9,3 +9,9 @@ metabolizer-type-plant = Растение
 metabolizer-type-dwarf = Дварф
 metabolizer-type-moth = Моль
 metabolizer-type-arachnid = Арахнид
+<<<<<<< HEAD
+=======
+
+
+metabolizer-type-changeling = Changeling
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34

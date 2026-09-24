@@ -1,8 +1,10 @@
 using System.Diagnostics.CodeAnalysis;
-using Content.Server.Atmos.Piping.Components;
+using Content.Server.Power.Components; // CMU14
+using Content.Server.Power.EntitySystems; // CMU14
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Atmos.EntitySystems;
+using Content.Shared.Atmos.Piping.Components;
 using JetBrains.Annotations;
 using Robust.Server.GameObjects;
 
@@ -12,6 +14,7 @@ namespace Content.Server.Atmos.EntitySystems;
 public sealed partial class GasMinerSystem : SharedGasMinerSystem
 {
     [Dependency] private AtmosphereSystem _atmosphereSystem = default!;
+    [Dependency] private PowerReceiverSystem _power = default!; // CMU14
     [Dependency] private TransformSystem _transformSystem = default!;
 
     public override void Initialize()
@@ -27,7 +30,19 @@ public sealed partial class GasMinerSystem : SharedGasMinerSystem
         var oldState = miner.MinerState;
         float toSpawn;
 
-        if (!GetValidEnvironment(ent, out var environment) || !Transform(ent).Anchored)
+        // CMU14: powered miners (portable colony tier) idle without power.
+        // mapper placed miners carry no receiver and are unaffected
+        if (TryComp<ApcPowerReceiverComponent>(ent, out var receiver) && !_power.IsPowered(ent, receiver))
+        {
+            if (miner.MinerState != GasMinerState.Disabled)
+            {
+                miner.MinerState = GasMinerState.Disabled;
+                Dirty(ent);
+            }
+            return;
+        }
+
+        if (!GetValidEnvironment(ent, out var environment))
         {
             miner.MinerState = GasMinerState.Disabled;
         }

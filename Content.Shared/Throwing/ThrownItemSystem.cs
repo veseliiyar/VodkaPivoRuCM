@@ -1,5 +1,5 @@
 using System.Linq;
-using Content.Shared._CMU14.ZLevels.Core.EntitySystems;
+using Content.Shared.CMU14.ZLevels.Core.EntitySystems;
 using Content.Shared._RMC14.Throwing;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Database;
@@ -31,11 +31,11 @@ namespace Content.Shared.Throwing
         [Dependency] private SharedGravitySystem _gravity = default!;
         [Dependency] private IRobustRandom _random = default!;
         [Dependency] private CMUSharedZLevelsSystem _zLevels = default!; //CMU
-        [Dependency] private SharedTransformSystem _transform = default!; private const string ThrowingFixture = "throw-fixture";
+        [Dependency] private SharedTransformSystem _transform = default!;
 
+        private const string ThrowingFixture = "throw-fixture";
         private readonly List<(EntityUid Uid, ThrownItemComponent Thrown, PhysicsComponent Physics)> _thrownSnapshot = new(); // CMU14
         private const string ThrowingWallFixture = "throw-wall-fixture";
-
 
         public override void Initialize()
         {
@@ -50,6 +50,7 @@ namespace Content.Shared.Throwing
         }
         private void PreventCollision(EntityUid uid, ThrownItemComponent component, ref PreventCollideEvent args)
         {
+<<<<<<< HEAD
             // Only immovable obstacles should physically stop a throw. Hits on mobile
             // bodies use the sensor fixture so ordinary items cannot push them around.
             var wallFixture = _fixtures.GetFixtureOrNull(uid, ThrowingWallFixture);
@@ -60,6 +61,10 @@ namespace Content.Shared.Throwing
                 args.Cancelled = true;
                 return;
             }
+=======
+            if (HasComp<ThrownHitUserComponent>(uid))
+                return;
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34
 
             if (args.OtherEntity == component.Thrower)
             {
@@ -260,8 +265,10 @@ namespace Content.Shared.Throwing
                 _adminLogger.Add(LogType.ThrowHit, LogImpact.Low,
                     $"{ToPrettyString(thrown):thrown} thrown by {ToPrettyString(component.Thrower.Value):thrower} hit {ToPrettyString(target):target}.");
 
-            RaiseLocalEvent(target, new ThrowHitByEvent(thrown, target, component), true);
-            RaiseLocalEvent(thrown, new ThrowDoHitEvent(thrown, target, component), true);
+            var hitByEv = new ThrowHitByEvent(thrown, target, component);
+            var doHitEv = new ThrowDoHitEvent(thrown, target, component);
+            RaiseLocalEvent(target, ref hitByEv, true);
+            RaiseLocalEvent(thrown, ref doHitEv, true);
         }
 
         public override void Update(float frameTime)

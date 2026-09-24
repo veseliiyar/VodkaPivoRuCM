@@ -1,0 +1,1328 @@
+meta:
+  format: 7
+  category: Map
+  engineVersion: v289.0.0
+  forkId: ""
+  forkVersion: ""
+  time: 09/11/2026 20:05:04
+  entityCount: 125
+maps:
+- 1
+grids:
+- 1
+orphans: []
+nullspace: []
+tilemap:
+  1: Space
+  0: CMFloorBlack
+  2: CMFloorPlating
+entities:
+- proto: ""
+  entities:
+  - uid: 1
+    components:
+    - type: MetaData
+      name: Mapping USS George Bush [-1]
+    - type: Transform
+    - type: Map
+      mapPaused: True
+    - type: GridTree
+    - type: OccluderTree
+    - type: MapGrid
+      chunks:
+        0,-5:
+          ind: 0,-5
+          tiles: AQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAA==
+          version: 7
+        -1,-5:
+          ind: -1,-5
+          tiles: AQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==
+          version: 7
+        -1,-4:
+          ind: -1,-4
+          tiles: AQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAA==
+          version: 7
+        0,-4:
+          ind: 0,-4
+          tiles: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAA==
+          version: 7
+    - type: Broadphase
+    - type: SpreaderGrid
+    - type: GridPathfinding
+    - type: Gravity
+      inherent: True
+      gravityShakeSound: !type:SoundPathSpecifier
+        path: /Audio/Effects/alert.ogg
+      enabled: True
+    - type: MapLight
+    - type: DayNightCycle
+      timeEntries:
+      - time: 0.04
+        colorHex: '#02020B'
+      - time: 0.08
+        colorHex: '#241A13'
+      - time: 0.17
+        colorHex: '#3B2A1E'
+      - time: 0.25
+        colorHex: '#7A5436'
+      - time: 0.33
+        colorHex: '#DCA865'
+      - time: 0.42
+        colorHex: '#FFF4E3'
+      - time: 0.5
+      - time: 0.58
+        colorHex: '#F7F7F7'
+      - time: 0.67
+        colorHex: '#F6C07E'
+      - time: 0.75
+        colorHex: '#DC8F42'
+      - time: 0.83
+        colorHex: '#5A3A69'
+      - time: 0.92
+        colorHex: '#02020B'
+      - time: 1
+        colorHex: '#000000'
+    - type: Roof
+      data:
+        0,0: 72340177116200959
+        -3,-3: 18446744073709551615
+        -3,-4: 18446744073709551603
+        -3,-5: 17863500326345171168
+        -1,4: 18446744073709551615
+        -1,5: 18446744073709551615
+        0,5: 18446744073709551615
+        0,4: 18446744073709551615
+        -3,4: 18446744073709551615
+        -3,5: 18446744073709551615
+        -3,6: 72057594037927935
+        -2,6: 72057594037927935
+        -2,5: 18446744073709551615
+        -2,4: 18446744073709551615
+        -1,6: 18374686479671623679
+        0,6: 1152921504606846975
+        1,6: 72057594037927935
+        1,5: 18446744073709551615
+        2,6: 35887507618889599
+        2,5: 9187201950435737471
+        2,4: 9187201950435737471
+        1,4: 18446744073709551615
+        -4,7: 14737408
+        -3,7: 4136704
+        -1,3: 18446744073705406656
+        0,3: 18446744073692840193
+        -1,8: 17941493187667230462
+        0,8: 218150868209307407
+        0,7: 506381210001280783
+        -1,7: 18229723555229007614
+        2,3: 9187201950444158975
+        3,3: 462647
+        3,2: 4566509284665327615
+        4,2: 12935430915
+        4,1: 217020518514230019
+        3,0: 18446744073696919359
+        3,-1: 4548388367194063616
+        2,-1: 18446744073709518847
+        2,-2: 18410573987290513279
+        2,-4: 9187201950444158951
+        2,-3: 9187201950435737471
+        2,-5: 17866680440895767299
+        2,-6: 217020518514230019
+        2,-7: 217020518514230019
+        2,-8: 218150833714824967
+        -5,2: 965845508320
+        -5,1: 16204198715729174752
+        -4,2: 18374403896593350655
+        -4,1: 18446744073709551615
+        -4,3: 15788278
+        -3,2: 18446744073709551615
+        -4,0: 18446744073709485823
+        1,7: 12615680
+        2,7: 16776960
+        3,7: 197376
+        -3,-1: 18446744073709551615
+        -3,-2: 18446744073709551615
+        -2,-2: 18446744073709551615
+        -2,-1: 18446744073709551615
+        -1,-2: 18446744073709551615
+        -1,-1: 18446744073709551615
+        0,-1: 18446744073709551615
+        0,-2: 18446744073709551615
+        1,-1: 18446744073709551615
+        1,-2: 18446744073709551615
+        2,0: 18446744073709551615
+        1,0: 13889313185971830783
+        -3,0: 18446744073709551615
+        1,-7: 18446744073709551615
+        1,-6: 18446744073709551615
+        1,-5: 18446744073709551615
+        1,-4: 18446744073709551615
+        1,-3: 18446744073709551615
+        0,-7: 18446744073709551615
+        0,-6: 18446744073709551615
+        0,-5: 18446744073709551615
+        0,-4: 18446744073709551615
+        0,-3: 18446744073709551615
+        -1,-7: 18446744073709551615
+        -1,-6: 18446744073709551615
+        -1,-5: 18446744073709551615
+        -1,-4: 18446744073709551615
+        -1,-3: 18446744073709551615
+        -2,-7: 18446744073709551615
+        -2,-6: 18446744073709551615
+        -2,-5: 18446744073709551615
+        -2,-4: 18446744073709551615
+        -2,-3: 18446744073709551615
+        -3,-7: 16204198715729174752
+        -3,-6: 16204198715729174752
+        3,1: 18446744073709551615
+        2,1: 18446744073709551615
+        2,2: 18446744073709551615
+        1,3: 18446744073705406656
+        -2,3: 18446744073692840193
+        -3,3: 18446744073709551615
+        -3,1: 18446744073709551615
+        -5,0: 16204198715714437120
+        -4,-1: 18373838743271137408
+        -4,-2: 9223372036854775808
+        -3,-8: 16199712777276813312
+        -2,-8: 18446744073709551615
+        -1,-8: 18446744073709551615
+        0,-8: 18446744073709551615
+        1,-8: 18446744073709551615
+        1,-9: 18446602783231510279
+        0,-9: 18446744073709551615
+        -1,-9: 18446744073709551615
+        -2,-9: 18373838743203805432
+        0,2: 72340172838076673
+        0,1: 72340172838076673
+        1,2: 13889313184910721216
+        1,1: 13889313184910721216
+        -1,2: 13889313184910721216
+        -1,1: 13889313184910721216
+        -1,0: 13889313185971830783
+        -2,0: 72340177116200959
+        -2,2: 72340172838076673
+        -2,1: 72340172838076673
+        2,-9: 506373483102470144
+        -2,-10: 17938102233441767424
+        -1,-10: 18446744073709486080
+        0,-10: 18446744073709486080
+        1,-10: 505250894665940992
+        -2,-11: 0
+        -1,-11: 0
+        -4,-5: 16176929861514821632
+        -4,-4: 1625350368
+        3,-5: 216172782113783808
+        3,-4: 50529027
+        5,6: 4629771061636907072
+        5,7: 4629771061636907072
+        5,4: 4629771061636907072
+        5,5: 4629771061636907072
+        5,2: 4629771061636907072
+        5,3: 4629771061636907072
+        5,0: 4629771061636907072
+        5,1: 4629771061636907072
+        5,-2: 4629771061636907072
+        5,-1: 4629771061636907072
+        5,-4: 4629771061636907072
+        5,-3: 4629771061636907072
+        5,-6: 4629771061636907072
+        5,-5: 4629771061636907072
+        5,-8: 4629771061636907072
+        5,-7: 4629771061636907072
+        -7,-8: 2314885530818453536
+        -7,-7: 2314885530818453536
+        -7,-6: 2314885530818453536
+        -7,-5: 2314885530818453536
+        -7,-4: 2314885530818453536
+        -7,-3: 2314885530818453536
+        -7,-2: 2314885530818453536
+        -7,-1: 2314885530818453536
+        -7,0: 2314885530818453536
+        -7,1: 2314885530818453536
+        -7,2: 2314885530818453536
+        -7,3: 2314885530818453536
+        -7,4: 2314885530818453536
+        -7,5: 2314885530818453536
+        -7,6: 2314885530818453536
+        -7,7: 2314885530818453536
+        -7,8: 2314885530818453536
+        -7,9: 2314885530818453536
+        -7,10: 2314885530818453536
+        -7,11: 2314885530818453536
+        -7,12: 2314885530818453536
+        -7,13: 16149943586100617248
+        -6,13: 18374686479671623680
+        -5,13: 18374686479671623680
+        -4,13: 18374686479671623680
+        -3,13: 18374686479671623680
+        -2,13: 18374686479671623680
+        -1,13: 18374686479671623680
+        0,13: 18374686479671623680
+        1,13: 18374686479671623680
+        2,13: 18374686479671623680
+        3,13: 18374686479671623680
+        4,13: 18374686479671623680
+        5,13: 9169399486026367040
+        5,12: 4629771061636907072
+        5,8: 4629771061636907072
+        5,9: 4629771061636907072
+        5,10: 4629771061636907072
+        5,11: 4629771061636907072
+        5,-10: 4629771061636907072
+        5,-9: 4629771061636907072
+        5,-12: 4629771061636907072
+        5,-11: 4629771061636907072
+        4,-14: 71776119061217280
+        5,-14: 4647433340469641216
+        5,-13: 4629771061636907072
+        2,-14: 71776119061217280
+        3,-14: 71776119061217280
+        0,-14: 71776119061217280
+        1,-14: 71776119061217280
+        -2,-14: 71776119061217280
+        -1,-14: 71776119061217280
+        -4,-14: 71776119061217280
+        -3,-14: 71776119061217280
+        -6,-14: 71776119061217280
+        -5,-14: 71776119061217280
+        -7,-14: 2368893403996880896
+        -7,-13: 2314885530818453536
+        -7,-10: 2314885530818453536
+        -7,-9: 2314885530818453536
+        -7,-12: 2314885530818453536
+        -7,-11: 2314885530818453536
+        4,0: 1
+    - type: MapAtmosphere
+      mixture:
+        temperature: 2.725
+        volume: 2500
+        moles: {}
+        immutable: True
+    - type: ChunkContainer
+      chunkEntities: []
+    - type: GasTileOverlay
+    - type: GridAtmosphere
+      version: 2
+      data:
+        uniqueMixes:
+        - temperature: 293.15
+          volume: 2500
+          moles:
+            Oxygen: 21.824879
+            Nitrogen: 82.10312
+        tiles:
+          0,-18:
+            0: 61440
+          0,-17:
+            0: 65535
+          -1,-18:
+            0: 53248
+          -1,-17:
+            0: 56781
+          0,-16:
+            0: 4095
+          1,-18:
+            0: 61440
+          1,-17:
+            0: 65535
+          1,-16:
+            0: 4095
+          2,-18:
+            0: 57344
+          2,-17:
+            0: 60942
+          -2,-18:
+            0: 49152
+          -2,-17:
+            0: 52236
+          -1,-16:
+            0: 3276
+        chunkSize: 4
+    - type: ExplosionAirtightGrid
+    - type: RadiationGridResistance
+- proto: ActionToggleLight
+  entities:
+  - uid: 92
+    mapInit: true
+    paused: true
+    components:
+    - type: Transform
+      parent: 91
+    - type: Action
+      container: 91
+- proto: AirAlarm
+  entities:
+  - uid: 115
+    components:
+    - type: Transform
+      parent: 1
+      rot: -1.5707963267948966 rad
+      pos: 8.5,-66.5
+    - type: DeviceList
+      devices:
+      - 97
+    - type: RMCPowerReceiver
+      channel: Environment
+      activeLoad: 100
+  - uid: 117
+    components:
+    - type: Transform
+      parent: 1
+      rot: 1.5707963267948966 rad
+      pos: -2.5,-66.5
+    - type: DeviceList
+      devices:
+      - 107
+    - type: RMCPowerReceiver
+      channel: Environment
+      activeLoad: 100
+- proto: CMApcConstructed
+  entities:
+  - uid: 67
+    components:
+    - type: Transform
+      parent: 1
+      pos: 4.5,-68.5
+- proto: CMUAtmosScanner
+  entities:
+  - uid: 81
+    mapInit: true
+    paused: true
+    components:
+    - type: Transform
+      parent: 1
+      pos: 4.2309265,-66.93965
+    - type: GasAnalyzer
+      target: 95
+    - type: EmitSoundOnCollide
+      nextSound: -38.8993403
+- proto: CMUGasMixerFlipped
+  entities:
+  - uid: 101
+    components:
+    - type: Transform
+      parent: 1
+      rot: -1.5707963267948966 rad
+      pos: 0.5,-68.5
+    - type: GasMixer
+      targetPressure: 200
+      inletTwoConcentration: 0.22000003
+      inletOneConcentration: 0.78
+      enabled: True
+    - type: AtmosPipeColor
+      color: '#03FCD3FF'
+- proto: CMUGasPipeBend
+  entities:
+  - uid: 114
+    components:
+    - type: Transform
+      parent: 1
+      rot: 1.5707963267948966 rad
+      pos: 0.5,-67.5
+    - type: AtmosPipeColor
+      color: '#FF1212FF'
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          ents: []
+  - uid: 116
+    components:
+    - type: Transform
+      parent: 1
+      pos: 5.5,-67.5
+    - type: AtmosPipeColor
+      color: '#FF1212FF'
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          ents: []
+  - uid: 118
+    components:
+    - type: Transform
+      parent: 1
+      rot: 3.141592653589793 rad
+      pos: 5.5,-68.5
+    - type: AtmosPipeColor
+      color: '#FF1212FF'
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          ents: []
+  - uid: 125
+    components:
+    - type: Transform
+      parent: 1
+      rot: 1.5707963267948966 rad
+      pos: 4.5,-65.5
+    - type: AtmosPipeColor
+      color: '#990000FF'
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          ents: []
+- proto: CMUGasPipeStraight
+  entities:
+  - uid: 29
+    components:
+    - type: Transform
+      parent: 1
+      rot: -1.5707963267948966 rad
+      pos: -3.5,-65.5
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          ents: []
+  - uid: 30
+    components:
+    - type: Transform
+      parent: 1
+      rot: 1.5707963267948966 rad
+      pos: 2.5,-67.5
+    - type: AtmosPipeColor
+      color: '#FF1212FF'
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          ents: []
+  - uid: 31
+    components:
+    - type: Transform
+      parent: 1
+      rot: -1.5707963267948966 rad
+      pos: 9.5,-65.5
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          ents: []
+  - uid: 32
+    components:
+    - type: Transform
+      parent: 1
+      rot: -1.5707963267948966 rad
+      pos: 8.5,-65.5
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          ents: []
+  - uid: 74
+    components:
+    - type: Transform
+      parent: 1
+      rot: 1.5707963267948966 rad
+      pos: 1.5,-67.5
+    - type: AtmosPipeColor
+      color: '#FF1212FF'
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          ents: []
+  - uid: 75
+    components:
+    - type: Transform
+      parent: 1
+      rot: 1.5707963267948966 rad
+      pos: 3.5,-67.5
+    - type: AtmosPipeColor
+      color: '#FF1212FF'
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          ents: []
+  - uid: 77
+    components:
+    - type: Transform
+      parent: 1
+      rot: 1.5707963267948966 rad
+      pos: -2.5,-68.5
+    - type: AtmosPipeColor
+      color: '#0335FCFF'
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          ents: []
+  - uid: 93
+    components:
+    - type: Transform
+      parent: 1
+      rot: 1.5707963267948966 rad
+      pos: 9.5,-68.5
+    - type: AtmosPipeColor
+      color: '#FF1212FF'
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          ents: []
+  - uid: 94
+    components:
+    - type: Transform
+      parent: 1
+      rot: 1.5707963267948966 rad
+      pos: 8.5,-68.5
+    - type: AtmosPipeColor
+      color: '#FF1212FF'
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          ents: []
+  - uid: 102
+    components:
+    - type: Transform
+      parent: 1
+      rot: 1.5707963267948966 rad
+      pos: -3.5,-68.5
+    - type: AtmosPipeColor
+      color: '#0335FCFF'
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          ents: []
+  - uid: 104
+    components:
+    - type: Transform
+      parent: 1
+      rot: -1.5707963267948966 rad
+      pos: -2.5,-65.5
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          ents: []
+  - uid: 106
+    components:
+    - type: Transform
+      parent: 1
+      rot: 1.5707963267948966 rad
+      pos: 4.5,-67.5
+    - type: AtmosPipeColor
+      color: '#FF1212FF'
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          ents: []
+  - uid: 108
+    components:
+    - type: Transform
+      parent: 1
+      rot: -1.5707963267948966 rad
+      pos: 9.5,-64.5
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          ents: []
+  - uid: 111
+    components:
+    - type: Transform
+      parent: 1
+      rot: -1.5707963267948966 rad
+      pos: 8.5,-64.5
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          ents: []
+  - uid: 112
+    components:
+    - type: Transform
+      parent: 1
+      rot: -1.5707963267948966 rad
+      pos: -3.5,-64.5
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          ents: []
+  - uid: 113
+    components:
+    - type: Transform
+      parent: 1
+      rot: -1.5707963267948966 rad
+      pos: -2.5,-64.5
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          ents: []
+  - uid: 120
+    components:
+    - type: Transform
+      parent: 1
+      pos: 4.5,-67.5
+    - type: AtmosPipeColor
+      color: '#990000FF'
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          ents: []
+  - uid: 121
+    components:
+    - type: Transform
+      parent: 1
+      pos: 4.5,-66.5
+    - type: AtmosPipeColor
+      color: '#990000FF'
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          ents: []
+  - uid: 123
+    components:
+    - type: Transform
+      parent: 1
+      rot: -1.5707963267948966 rad
+      pos: 5.5,-65.5
+    - type: AtmosPipeColor
+      color: '#990000FF'
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          ents: []
+  - uid: 124
+    components:
+    - type: Transform
+      parent: 1
+      rot: -1.5707963267948966 rad
+      pos: 6.5,-65.5
+    - type: AtmosPipeColor
+      color: '#990000FF'
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          ents: []
+- proto: CMUGasPressureRegulator
+  entities:
+  - uid: 99
+    components:
+    - type: Transform
+      parent: 1
+      rot: -1.5707963267948966 rad
+      pos: -1.5,-65.5
+- proto: CMUGasValve
+  entities:
+  - uid: 70
+    components:
+    - type: Transform
+      parent: 1
+      rot: -1.5707963267948966 rad
+      pos: 7.5,-68.5
+    - type: AtmosPipeColor
+      color: '#FF1212FF'
+  - uid: 95
+    components:
+    - type: Transform
+      parent: 1
+      rot: -1.5707963267948966 rad
+      pos: -1.5,-68.5
+    - type: AtmosPipeColor
+      color: '#0335FCFF'
+  - uid: 109
+    components:
+    - type: Transform
+      parent: 1
+      rot: 1.5707963267948966 rad
+      pos: -1.5,-64.5
+    - type: GasValve
+      open: False
+  - uid: 110
+    components:
+    - type: Transform
+      parent: 1
+      rot: 1.5707963267948966 rad
+      pos: 7.5,-64.5
+    - type: GasValve
+      open: False
+- proto: CMUGasVolumePump
+  entities:
+  - uid: 122
+    components:
+    - type: Transform
+      parent: 1
+      rot: 1.5707963267948966 rad
+      pos: 7.5,-65.5
+    - type: GasVolumePump
+      enabled: True
+    - type: AtmosPipeColor
+      color: '#990000FF'
+- proto: CMUPaperYellow
+  entities:
+  - uid: 80
+    components:
+    - type: Transform
+      parent: 1
+      pos: 3.7617345,-66.81473
+    - type: Paper
+      stampState: paper_stamp-ce
+      stampedBy:
+      - stampedName: stamp-component-stamped-name-au14-eo
+        stampedColor: '#D19F2AFF'
+      content: >
+        [head=3]WORK ORDER #0513-B[/head]
+
+        [bold]Location:[/bold] Deck -1, aft of... nothing?
+
+        [bold]Requested by:[/bold] Atmospherics
+
+        [bold]Approved by:[/bold] nobody you have met
+
+
+        This chamber exists so that atmospherics failures happen
+
+        down here instead of somewhere with witnesses.
+
+
+        It is not on the schematics. The schematics are not wrong.
+
+        This room is simply shy.
+
+
+        If it looks bad, that is because it wasn't built to the same
+
+        standard as everything else on this ship, 
+
+        at the margins of the same budget,
+
+        by just a few incapable hands.
+
+
+        [bold]Do not touch the pipes.[/bold] The pipes remember.
+
+
+        [italic]- Facilities (position currently unfilled)[/italic]
+- proto: CMUPassiveVent
+  entities:
+  - uid: 96
+    components:
+    - type: Transform
+      parent: 1
+      rot: 1.5707963267948966 rad
+      pos: -4.5,-65.5
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          ents: []
+  - uid: 98
+    components:
+    - type: Transform
+      parent: 1
+      rot: -1.5707963267948966 rad
+      pos: 10.5,-65.5
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          ents: []
+  - uid: 103
+    components:
+    - type: Transform
+      parent: 1
+      rot: 1.5707963267948966 rad
+      pos: -4.5,-68.5
+    - type: AtmosPipeColor
+      color: '#0335FCFF'
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          ents: []
+  - uid: 105
+    components:
+    - type: Transform
+      parent: 1
+      rot: -1.5707963267948966 rad
+      pos: 10.5,-68.5
+    - type: AtmosPipeColor
+      color: '#FF1212FF'
+    - type: ContainerContainer
+      containers:
+        rmc_vent_container: !type:Container
+          ents: []
+- proto: CMUPipeRiserUp
+  entities:
+  - uid: 25
+    components:
+    - type: Transform
+      parent: 1
+      pos: 1.5,-68.5
+    - type: AtmosPipeColor
+      color: '#03FCD3FF'
+    - type: ContainerContainer
+      containers:
+        machine_board: !type:Container
+          ents: []
+          showEnts: False
+          occludes: True
+        machine_parts: !type:Container
+          ents: []
+          showEnts: False
+          occludes: True
+        rmc_vent_container: !type:Container
+          ents: []
+          showEnts: False
+          occludes: True
+  - uid: 119
+    components:
+    - type: Transform
+      parent: 1
+      pos: 4.5,-68.5
+    - type: AtmosPipeColor
+      color: '#990000FF'
+    - type: ContainerContainer
+      containers:
+        machine_board: !type:Container
+          ents: []
+          showEnts: False
+          occludes: True
+        machine_parts: !type:Container
+          ents: []
+          showEnts: False
+          occludes: True
+        rmc_vent_container: !type:Container
+          ents: []
+          showEnts: False
+          occludes: True
+- proto: CMUZLevelLadderThrough
+  entities:
+  - uid: 3
+    components:
+    - type: Transform
+      parent: 1
+      pos: 3.5,-68.5
+    - type: Fixtures
+      fixtures: {}
+  - uid: 4
+    components:
+    - type: Transform
+      parent: 1
+      pos: 2.5,-68.5
+    - type: Fixtures
+      fixtures: {}
+- proto: CMVentScrubber
+  entities:
+  - uid: 97
+    components:
+    - type: Transform
+      parent: 1
+      pos: 10.5,-64.5
+    - type: DeviceNetwork
+      deviceLists:
+      - 115
+  - uid: 107
+    components:
+    - type: Transform
+      parent: 1
+      pos: -4.5,-64.5
+    - type: DeviceNetwork
+      deviceLists:
+      - 117
+- proto: CMWallReinforcedHeavyAlmayer
+  entities:
+  - uid: 2
+    components:
+    - type: Transform
+      parent: 1
+      pos: -0.5,-60.5
+  - uid: 5
+    components:
+    - type: Transform
+      parent: 1
+      pos: 0.5,-60.5
+  - uid: 6
+    components:
+    - type: Transform
+      parent: 1
+      pos: -2.5,-60.5
+  - uid: 7
+    components:
+    - type: Transform
+      parent: 1
+      pos: -1.5,-60.5
+  - uid: 8
+    components:
+    - type: Transform
+      parent: 1
+      pos: -6.5,-67.5
+  - uid: 9
+    components:
+    - type: Transform
+      parent: 1
+      pos: -6.5,-65.5
+  - uid: 10
+    components:
+    - type: Transform
+      parent: 1
+      pos: -6.5,-64.5
+  - uid: 11
+    components:
+    - type: Transform
+      parent: 1
+      pos: -6.5,-66.5
+  - uid: 12
+    components:
+    - type: Transform
+      parent: 1
+      pos: -6.5,-63.5
+  - uid: 13
+    components:
+    - type: Transform
+      parent: 1
+      pos: -6.5,-68.5
+  - uid: 14
+    components:
+    - type: Transform
+      parent: 1
+      pos: -2.5,-63.5
+  - uid: 15
+    components:
+    - type: Transform
+      parent: 1
+      pos: -2.5,-62.5
+  - uid: 16
+    components:
+    - type: Transform
+      parent: 1
+      pos: -5.5,-63.5
+  - uid: 17
+    components:
+    - type: Transform
+      parent: 1
+      pos: 3.5,-60.5
+  - uid: 18
+    components:
+    - type: Transform
+      parent: 1
+      pos: -4.5,-63.5
+  - uid: 19
+    components:
+    - type: Transform
+      parent: 1
+      pos: -6.5,-69.5
+  - uid: 20
+    components:
+    - type: Transform
+      parent: 1
+      pos: -3.5,-63.5
+  - uid: 21
+    components:
+    - type: Transform
+      parent: 1
+      pos: 8.5,-63.5
+  - uid: 22
+    components:
+    - type: Transform
+      parent: 1
+      pos: 8.5,-62.5
+  - uid: 23
+    components:
+    - type: Transform
+      parent: 1
+      pos: 5.5,-60.5
+  - uid: 24
+    components:
+    - type: Transform
+      parent: 1
+      pos: 8.5,-61.5
+  - uid: 26
+    components:
+    - type: Transform
+      parent: 1
+      pos: -5.5,-66.5
+  - uid: 27
+    components:
+    - type: Transform
+      parent: 1
+      pos: 8.5,-69.5
+  - uid: 28
+    components:
+    - type: Transform
+      parent: 1
+      pos: 7.5,-69.5
+  - uid: 33
+    components:
+    - type: Transform
+      parent: 1
+      pos: 6.5,-69.5
+  - uid: 34
+    components:
+    - type: Transform
+      parent: 1
+      pos: 11.5,-69.5
+  - uid: 35
+    components:
+    - type: Transform
+      parent: 1
+      pos: 10.5,-69.5
+  - uid: 36
+    components:
+    - type: Transform
+      parent: 1
+      pos: 9.5,-69.5
+  - uid: 37
+    components:
+    - type: Transform
+      parent: 1
+      pos: 2.5,-69.5
+  - uid: 38
+    components:
+    - type: Transform
+      parent: 1
+      pos: 5.5,-69.5
+  - uid: 39
+    components:
+    - type: Transform
+      parent: 1
+      pos: 4.5,-69.5
+  - uid: 40
+    components:
+    - type: Transform
+      parent: 1
+      pos: 3.5,-69.5
+  - uid: 41
+    components:
+    - type: Transform
+      parent: 1
+      pos: 0.5,-69.5
+  - uid: 42
+    components:
+    - type: Transform
+      parent: 1
+      pos: -2.5,-69.5
+  - uid: 43
+    components:
+    - type: Transform
+      parent: 1
+      pos: -0.5,-69.5
+  - uid: 44
+    components:
+    - type: Transform
+      parent: 1
+      pos: -1.5,-69.5
+  - uid: 45
+    components:
+    - type: Transform
+      parent: 1
+      pos: 1.5,-69.5
+  - uid: 46
+    components:
+    - type: Transform
+      parent: 1
+      pos: -2.5,-61.5
+  - uid: 47
+    components:
+    - type: Transform
+      parent: 1
+      pos: 10.5,-63.5
+  - uid: 48
+    components:
+    - type: Transform
+      parent: 1
+      pos: 1.5,-60.5
+  - uid: 49
+    components:
+    - type: Transform
+      parent: 1
+      pos: 11.5,-63.5
+  - uid: 50
+    components:
+    - type: Transform
+      parent: 1
+      pos: 12.5,-63.5
+  - uid: 51
+    components:
+    - type: Transform
+      parent: 1
+      pos: 9.5,-63.5
+  - uid: 52
+    components:
+    - type: Transform
+      parent: 1
+      pos: 12.5,-65.5
+  - uid: 53
+    components:
+    - type: Transform
+      parent: 1
+      pos: 12.5,-66.5
+  - uid: 54
+    components:
+    - type: Transform
+      parent: 1
+      pos: 12.5,-67.5
+  - uid: 55
+    components:
+    - type: Transform
+      parent: 1
+      pos: 12.5,-68.5
+  - uid: 56
+    components:
+    - type: Transform
+      parent: 1
+      pos: -3.5,-66.5
+  - uid: 57
+    components:
+    - type: Transform
+      parent: 1
+      pos: -2.5,-66.5
+  - uid: 58
+    components:
+    - type: Transform
+      parent: 1
+      pos: 12.5,-64.5
+  - uid: 59
+    components:
+    - type: Transform
+      parent: 1
+      pos: -5.5,-69.5
+  - uid: 60
+    components:
+    - type: Transform
+      parent: 1
+      pos: -3.5,-69.5
+  - uid: 61
+    components:
+    - type: Transform
+      parent: 1
+      pos: -4.5,-69.5
+  - uid: 62
+    components:
+    - type: Transform
+      parent: 1
+      pos: 6.5,-60.5
+  - uid: 63
+    components:
+    - type: Transform
+      parent: 1
+      pos: 7.5,-60.5
+  - uid: 64
+    components:
+    - type: Transform
+      parent: 1
+      pos: 8.5,-60.5
+  - uid: 65
+    components:
+    - type: Transform
+      parent: 1
+      pos: 12.5,-69.5
+  - uid: 66
+    components:
+    - type: Transform
+      parent: 1
+      pos: 4.5,-60.5
+  - uid: 82
+    components:
+    - type: Transform
+      parent: 1
+      pos: 2.5,-60.5
+  - uid: 83
+    components:
+    - type: Transform
+      parent: 1
+      pos: -4.5,-66.5
+  - uid: 84
+    components:
+    - type: Transform
+      parent: 1
+      pos: 9.5,-66.5
+  - uid: 85
+    components:
+    - type: Transform
+      parent: 1
+      pos: 8.5,-66.5
+  - uid: 86
+    components:
+    - type: Transform
+      parent: 1
+      pos: 11.5,-66.5
+  - uid: 87
+    components:
+    - type: Transform
+      parent: 1
+      pos: 10.5,-66.5
+- proto: CMWindowReinforcedAlmayer
+  entities:
+  - uid: 68
+    components:
+    - type: Transform
+      parent: 1
+      pos: 8.5,-64.5
+  - uid: 69
+    components:
+    - type: Transform
+      parent: 1
+      pos: -2.5,-65.5
+  - uid: 71
+    components:
+    - type: Transform
+      parent: 1
+      pos: -2.5,-64.5
+  - uid: 72
+    components:
+    - type: Transform
+      parent: 1
+      pos: 8.5,-65.5
+  - uid: 76
+    components:
+    - type: Transform
+      parent: 1
+      pos: 8.5,-67.5
+  - uid: 79
+    components:
+    - type: Transform
+      parent: 1
+      pos: -2.5,-68.5
+  - uid: 89
+    components:
+    - type: Transform
+      parent: 1
+      pos: 8.5,-68.5
+  - uid: 90
+    components:
+    - type: Transform
+      parent: 1
+      pos: -2.5,-67.5
+- proto: CMUGasMinerNitrogenPortable
+  entities:
+  - uid: 88
+    components:
+    - type: Transform
+      parent: 1
+      pos: 10.5,-67.5
+- proto: CMUGasMinerOxygenPortable
+  entities:
+  - uid: 78
+    components:
+    - type: Transform
+      parent: 1
+      pos: -4.5,-67.5
+- proto: CMUGasPipeManifold
+  entities:
+  - uid: 73
+    components:
+    - type: Transform
+      parent: 1
+      rot: -1.5707963267948966 rad
+      pos: 6.5,-68.5
+    - type: AtmosPipeColor
+      color: '#FF1212FF'
+  - uid: 100
+    components:
+    - type: Transform
+      parent: 1
+      rot: -1.5707963267948966 rad
+      pos: -0.5,-68.5
+    - type: AtmosPipeColor
+      color: '#0335FCFF'
+- proto: RMCHardHat
+  entities:
+  - uid: 91
+    components:
+    - type: Transform
+      parent: 1
+      pos: 3.7609525,-66.55171
+    - type: HandheldLight
+      toggleActionEntity: 92
+    - type: ContainerContainer
+      containers:
+        storagebase: !type:Container
+          ents: []
+          showEnts: False
+          occludes: True
+        actions: !type:Container
+          ents:
+          - 92
+          showEnts: False
+          occludes: True
+    - type: ActionsContainer
+...

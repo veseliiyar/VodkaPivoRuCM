@@ -30,3 +30,11 @@ ui-escape-status-unknown = Неизвестно
 ui-escape-status-no-ship = Нет корабля
 
 ui-escape-status-not-started = Не запущено
+<<<<<<< HEAD
+=======
+
+
+ui-escape-remarks = Admin Remarks
+
+ui-escape-remarks-button-disabled = This functionality has been disabled by the server.
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34

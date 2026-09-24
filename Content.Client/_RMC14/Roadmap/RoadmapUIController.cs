@@ -21,7 +21,7 @@ public sealed partial class RoadmapUIController : UIController, IOnStateEntered<
     public override void Initialize()
     {
         base.Initialize();
-        _infoUIController.Accepted += OnAccepted;
+        // _infoUIController.Accepted += OnAccepted; // CMU14 Disabled
     }
 
     public void OnStateEntered(LobbyState state)
@@ -32,7 +32,7 @@ public sealed partial class RoadmapUIController : UIController, IOnStateEntered<
         if (_infoUIController.RulesPopup != null)
             return;
 
-        // ToggleRoadmap(); // CMU Disabled
+        // ToggleRoadmap(); // CMU14 Disabled
     }
 
     private void OnAccepted()
@@ -56,7 +56,7 @@ public sealed partial class RoadmapUIController : UIController, IOnStateEntered<
 
         if (_config.GetCVar(CCVars.InfoLinksDiscord) is { Length: > 0 } discordLink)
         {
-            _window.DiscordButton.StyleClasses.Add(StyleBase.ButtonCaution);
+            _window.DiscordButton.StyleClasses.Add(StyleClass.Negative);
             _window.DiscordButton.Visible = true;
             _window.DiscordButton.OnPressed += _ => _uriOpener.OpenUri(discordLink);
         }
@@ -67,12 +67,18 @@ public sealed partial class RoadmapUIController : UIController, IOnStateEntered<
 
         if (sponsorLink.Length > 0)
         {
+<<<<<<< HEAD
             _window.BoostyButton.StyleClasses.Add(StyleBase.ButtonCaution);
             _window.BoostyButton.Visible = true;
             _window.BoostyButton.OnPressed += _ => _uriOpener.OpenUri(sponsorLink);
+=======
+            _window.PatreonButton.StyleClasses.Add(StyleClass.Negative);
+            _window.PatreonButton.Visible = true;
+            _window.PatreonButton.OnPressed += _ => _uriOpener.OpenUri(patreonLink);
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34
         }
 
-        _window.CreditsButton.StyleClasses.Add(StyleBase.ButtonCaution);
+        _window.CreditsButton.StyleClasses.Add(StyleClass.Negative);
         _window.CreditsButton.OnPressed += _ => new CreditsWindow().OpenCentered();
 
         _window.OpenCentered();

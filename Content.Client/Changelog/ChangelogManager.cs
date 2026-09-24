@@ -53,6 +53,7 @@ namespace Content.Client.Changelog
             // Open changelog purely to compare to the last viewed date.
             var changelogs = await LoadChangelog();
             UpdateChangelogs(changelogs);
+            _configManager.OnValueChanged(CCVars.ServerId, OnServerIdCVarChanged);
         }
 
         private void UpdateChangelogs(List<Changelog> changelogs)
@@ -69,7 +70,7 @@ namespace Content.Client.Changelog
                 return;
             }
 
-            var changelog = changelogs[0];
+            var changelog = mainChangelogs[0];
             if (mainChangelogs.Length > 1)
             {
                 _sawmill.Error($"More than one file found in Resource/Changelog with name {MainChangelogName}");
@@ -82,15 +83,27 @@ namespace Content.Client.Changelog
 
             MaxId = changelog.Entries.Max(c => c.Id);
 
+            CheckLastSeenEntry();
+        }
+
+        private void CheckLastSeenEntry()
+        {
+            LastReadId = 0;
             var path = new ResPath($"/changelog_last_seen_{_configManager.GetCVar(CCVars.ServerId)}");
-            if (_resource.UserData.TryReadAllText(path, out var lastReadIdText))
+            if (_resource.UserData.TryReadAllText(path, out var lastReadIdText) &&
+                int.TryParse(lastReadIdText, out var parsedLastReadId))
             {
-                LastReadId = int.Parse(lastReadIdText);
+                LastReadId = parsedLastReadId;
             }
 
             NewChangelogEntries = LastReadId < MaxId;
 
             NewChangelogEntriesChanged?.Invoke();
+        }
+
+        private void OnServerIdCVarChanged(string newValue)
+        {
+            CheckLastSeenEntry();
         }
 
         public Task<List<Changelog>> LoadChangelog()
@@ -190,17 +203,23 @@ namespace Content.Client.Changelog
         [DataDefinition]
         public sealed partial class ChangelogEntry
         {
-            [DataField("id")]
+            [DataField]
             public int Id { get; private set; }
 
-            [DataField("author")]
+            [DataField]
             public string Author { get; private set; } = "";
 
             [DataField]
             public DateTime Time { get; private set; }
 
-            [DataField("changes")]
+            [DataField]
             public List<ChangelogChange> Changes { get; private set; } = default!;
+
+            /// <summary>
+            ///     Labels attached to the related PR, passed on via the SS14.Changelog parser.
+            /// </summary>
+            [DataField]
+            public List<string> Labels { get; private set; } = [];
         }
 
         [DataDefinition]

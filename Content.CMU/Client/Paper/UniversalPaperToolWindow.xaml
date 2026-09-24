@@ -1,0 +1,34 @@
+<cmu:UniversalPaperToolWindow xmlns="https://spacestation14.io"
+    xmlns:cmu="clr-namespace:Content.Client.CMU14.Paper"
+    SetSize="420 520"
+    MinSize="360 360">
+
+    <PanelContainer>
+        <BoxContainer Orientation="Vertical"
+                      SeparationOverride="8"
+                      Margin="8">
+
+            <Label Name="HeaderLabel" StyleClasses="LabelHeading" />
+            <Label Name="PaperStatusLabel" StyleClasses="LabelSubText" />
+
+<<<<<<< HEAD:Content.Client/_CMU14/Paper/UniversalPaperToolWindow.xaml
+                        <LineEdit Name="SearchBar"
+=======
+            <LineEdit Name="SearchBar"
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34:Content.CMU/Client/Paper/UniversalPaperToolWindow.xaml
+                      PlaceHolder="{Loc cmu-universal-paper-tool-search-placeholder}"
+                      HorizontalExpand="True" />
+
+            <ScrollContainer VerticalExpand="True" HScrollEnabled="False">
+                <BoxContainer Name="TemplateList"
+                              Orientation="Vertical"
+                              SeparationOverride="6" />
+            </ScrollContainer>
+
+            <Button Name="ExitButton"
+                    Text="{Loc cmu-universal-paper-tool-close}"
+                    HorizontalAlignment="Center" />
+        </BoxContainer>
+    </PanelContainer>
+
+</cmu:UniversalPaperToolWindow>

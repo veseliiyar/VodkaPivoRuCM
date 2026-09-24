@@ -135,3 +135,29 @@ laws-notify-subverted = Законы этого шасси изменены. О�
 # Missing entries synced from en-US
 
 law-paladin-5 = Несите ответственность за свои действия и их последствия, защищайте тех, кто вверен вашей заботе, и подчиняйтесь тем, кто имеет над вами справедливую власть.
+<<<<<<< HEAD
+=======
+
+
+laws-owner-heads = heads of staff
+
+laws-owner-legitimate-leadership = legitimate leadership
+
+laws-owner-others = others
+
+laws-owner-public = members of the public
+
+laws-owner-audience = members of the audience
+
+laws-owner-xenoborg-mothership = the Mothership
+
+laws-ui-select-all = Select All
+
+laws-ui-select-all-tooltip = This will select ALL laws, including ones that should probably remain secret.
+
+laws-ui-select-none = Select None
+
+laws-window-footer-left = Remember: You must be consistent with your interpretation of your laws!
+
+laws-window-footer-right = V{$version}
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34

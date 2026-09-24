@@ -1,5 +1,5 @@
 using System.Numerics;
-using Content.Shared._CMU14.Round.Objectives;
+using Content.Shared.CMU14.Round.Objectives;
 using Content.Shared._RMC14.Animations;
 using Content.Shared._RMC14.Holiday;
 using Content.Shared._RMC14.Inventory;
@@ -45,7 +45,7 @@ using Content.Shared._RMC14.Marines.Roles.Ranks;
 using Content.Shared.Storage.EntitySystems;
 using Content.Shared.Storage;
 using Content.Shared._RMC14.Cryostorage;
-using Content.Shared._AU14.Vendors;
+using Content.Shared.CMU14.Vendors;
 
 namespace Content.Shared._RMC14.Vendors;
 
@@ -353,7 +353,7 @@ public abstract partial class SharedCMAutomatedVendorSystem : EntitySystem
         if (TryComp(ent, out AccessReaderComponent? accessReader))
         {
             var access = ent.Comp.Hacked ? new List<ProtoId<AccessLevelPrototype>>() : ent.Comp.Access;
-            _accessReader.SetAccesses((ent, accessReader), access);
+            _accessReader.TrySetAccesses((ent, accessReader), access);
         }
     }
 
@@ -365,6 +365,11 @@ public abstract partial class SharedCMAutomatedVendorSystem : EntitySystem
 
     private void EjectAllVendorContents(Entity<CMAutomatedVendorComponent> vendor)
     {
+        // CMU14: Deployable shutdown also destroys vendors while their map or grid is being deleted.
+        var coords = Transform(vendor).Coordinates;
+        if (TerminatingOrDeleted(coords.EntityId))
+            return;
+
         // Get all available items with their quantity
         var inventory = GetAvailableInventoryWithAmounts(vendor.Comp);
 
@@ -374,7 +379,6 @@ public abstract partial class SharedCMAutomatedVendorSystem : EntitySystem
             for (int i = 0; i < amount; i++)
             {
                 // Create item near the vendor
-                var coords = Transform(vendor).Coordinates;
                 var spawnedItem = Spawn(itemId, coords);
 
                 // Throw in a random direction with a random force
@@ -460,7 +464,8 @@ public abstract partial class SharedCMAutomatedVendorSystem : EntitySystem
             user = EnsureComp<CMVendorUserComponent>(actor);
             if (!user.TakeAll.Add((takeAll, entry.Id)))
             {
-                Log.Error($"{ToPrettyString(actor)} tried to buy too many take-alls.");
+                // CMU14: handled guard, not an error - players hitting the limit is routine.
+                Log.Warning($"{ToPrettyString(actor)} tried to buy too many take-alls.");
                 return;
             }
 
@@ -472,7 +477,8 @@ public abstract partial class SharedCMAutomatedVendorSystem : EntitySystem
             user = EnsureComp<CMVendorUserComponent>(actor);
             if (!user.TakeOne.Add(takeOne))
             {
-                Log.Error($"{ToPrettyString(actor)} tried to buy too many take-ones.");
+                // CMU14: same - routine limit, keep it out of the ERRO feed.
+                Log.Warning($"{ToPrettyString(actor)} tried to buy too many take-ones.");
                 return;
             }
 
@@ -527,7 +533,18 @@ public abstract partial class SharedCMAutomatedVendorSystem : EntitySystem
             if (user.ChoiceWhitelist is { } choiceWhitelist &&
                 !choiceWhitelist.Contains(choice.Id))
             {
+<<<<<<< HEAD
                 _popup.PopupEntity(Loc.GetString("cm-vending-machine-cannot-buy-category"), vendor, actor);
+=======
+                playerChoices = 0;
+                user.Choices[choices.Id] = playerChoices;
+                Dirty(actor, user);
+            }
+
+            if (playerChoices >= choices.Amount)
+            {
+                Log.Warning($"{ToPrettyString(actor)} tried to buy too many choices."); // CMU14: client UI desync, not a server fault
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34
                 return;
             }
 
@@ -675,7 +692,13 @@ public abstract partial class SharedCMAutomatedVendorSystem : EntitySystem
                     : user.ExtraPoints?.GetValueOrDefault(vendor.Comp.PointsType) ?? 0;
                 if (userPoints < entry.Points)
                 {
+<<<<<<< HEAD
                     _popup.PopupEntity(Loc.GetString("cm-vending-machine-not-enough-points"), vendor, actor);
+=======
+                    // CMU14: reachable by spam-clicking a legit client, so warning not error
+                    Log.Warning(
+                        $"{ToPrettyString(actor)} with {user.Points} tried to buy {entry.Id} for {entry.Points} points without having enough points.");
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34
                     return;
                 }
 
@@ -814,7 +837,7 @@ public abstract partial class SharedCMAutomatedVendorSystem : EntitySystem
         }
         else
         {
-            var spawn = SpawnNextToOrDrop(toVend, vendor);
+            var spawn = SpawnAtPosition(toVend, vendor.ToCoordinates());
             AfterVend(spawn, player, vendor, offset, replaceSlot: replaceSlot);
         }
     }

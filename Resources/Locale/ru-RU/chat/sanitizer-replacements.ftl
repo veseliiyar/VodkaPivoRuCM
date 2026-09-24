@@ -25,3 +25,9 @@ chatsan-winks = подмигивает
 # Missing entries synced from en-US
 
 rmc-chatsan-emote-sobs = рыдает
+<<<<<<< HEAD
+=======
+
+
+chatsan-comes-to-attention = comes to attention
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34

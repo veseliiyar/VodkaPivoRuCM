@@ -8,3 +8,9 @@ guidebook-error-message = Сообщение об ошибке
 
 guidebook-monkey-unspin = Отперевернуть обезьяну
 guidebook-monkey-disco = Диско обезьяна
+<<<<<<< HEAD
+=======
+
+
+guidebook-toc-header = Table of Contents
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34

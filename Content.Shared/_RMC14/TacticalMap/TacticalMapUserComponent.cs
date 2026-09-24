@@ -45,6 +45,9 @@ public sealed partial class TacticalMapUserComponent : Component
     [DataField, AutoNetworkedField] // CMU14
     public bool Abomination;
 
+    [DataField, AutoNetworkedField] // CMU14
+    public bool Yautja;
+
     [DataField, AutoNetworkedField]
     public bool Yautja;
 
@@ -73,6 +76,9 @@ public sealed partial class TacticalMapUserComponent : Component
 
     [DataField, AutoNetworkedField] // CMU14
     public Dictionary<int, TacticalMapBlip> AbominationBlips = new();
+
+    [DataField, AutoNetworkedField] // CMU14
+    public Dictionary<int, TacticalMapBlip> YautjaBlips = new();
 
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoNetworkedField, AutoPausedField]
     public TimeSpan LastAnnounceAt;

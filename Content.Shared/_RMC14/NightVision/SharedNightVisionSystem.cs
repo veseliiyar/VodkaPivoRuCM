@@ -70,7 +70,7 @@ public abstract partial class SharedNightVisionSystem : EntitySystem
     private void OnNightVisionRemove(Entity<NightVisionComponent> ent, ref ComponentRemove args)
     {
         if (ent.Comp.Alert is { } alert)
-            _alerts.ClearAlert(ent, alert);
+            _alerts.ClearAlert((ent.Owner, null), alert);
 
         NightVisionRemoved(ent);
     }
@@ -111,7 +111,7 @@ public abstract partial class SharedNightVisionSystem : EntitySystem
         if (!ent.Comp.EnableOnEquip)
             return;
 
-        EnableNightVisionItem(ent, args.Equipee);
+        EnableNightVisionItem(ent, args.EquipTarget);
     }
 
     private void OnNightVisionItemGotUnequipped(Entity<NightVisionItemComponent> ent, ref GotUnequippedEvent args)
@@ -119,7 +119,7 @@ public abstract partial class SharedNightVisionSystem : EntitySystem
         if (ent.Comp.SlotFlags != args.SlotFlags)
             return;
 
-        DisableNightVisionItem(ent, args.Equipee);
+        DisableNightVisionItem(ent, args.EquipTarget);
     }
 
     private void OnNightVisionItemActionRemoved(Entity<NightVisionItemComponent> ent, ref ActionRemovedEvent args)
@@ -249,7 +249,7 @@ public abstract partial class SharedNightVisionSystem : EntitySystem
             var max = _alerts.GetMaxSeverity(alert);
             var min = _alerts.GetMinSeverity(alert);
             var severity = state > max ? max : (state < min ? min : state);
-            _alerts.ShowAlert(ent, alert, severity);
+            _alerts.ShowAlert((ent.Owner, null), alert, severity);
         }
 
         NightVisionChanged(ent);
@@ -295,6 +295,8 @@ public abstract partial class SharedNightVisionSystem : EntitySystem
                     item.Comp.HadNightVision = true;
                     item.Comp.PreviousState = nightVision.State;
                     item.Comp.PreviousGreen = nightVision.Green;
+                    // CMU Related Change
+                    item.Comp.PreviousOverlay = nightVision.Overlay;
                     item.Comp.PreviousMesons = nightVision.Mesons;
                     item.Comp.PreviousExperimentalMesonFov = nightVision.ExperimentalMesonFov;
                     item.Comp.PreviousBlockScopes = nightVision.BlockScopes;
@@ -316,6 +318,8 @@ public abstract partial class SharedNightVisionSystem : EntitySystem
 
                 nightVision.State = defaultState;
                 nightVision.Green = item.Comp.Green;
+                // CMU Related Change
+                nightVision.Overlay = item.Comp.Overlay;
                 nightVision.Mesons = item.Comp.Mesons;
                 nightVision.ExperimentalMesonFov = item.Comp.ExperimentalMesonFov;
                 nightVision.BlockScopes = item.Comp.BlockScopes;
@@ -331,6 +335,8 @@ public abstract partial class SharedNightVisionSystem : EntitySystem
                 {
                     State = defaultState,
                     Green = item.Comp.Green,
+                    // CMU Related Change
+                    Overlay = item.Comp.Overlay,
                     Mesons = item.Comp.Mesons,
                     ExperimentalMesonFov = item.Comp.ExperimentalMesonFov,
                     BlockScopes = item.Comp.BlockScopes,
@@ -402,6 +408,8 @@ public abstract partial class SharedNightVisionSystem : EntitySystem
                 // Restore the previous component state so innate synth night vision survives item toggles.
                 nightVision.State = item.Comp.PreviousState;
                 nightVision.Green = item.Comp.PreviousGreen;
+                // CMU Related Change
+                nightVision.Overlay = item.Comp.PreviousOverlay;
                 nightVision.Mesons = item.Comp.PreviousMesons;
                 nightVision.ExperimentalMesonFov = item.Comp.PreviousExperimentalMesonFov;
                 nightVision.BlockScopes = item.Comp.PreviousBlockScopes;
@@ -420,6 +428,8 @@ public abstract partial class SharedNightVisionSystem : EntitySystem
         item.Comp.HadNightVision = false;
         item.Comp.PreviousState = NightVisionState.Off;
         item.Comp.PreviousGreen = false;
+        // CMU Related Change
+        item.Comp.PreviousOverlay = false;
         item.Comp.PreviousMesons = false;
         item.Comp.PreviousExperimentalMesonFov = false;
         item.Comp.PreviousBlockScopes = false;

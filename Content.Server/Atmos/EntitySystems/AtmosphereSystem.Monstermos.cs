@@ -556,7 +556,9 @@ namespace Content.Server.Atmos.EntitySystems
                 HandleDecompressionFloorRip((owner, mapGrid), otherTile, otherTile.MonstermosInfo.CurrentTransferAmount);
             }
 
-            if (GridImpulse && tileCount > 0)
+            // CMU14: map grids cannot move, even when a saved map has dynamic shuttle physics.
+            // Impulses on the map accumulate invalid velocity that entities inherit when changing grids.
+            if (GridImpulse && tileCount > 0 && !HasComp<MapComponent>(owner))
             {
                 var direction = ((Vector2)_depressurizeTiles[tileCount - 1].GridIndices - tile.GridIndices).Normalized();
 
@@ -599,8 +601,17 @@ namespace Content.Server.Atmos.EntitySystems
             if (!reconsiderAdjacent)
                 return;
 
+            // Before updating the adjacent tile flags that determine whether air is allowed to flow
+            // or not, we explicitly update airtight data on these tiles right now.
+            // This ensures that UpdateAdjacentTiles has updated data before updating flags.
+            // This allows monstermos' floodfill check that determines if firelocks have dropped
+            // to work correctly.
+            UpdateAirtightData(ent.Owner, ent.Comp1, ent.Comp3, tile);
+            UpdateAirtightData(ent.Owner, ent.Comp1, ent.Comp3, other);
+
             UpdateAdjacentTiles(ent, tile);
             UpdateAdjacentTiles(ent, other);
+
             InvalidateVisuals(ent, tile);
             InvalidateVisuals(ent, other);
         }

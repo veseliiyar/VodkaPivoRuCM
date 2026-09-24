@@ -1,0 +1,8 @@
+- type: loadout
+  id: MaintenanceJackAU14
+<<<<<<< HEAD:Resources/Prototypes/_CMU14/Roles/Shared/Loadouts/Items/RoleSpecific/Synthetic/MaintenanceJackAU14.yml
+  # cost: 15 # RuMC edit
+=======
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34:Content.CMU/Resources/Prototypes/CMU14/Roles/Shared/Loadouts/Items/RoleSpecific/Synthetic/MaintenanceJackAU14.yml
+  inhand:
+  - AU14MaintenanceJackSpecial

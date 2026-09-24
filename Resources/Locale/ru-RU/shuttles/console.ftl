@@ -56,3 +56,15 @@ shuttle-console-docks-label = Стыковочные порты
 
 shuttle-console-undock-fail = Не удалось отстыковаться
 shuttle-console-dock-fail = Не удалось пристыковаться
+<<<<<<< HEAD
+=======
+
+
+shuttle-console-nav-legend = Legend
+
+shuttle-console-nav-other-dock = External Docks
+
+shuttle-console-nav-cargo-dock = Cargo Docks
+
+shuttle-console-nav-arrivals-dock = Arrivals Docks
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34

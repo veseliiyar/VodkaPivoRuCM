@@ -56,3 +56,26 @@ game-run-level-PostRound = После раунда
 # Missing entries synced from en-US
 
 game-ticker-no-map-selected-plain = Карта еще не выбрана!
+<<<<<<< HEAD
+=======
+
+
+# Column headings for the lobby round-info table.
+lobby-info-govfor-ship = GOVFOR SHIP
+
+lobby-info-opfor-ship = OPFOR SHIP
+
+lobby-info-govfor-platoon = GOVFOR PLATOON
+
+lobby-info-opfor-platoon = OPFOR PLATOON
+
+lobby-info-planet = PLANET
+
+lobby-info-gamemode = GAMEMODE
+
+lobby-info-players = PLAYERS
+
+lobby-info-round-time = ROUND TIME
+
+lobby-info-players-value = {$count} ({$ready} ready)
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34

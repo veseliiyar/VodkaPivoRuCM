@@ -1,0 +1,17 @@
+<cc:YautjaBadBloodWeaponChoiceWindow
+    xmlns="https://spacestation14.io"
+<<<<<<< HEAD:Content.Client/_CMU14/Yautja/YautjaBadBloodWeaponChoiceWindow.xaml
+    xmlns:cc="clr-namespace:Content.Client._CMU14.Yautja"
+=======
+    xmlns:cc="clr-namespace:Content.Client.CMU14.Yautja"
+    Title="Choose Your Weapon"
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34:Content.CMU/Client/Yautja/YautjaBadBloodWeaponChoiceWindow.xaml
+    MinSize="300 200">
+    <BoxContainer Orientation="Vertical" SeparationOverride="8" Margin="8 8 8 8">
+        <Label Name="WarningLabel" Access="Public"
+               Visible="False"
+               StyleClasses="LabelSubText"
+               HorizontalAlignment="Center" />
+        <BoxContainer Orientation="Vertical" Name="WeaponContainer" Access="Public" />
+    </BoxContainer>
+</cc:YautjaBadBloodWeaponChoiceWindow>

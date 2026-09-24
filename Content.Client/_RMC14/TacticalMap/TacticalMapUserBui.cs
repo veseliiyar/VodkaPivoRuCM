@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Client.CMU14.TacticalMap.Reconstruction; // CMU14
 using Content.Client._RMC14.UserInterface;
 using Robust.Client.Player;
 using Robust.Client.UserInterface.Controls;
@@ -9,7 +10,7 @@ using JetBrains.Annotations;
 namespace Content.Client._RMC14.TacticalMap;
 
 [UsedImplicitly]
-public sealed partial class TacticalMapUserBui(EntityUid owner, Enum uiKey) : RMCPopOutBui<TacticalMapWindow>(owner, uiKey)
+public sealed partial class TacticalMapUserBui(EntityUid owner, Enum uiKey) : CMUReconstructionBui(owner, uiKey) // CMU14: standard and classic map integration
 {
     [Dependency] private IPlayerManager _player = default!;
     private static readonly ISawmill _logger = Logger.GetSawmill("tactical_map_settings");
@@ -21,7 +22,14 @@ public sealed partial class TacticalMapUserBui(EntityUid owner, Enum uiKey) : RM
     protected override void Open()
     {
         base.Open();
+        // CMU14: use the replacement unless classic was selected.
+        if (UsingReconstruction) return;
+        OpenClassicWindow();
+    }
 
+    // CMU14 method
+    protected override void OpenClassicWindow()
+    {
         EntityUid? mapEntity = null;
 
         if (EntMan.TryGetComponent(Owner, out TacticalMapUserComponent? user) && user.Map != null)
@@ -128,9 +136,11 @@ public sealed partial class TacticalMapUserBui(EntityUid owner, Enum uiKey) : RM
             Window.Wrapper.Map.Lines.AddRange(lines.GovforLines);
             Window.Wrapper.Map.Lines.AddRange(lines.ClfLines);
             Window.Wrapper.Map.Lines.AddRange(lines.WeYuLines); // CMU14
+            Window.Wrapper.Map.Lines.AddRange(lines.SharedLines); // CMU14
         }
 
-        if (_refreshed)
+        // CMU14: retain unpublished edits when the shared canvas updates.
+        if (_refreshed && KeepClassicDraft(Window.Wrapper.Canvas, Window.Wrapper.Map))
             return;
 
         Window.Wrapper.Canvas.Lines.Clear();
@@ -143,6 +153,7 @@ public sealed partial class TacticalMapUserBui(EntityUid owner, Enum uiKey) : RM
             Window.Wrapper.Canvas.Lines.AddRange(lines.GovforLines);
             Window.Wrapper.Canvas.Lines.AddRange(lines.ClfLines);
             Window.Wrapper.Canvas.Lines.AddRange(lines.WeYuLines); // CMU14
+            Window.Wrapper.Canvas.Lines.AddRange(lines.SharedLines); // CMU14
         }
 
         var user = EntMan.GetComponentOrNull<TacticalMapUserComponent>(Owner);
@@ -157,6 +168,7 @@ public sealed partial class TacticalMapUserBui(EntityUid owner, Enum uiKey) : RM
         }
 
         _refreshed = true;
+        RememberClassicCanvas(Window.Wrapper.Canvas, Window.Wrapper.Map); // CMU14
     }
 
     private void UpdateBlips()
@@ -170,7 +182,11 @@ public sealed partial class TacticalMapUserBui(EntityUid owner, Enum uiKey) : RM
             return;
         }
 
-        var totalCount = user.MarineBlips.Count + user.XenoBlips.Count + user.XenoStructureBlips.Count + user.OpforBlips.Count + user.GovforBlips.Count + user.ClfBlips.Count + user.WeYuBlips.Count + user.AbominationBlips.Count; // CMU14: WeYu, Abomination
+        // CMU14 Begin: custom tactical-map channels.
+        var totalCount = user.MarineBlips.Count + user.XenoBlips.Count + user.XenoStructureBlips.Count
+            + user.OpforBlips.Count + user.GovforBlips.Count + user.ClfBlips.Count
+            + user.WeYuBlips.Count + user.AbominationBlips.Count + user.YautjaBlips.Count;
+        // CMU14 End
         var blips = new TacticalMapBlip[totalCount];
         var entityIds = new int[totalCount];
         var i = 0;
@@ -230,6 +246,15 @@ public sealed partial class TacticalMapUserBui(EntityUid owner, Enum uiKey) : RM
             entityIds[i] = entityId;
             i++;
         }
+
+        // CMU14 Begin: hunters and temporarily trapped prey.
+        foreach (var (entityId, blip) in user.YautjaBlips)
+        {
+            blips[i] = blip;
+            entityIds[i] = entityId;
+            i++;
+        }
+        // CMU14 End
 
         Window.Wrapper.UpdateBlips(blips, entityIds);
 

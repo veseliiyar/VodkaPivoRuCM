@@ -98,7 +98,7 @@
   id: FigurinesQM
   values:
     prefix: figurines-qm-
-    count: 9
+    count: 8
 
 - type: localizedDataset
   id: FigurinesCE
@@ -191,6 +191,12 @@
     count: 9
 
 - type: localizedDataset
+  id: FigurinesAI
+  values:
+    prefix: figurines-AI-
+    count: 7
+
+- type: localizedDataset
   id: FigurinesNukie
   values:
     prefix: figurines-nukie-
@@ -261,3 +267,33 @@
   values:
     prefix: figurines-hamlet-
     count: 8
+
+- type: localizedDataset
+  id: FigurinesThief
+  values:
+    prefix: figurines-thief-
+    count: 5
+
+- type: localizedDataset
+  id: FigurinesSkeleton
+  values:
+    prefix: figurines-skeleton-
+    count: 5
+
+- type: localizedDataset
+  id: FigurinesOwlman
+  values:
+    prefix: figurines-owlman-
+    count: 5
+
+- type: localizedDataset
+  id: FigurinesGriffin
+  values:
+    prefix: figurines-griffin-
+    count: 5
+
+- type: localizedDataset
+  id: FigurinesMechGeneric
+  values:
+    prefix: figurines-mech-generic-
+    count: 4

@@ -1,9 +1,6 @@
-using Content.Server.Atmos.Rotting;
-using Content.Server.Chat.Systems;
-using Content.Server.DoAfter;
-using Content.Server.Electrocution;
 using Content.Server.EUI;
 using Content.Server.Ghost;
+<<<<<<< HEAD
 using Content.Server.Popups;
 using Content.Server.PowerCell;
 using Content.Shared._CMU14.Yautja;
@@ -16,48 +13,23 @@ using Content.Shared.DoAfter;
 using Content.Shared.Interaction;
 using Content.Shared.Inventory;
 using Content.Shared.Item.ItemToggle;
+=======
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34
 using Content.Shared.Medical;
 using Content.Shared.Mind;
-using Content.Shared.Mobs;
-using Content.Shared.Mobs.Components;
-using Content.Shared.Mobs.Systems;
-using Content.Shared.Timing;
-using Content.Shared.Traits.Assorted;
-using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
 
 namespace Content.Server.Medical;
 
-/// <summary>
-/// This handles interactions and logic relating to <see cref="DefibrillatorComponent"/>
-/// </summary>
-public sealed partial class DefibrillatorSystem : EntitySystem
+public sealed partial class DefibrillatorSystem : SharedDefibrillatorSystem
 {
-    [Dependency] private ChatSystem _chatManager = default!;
-    [Dependency] private SharedRMCDamageableSystem _rmcDamageable = default!;
-    [Dependency] private DamageableSystem _damageable = default!;
-    [Dependency] private DoAfterSystem _doAfter = default!;
-    [Dependency] private ElectrocutionSystem _electrocution = default!;
-    [Dependency] private EuiManager _euiManager = default!;
+    [Dependency] private EuiManager _eui = default!;
     [Dependency] private ISharedPlayerManager _player = default!;
-    [Dependency] private ItemToggleSystem _toggle = default!;
-    [Dependency] private MobStateSystem _mobState = default!;
-    [Dependency] private MobThresholdSystem _mobThreshold = default!;
-    [Dependency] private PopupSystem _popup = default!;
-    [Dependency] private PowerCellSystem _powerCell = default!;
-    [Dependency] private RottingSystem _rotting = default!;
-    [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private SharedMindSystem _mind = default!;
-    [Dependency] private UseDelaySystem _useDelay = default!;
-    [Dependency] private InventorySystem _inventory = default!;
 
-    // RMC14
-    [Dependency] private RMCDefibrillatorSystem _rmcDefibrillator = default!;
-    [Dependency] private SkillsSystem _skills = default!;
-
-    /// <inheritdoc/>
-    public override void Initialize()
+    protected override void OpenReturnToBodyEui(Entity<MindComponent> mind, ICommonSession session)
     {
+<<<<<<< HEAD
         SubscribeLocalEvent<DefibrillatorComponent, AfterInteractEvent>(OnAfterInteract);
         SubscribeLocalEvent<DefibrillatorComponent, DefibrillatorZapDoAfterEvent>(OnDoAfter);
     }
@@ -304,5 +276,8 @@ public sealed partial class DefibrillatorSystem : EntitySystem
         // TODO clean up this clown show above
         var ev = new TargetDefibrillatedEvent(user, (uid, component));
         RaiseLocalEvent(target, ref ev);
+=======
+        _eui.OpenEui(new ReturnToBodyEui(mind, _mind, _player), session);
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34
     }
 }

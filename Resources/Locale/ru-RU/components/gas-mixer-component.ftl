@@ -15,3 +15,9 @@ comp-gas-mixer-ui-mixer-status = Статус:
 comp-gas-mixer-ui-status-enabled = On
 
 comp-gas-mixer-ui-status-disabled = Выкл.
+<<<<<<< HEAD
+=======
+
+
+comp-gas-mixer-ratio-examine = The side port ratio is [color={$statusColor}]{$sidePortRatio}[/color].
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34

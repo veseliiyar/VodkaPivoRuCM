@@ -10,3 +10,12 @@ construction-insert-info-examine-name-knife = нож
 construction-insert-info-examine-name-utensil = кухонный прибор
 construction-insert-info-examine-name-laser-cannon = высокомощное лазерное оружие
 construction-insert-info-examine-name-power-cell = батарея
+<<<<<<< HEAD
+=======
+
+
+# AU14: guide ("Steps") entries for custom entity-id steps (resolved from the entity's display name).
+construction-step-insert-entity = Insert {$name}.
+
+construction-step-use-entity = Use {$name}.
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34

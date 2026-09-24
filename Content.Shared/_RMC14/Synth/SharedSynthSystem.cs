@@ -1,5 +1,6 @@
 using Content.Shared._RMC14.Damage; // CMU14
 using Content.Shared._RMC14.IdentityManagement;
+using Content.Shared._RMC14.Marines.Skills; // CMU14
 using Content.Shared._RMC14.Medical.HUD.Components;
 using Content.Shared._RMC14.Medical.Stasis;
 using Content.Shared._RMC14.Medical.Unrevivable;
@@ -11,6 +12,7 @@ using Content.Shared.Bed.Sleep;
 using Content.Shared.Body.Systems;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.DoAfter;
 using Content.Shared.FixedPoint;
@@ -35,6 +37,7 @@ namespace Content.Shared._RMC14.Synth;
 public abstract partial class SharedSynthSystem : EntitySystem
 {
     private static readonly TimeSpan UnableUsePopupCooldown = TimeSpan.FromSeconds(1);
+    private static readonly EntProtoId<SkillDefinitionComponent> ConstructionSkill = "RMCSkillConstruction"; // CMU14
     private static readonly ProtoId<DamageGroupPrototype>[] SynthImmuneGroups = ["Toxin", "Airloss"]; // CMU14
     private readonly HashSet<ProtoId<DamageTypePrototype>> _synthImmuneTypes = new(); // CMU14
 
@@ -49,6 +52,7 @@ public abstract partial class SharedSynthSystem : EntitySystem
     [Dependency] private RMCStatusEffectSystem _rmcStatusEffects = default!;
     [Dependency] private MobThresholdSystem _mobThreshold = default!;
     [Dependency] private EntityWhitelistSystem _whitelist = default!;
+    [Dependency] private SkillsSystem _skills = default!; // CMU14
     [Dependency] private IGameTiming _timing = default!;
 
     public override void Initialize()
@@ -277,7 +281,9 @@ public abstract partial class SharedSynthSystem : EntitySystem
         }
 
         var ev = new RMCSynthRepairEvent();
-        var repairTime = selfRepair ? synth.Comp.SelfRepairTime : synth.Comp.RepairTime;
+        var repairTime = selfRepair
+            ? synth.Comp.SelfRepairTime
+            : synth.Comp.RepairTime * _skills.GetSkillDelayMultiplier(user, ConstructionSkill); // CMU14
         var doAfter = new DoAfterArgs(EntityManager, user, repairTime, ev, synth, used: args.Used)
         {
             BreakOnMove = true,
@@ -351,7 +357,7 @@ public abstract partial class SharedSynthSystem : EntitySystem
             var othersMsg = Loc.GetString("rmc-synth-repair-brute-finish", ("user", user), ("target", synth), ("tool", used), ("limb", "chest"));
             _popup.PopupPredicted(selfMsg, othersMsg, user, user);
         }
-        else if (HasComp<RMCCableCoilComponent>(args.Used) && _stack.Use(args.Used.Value, 1))
+        else if (HasComp<RMCCableCoilComponent>(args.Used) && _stack.TryUse(args.Used.Value, 1))
         {
             if (synth.Comp.CableCoilDamageToRepair != null)
                 _damageable.TryChangeDamage(synth, synth.Comp.CableCoilDamageToRepair, true, false, origin: args.User);
@@ -393,10 +399,11 @@ public abstract partial class SharedSynthSystem : EntitySystem
         if (!TryComp<DamageableComponent>(synth, out var damageable))
             return false;
 
-        if (damageable.Damage.Empty)
+        var currentDamage = _damageable.GetAllDamage((synth, damageable));
+        if (currentDamage.Empty)
             return false;
 
-        var damage = damageable.Damage.GetDamagePerGroup(_prototypes);
+        var damage = currentDamage.GetDamagePerGroup(_prototypes);
         var groupDmg = damage.GetValueOrDefault(group);
 
         if (groupDmg <= FixedPoint2.Zero)

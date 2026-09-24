@@ -1,0 +1,24 @@
+- type: partySpawn
+  id: RMCRRTSpawn
+  leadersToSpawn:
+    AU14JobRMCRRTCommander: 1
+  gruntsToSpawn:
+    AU14JobRMCRRTRifleman: 2
+    AU14JobRMCRRTCorpsman: 1
+    AU14JobRMCRRTBreacher: 0
+    AU14JobRMCRRTMarksman: 1
+    AU14JobRMCRRTSmartgunner: 0
+  scalewithpop: false
+  spawnTogether: true
+
+- type: thirdParty
+  id: RMCRRT
+  displayName: cmu14-third-party-name-rmcrrt # RuMC edit
+  partyspawn: RMCRRTSpawn
+  entrymethod: shuttle
+  dropshippath: /Maps/CMU14/Vehicles/Dropships/rmc_ert_response_shuttle.yml
+  weight: 20
+  minplayers: 0
+  maxplayers: 400
+  GhostsNeeded: 7
+  roundstart: false

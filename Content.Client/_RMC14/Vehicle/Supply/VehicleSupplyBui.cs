@@ -63,6 +63,7 @@ public sealed class VehicleSupplyBui : BoundUserInterface
         if (_window == null)
             return;
 
+<<<<<<< HEAD
         // RuMC edit start
         var modeText = state.LiftMode is { } liftMode
             ? Loc.GetString($"rmc-vehicle-supply-lift-mode-{liftMode}")
@@ -76,6 +77,19 @@ public sealed class VehicleSupplyBui : BoundUserInterface
         _window.StatusLabel.Text = Loc.GetString("rmc-vehicle-supply-ui-status",
             ("mode", modeText), ("status", busyText), ("active", activeText));
         // RuMC edit end
+=======
+        // CMU14: show the shared round allowance, including lost hulls.
+        _window.AllowanceLabel.Text = state.PlatoonName == null
+            ? Loc.GetString("cmu-vehicle-supply-unassigned")
+            : Loc.GetString("cmu-vehicle-supply-allowance", ("platoon", state.PlatoonName),
+                ("used", state.IssuedVehicles.Count), ("limit", state.VehicleLimit));
+        _window.IssuedLabel.Text = string.Join(", ", state.IssuedVehicles);
+        var modeText = state.LiftMode?.ToString() ?? "No lift";
+        var activeText = string.IsNullOrWhiteSpace(state.ActiveVehicleId) ? "none" : state.ActiveVehicleId;
+        var busyText = state.Busy ? "busy" : "idle";
+
+        _window.StatusLabel.Text = $"Lift: {modeText} | Status: {busyText} | Active: {activeText}";
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34
 
         var raising = state.LiftMode == VehicleSupplyLiftMode.Raising;
         var lowering = state.LiftMode == VehicleSupplyLiftMode.Lowering;

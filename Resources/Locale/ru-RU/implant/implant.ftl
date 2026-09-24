@@ -35,3 +35,9 @@ scramble-implant-activated-popup = Ваш внешний вид меняется
 deathrattle-implant-dead-message = {$user} умер {$position}.
 
 deathrattle-implant-critical-message = Жизненные признаки {$user} критически важны, требуется немедленная помощь {$position}.
+<<<<<<< HEAD
+=======
+
+
+implanter-component-draw-target = {CAPITALIZE(THE({$user}))} is trying to extract something from you!
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34

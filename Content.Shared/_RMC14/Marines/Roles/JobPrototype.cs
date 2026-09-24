@@ -6,7 +6,12 @@ using Content.Shared._CMU14.Round.Roles;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Array;
+<<<<<<< HEAD
 using Content.Shared._AU14.Marines.Roles.Chevrons;
+=======
+using Content.Shared.CMU14.Marines.Roles.Chevrons;
+using Content.Shared.CMU14.Round.Roles;
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34
 using Robust.Shared.GameObjects;
 
 // ReSharper disable CheckNamespace

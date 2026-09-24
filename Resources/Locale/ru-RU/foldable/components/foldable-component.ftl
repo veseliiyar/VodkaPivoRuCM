@@ -15,3 +15,11 @@ unfold-verb-clothing-jacket = Надеть куртку
 
 fold-strap-verb = Пристегнуть ремешок
 fold-unstrap-verb = Отстегнуть ремешок
+<<<<<<< HEAD
+=======
+
+
+fold-lower-visor-verb = Lower visor
+
+fold-raise-visor-verb = Raise visor
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34

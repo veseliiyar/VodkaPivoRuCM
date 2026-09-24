@@ -23,3 +23,11 @@ player-panel-false = Нет
 player-panel-true = Да
 player-panel-follow = Следовать
 player-panel-camera = Камера
+<<<<<<< HEAD
+=======
+
+
+player-panel-trust-score = Trust Score: {TOSTRING($trustScore, "P0")}
+
+player-panel-account-creation = Account Created: {TOSTRING($date, "yyyy-MM-dd")}
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34

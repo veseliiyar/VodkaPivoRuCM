@@ -15,7 +15,12 @@
   icon: "RMCJobIconSynth"
   joinNotifyCrew: true
   whitelisted: true
+<<<<<<< HEAD
   whitelistParent: RMCWhitelistMedium
+=======
+  whitelistParent: RuCMWhitelistMedium
+  isSynthetic: true
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34
   supervisors: rmc-job-supervisors-commander
   accessGroups:
   - ShipMasterAccess
@@ -131,8 +136,8 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Infectable
-  - type: Hunger
-  - type: Thirst
+  - type: Satiation
+    satiations: { }
   - type: Perishable
   - type: ThermalRegulator
   - type: Temperature

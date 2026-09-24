@@ -3,12 +3,13 @@ using Content.Shared._RMC14.ARES.Logs;
 using Content.Shared._RMC14.Doors;
 using Content.Shared._RMC14.Dropship;
 using Content.Shared._RMC14.Marines;
+using Content.Shared.CMU14.Marines; // CMU14
 using Content.Shared._RMC14.Marines.Announce;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Database;
 using Content.Shared.Doors.Components;
 using Content.Shared.Doors.Systems;
-using Content.Shared.Ghost;
+using Content.Shared.Ghost.Components;
 using Content.Shared.Lock;
 using Content.Shared.Storage.Components;
 using Content.Shared.Storage.EntitySystems;
@@ -107,7 +108,7 @@ public sealed partial class RMCAlertLevelSystem : EntitySystem
         _adminLog.Add(LogType.RMCAlertLevel, $"{ToPrettyString(user)} set alert level to {level}");
 
         var almayers = new HashSet<EntityUid>();
-        var almayerQuery = EntityQueryEnumerator<AlmayerComponent>();
+        var almayerQuery = EntityQueryEnumerator<WarshipComponent>(); // CMU14
         while (almayerQuery.MoveNext(out var uid, out _))
         {
             almayers.Add(uid);
@@ -168,9 +169,8 @@ public sealed partial class RMCAlertLevelSystem : EntitySystem
             }
             else
             {
-                SharedEntityStorageComponent? entityStorageComp = null;
-                if (_entityStorage.ResolveStorage(uid, ref entityStorageComp))
-                    _entityStorage.CloseStorage(uid, entityStorageComp); // Close a locker before locking it.
+                if (TryComp<EntityStorageComponent>(uid, out var entityStorageComp))
+                    _entityStorage.CloseStorage((uid, entityStorageComp)); // Close a locker before locking it.
                 _lock.Lock(uid, null, lockComp);
             }
         }

@@ -1,12 +1,13 @@
 using Content.Shared.Examine;
 using Content.Shared.Weapons.Ranged.Components;
-using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Network;
+<<<<<<< HEAD
 using Robust.Shared.Player;
 using Robust.Shared.Random;
+=======
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34
 using Robust.Shared.Timing;
-using Robust.Shared.Utility;
 
 namespace Content.Shared.Weapons.Ranged.Systems;
 
@@ -14,10 +15,14 @@ public sealed partial class RechargeBasicEntityAmmoSystem : EntitySystem
 {
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private INetManager _netManager = default!;
+    [Dependency] private MetaDataSystem _metadata = default!;
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private SharedGunSystem _gun = default!;
+<<<<<<< HEAD
     [Dependency] private MetaDataSystem _metadata = default!;
     [Dependency] private IRobustRandom _random = default!;
+=======
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34
 
     public override void Initialize()
     {
@@ -42,6 +47,7 @@ public sealed partial class RechargeBasicEntityAmmoSystem : EntitySystem
                 : recharge.NextCharge > _timing.CurTime)
                 continue;
 
+<<<<<<< HEAD
             if (_netManager.IsClient && recharge.RechargeChance < 1f)
                 continue;
 
@@ -57,6 +63,9 @@ public sealed partial class RechargeBasicEntityAmmoSystem : EntitySystem
             }
 
             if (_gun.UpdateBasicEntityAmmoCount(uid, ammo.Count.Value + 1, ammo))
+=======
+            if (_gun.UpdateBasicEntityAmmoCount((uid, ammo), ammo.Count.Value + 1))
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34
             {
                 // We don't predict this because occasionally on client it may not play.
                 // PlayPredicted will still be predicted on the client.
@@ -80,41 +89,50 @@ public sealed partial class RechargeBasicEntityAmmoSystem : EntitySystem
         }
     }
 
-    private void OnInit(EntityUid uid, RechargeBasicEntityAmmoComponent component, MapInitEvent args)
+    private void OnInit(Entity<RechargeBasicEntityAmmoComponent> ent, ref MapInitEvent args)
     {
+<<<<<<< HEAD
         component.NextCharge = component.StartWithCooldown
             ? _timing.CurTime + TimeSpan.FromSeconds(component.RechargeCooldown)
             : _timing.CurTime;
         Dirty(uid, component);
+=======
+        ent.Comp.NextCharge = _timing.CurTime;
+        Dirty(ent);
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34
     }
 
-    private void OnExamined(EntityUid uid, RechargeBasicEntityAmmoComponent component, ExaminedEvent args)
+    private void OnExamined(Entity<RechargeBasicEntityAmmoComponent> ent, ref ExaminedEvent args)
     {
-        if (!component.ShowExamineText)
+        if (!ent.Comp.ShowExamineText)
             return;
 
-        if (!TryComp<BasicEntityAmmoProviderComponent>(uid, out var ammo)
+        if (!TryComp<BasicEntityAmmoProviderComponent>(ent, out var ammo)
             || ammo.Count == ammo.Capacity ||
-            component.NextCharge == null)
+            ent.Comp.NextCharge == null)
         {
             args.PushMarkup(Loc.GetString("recharge-basic-entity-ammo-full"));
             return;
         }
 
-        var timeLeft = component.NextCharge + _metadata.GetPauseTime(uid) - _timing.CurTime;
+        var timeLeft = ent.Comp.NextCharge + _metadata.GetPauseTime(ent) - _timing.CurTime;
         args.PushMarkup(Loc.GetString("recharge-basic-entity-ammo-can-recharge", ("seconds", Math.Round(timeLeft.Value.TotalSeconds, 1))));
     }
 
-    public void Reset(EntityUid uid, RechargeBasicEntityAmmoComponent? recharge = null)
+    public void Reset(Entity<RechargeBasicEntityAmmoComponent?> ent)
     {
-        if (!Resolve(uid, ref recharge, false))
+        if (!Resolve(ent, ref ent.Comp, false))
             return;
 
+<<<<<<< HEAD
         if (recharge.NextCharge == null ||
             recharge.ResetOverdueCooldown && recharge.NextCharge < _timing.CurTime)
+=======
+        if (ent.Comp.NextCharge == null || ent.Comp.NextCharge < _timing.CurTime)
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34
         {
-            recharge.NextCharge = _timing.CurTime + TimeSpan.FromSeconds(recharge.RechargeCooldown);
-            Dirty(uid, recharge);
+            ent.Comp.NextCharge = _timing.CurTime + TimeSpan.FromSeconds(ent.Comp.RechargeCooldown);
+            Dirty(ent);
         }
     }
 }

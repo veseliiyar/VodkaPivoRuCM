@@ -2,9 +2,15 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Radio;
 
+/// <summary>
+/// Defines a radio channel and its transmission properties.
+/// </summary>
 [Prototype]
 public sealed partial class RadioChannelPrototype : IPrototype
 {
+    [IdDataField, ViewVariables]
+    public string ID { get; private set; } = default!;
+
     /// <summary>
     /// Human-readable name for the channel.
     /// </summary>
@@ -15,25 +21,51 @@ public sealed partial class RadioChannelPrototype : IPrototype
     public string LocalizedName => Loc.GetString(Name);
 
     /// <summary>
-    /// Single-character prefix to determine what channel a message should be sent to.
+    /// Upstream keycode kept in prototype data for compatibility/debugging.
+    /// RuCM-facing code should use <see cref="KeyCode"/> instead.
     /// </summary>
-    [DataField("keycode")]
-    public char KeyCode { get; private set; } = '\0';
+    [DataField("keycode"), ViewVariables(VVAccess.ReadOnly)]
+    public char CanonicalKeyCode { get; private set; } = '\0';
 
+    /// <summary>
+    /// Optional RuCM-facing keycode. When present, this is the primary keycode shown to players
+    /// and used by normal chat/UI code.
+    /// </summary>
+    [DataField("localizedKeycode"), ViewVariables(VVAccess.ReadOnly)]
+    public char LocalizedKeyCode { get; private set; } = '\0';
+
+    /// <summary>
+    /// Player-facing keycode for this channel.
+    /// </summary>
+    [ViewVariables(VVAccess.ReadOnly)]
+    public char KeyCode => LocalizedKeyCode == '\0' ? CanonicalKeyCode : LocalizedKeyCode;
+
+    [ViewVariables(VVAccess.ReadOnly)]
+    public char DisplayKeyCode => KeyCode;
+
+    public bool MatchesKeyCode(char keyCode)
+    {
+        var normalized = char.ToLowerInvariant(keyCode);
+        return char.ToLowerInvariant(KeyCode) == normalized ||
+               char.ToLowerInvariant(CanonicalKeyCode) == normalized;
+    }
+
+    /// <summary>
+    /// Frequency used by the channel.
+    /// </summary>
     [DataField]
-    public int Frequency { get; private set; } = 0;
+    public RadioFrequency Frequency { get; private set; } = RadioFrequency.Off;
 
+    /// <summary>
+    /// Color used to display the channel.
+    /// </summary>
     [DataField]
     public Color Color { get; private set; } = Color.Lime;
 
-    [IdDataField, ViewVariables]
-    public string ID { get; private set; } = default!;
-
     /// <summary>
-    /// If channel is long range it doesn't require telecommunication server
-    /// and messages can be sent across different stations
+    /// Whether the channel can transmit across different stations without a telecommunications server.
     /// </summary>
-    [DataField, ViewVariables]
+    [DataField]
     public bool LongRange;
 
     [DataField]
@@ -46,7 +78,7 @@ public sealed partial class RadioChannelPrototype : IPrototype
     [DataField]
     public string Faction = string.Empty;
 
-    // CMU14: gated combat nets need relay coverage on the map, ungated channels keep stock behavior
+    // AU14: gated combat nets need relay coverage on the map, ungated channels keep stock behavior
     [DataField]
     public bool AnchorGated;
 }

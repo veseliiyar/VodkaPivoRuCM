@@ -19,3 +19,15 @@ suit-sensor-examine-off = Похоже, все датчики [color=darkred]о�
 suit-sensor-examine-binary = Похоже, датчики включены в бинарном режиме.
 suit-sensor-examine-vitals = Похоже, датчики включены в режиме отслеживания здоровья.
 suit-sensor-examine-cords = Похоже, датчики включены в режиме отслеживания координат и здоровья.
+<<<<<<< HEAD
+=======
+
+
+suit-sensor-description-off = Nothing is reported to the station.
+
+suit-sensor-description-binary = Wearer death is reported to the station.
+
+suit-sensor-description-vitals = General wearer health status is reported to the station.
+
+suit-sensor-description-cords = Wearer health status and position are reported to the station.
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34

@@ -41,3 +41,9 @@ wire-letter-name-phi = Фи
 wire-letter-name-chi = Хи
 wire-letter-name-psi = Пси
 wire-letter-name-omega = Омега
+<<<<<<< HEAD
+=======
+
+
+wires-panel-verb-view-panel = View maintenance panel
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34

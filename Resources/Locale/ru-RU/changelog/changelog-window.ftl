@@ -18,3 +18,9 @@ changelog-tab-title-Rules = Правила
 
 cmd-changelog-desc = Открыть историю обновлений.
 cmd-changelog-help = Использование: changelog
+<<<<<<< HEAD
+=======
+
+
+changelog-tab-title-CMU = Colonial Marines Universe
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34

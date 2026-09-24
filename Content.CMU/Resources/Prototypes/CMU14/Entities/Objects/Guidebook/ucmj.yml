@@ -1,0 +1,174 @@
+- type: guideEntry
+  parent: RMC
+  id: AU14UCMJ
+<<<<<<< HEAD:Resources/Prototypes/_CMU14/Entities/Objects/Guidebook/ucmj.yml
+  name: Единый кодекс военной юстиции
+  text: "/ServerInfo/Guidebook/_AU14/UCMJ/AU14UCMJ.xml"
+=======
+  name: cmu-guide-entry-ucmj
+  text: "/ServerInfo/Guidebook/CMU14/UCMJ/AU14UCMJ.xml"
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34:Content.CMU/Resources/Prototypes/CMU14/Entities/Objects/Guidebook/ucmj.yml
+  priority: 3
+  children:
+  - AU14UCMJLawRankStructure
+  - AU14UCMJRightToAppeal
+  - AU14UCMJNJP
+  - AU14UCMJArrestingProcedure
+  - AU14UCMJCriminalCode
+  - AU14UCMJDefinitionsandGlossary
+  - AU14UCMJGENCON
+  - AU14UCMJDNR
+  - AU14UCMJExecutions
+
+- type: guideEntry
+  parent: RMC
+  id: AU14UCMJLawRankStructure
+<<<<<<< HEAD:Resources/Prototypes/_CMU14/Entities/Objects/Guidebook/ucmj.yml
+  name: Структура правоохранительных полномочий
+=======
+  name: cmu-guide-entry-ucmj-ranks
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34:Content.CMU/Resources/Prototypes/CMU14/Entities/Objects/Guidebook/ucmj.yml
+  priority: 0
+  text: "/ServerInfo/Guidebook/CMU14/UCMJ/AU14UCMJEnforcementStructure.xml"
+
+- type: guideEntry
+  parent: RMC
+  id: AU14UCMJGENCON
+<<<<<<< HEAD:Resources/Prototypes/_CMU14/Entities/Objects/Guidebook/ucmj.yml
+  name: Женевские конвенции от 12 августа 2106 года
+=======
+  name: cmu-guide-entry-ucmj-geneva
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34:Content.CMU/Resources/Prototypes/CMU14/Entities/Objects/Guidebook/ucmj.yml
+  priority: 0
+  text: "/ServerInfo/Guidebook/CMU14/UCMJ/Protectionacts/TheGenevaConventions.xml"
+
+- type: guideEntry
+  parent: RMC
+  id: AU14UCMJRightToAppeal
+<<<<<<< HEAD:Resources/Prototypes/_CMU14/Entities/Objects/Guidebook/ucmj.yml
+  name: Право на апелляцию
+=======
+  name: cmu-guide-entry-ucmj-appeal
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34:Content.CMU/Resources/Prototypes/CMU14/Entities/Objects/Guidebook/ucmj.yml
+  priority: 1
+  text: "/ServerInfo/Guidebook/CMU14/UCMJ/AU14UCMJRightToAppeal.xml"
+
+- type: guideEntry
+  parent: RMC
+  id: AU14UCMJNJP
+<<<<<<< HEAD:Resources/Prototypes/_CMU14/Entities/Objects/Guidebook/ucmj.yml
+  name: Внесудебные наказания
+=======
+  name: cmu-guide-entry-ucmj-njp
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34:Content.CMU/Resources/Prototypes/CMU14/Entities/Objects/Guidebook/ucmj.yml
+  priority: 3
+  text: "/ServerInfo/Guidebook/CMU14/UCMJ/AU14UCMJNJP.xml"
+
+- type: guideEntry
+  parent: RMC
+  id: AU14UCMJArrestingProcedure
+<<<<<<< HEAD:Resources/Prototypes/_CMU14/Entities/Objects/Guidebook/ucmj.yml
+  name: Процедуры задержания
+=======
+  name: cmu-guide-entry-ucmj-arresting
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34:Content.CMU/Resources/Prototypes/CMU14/Entities/Objects/Guidebook/ucmj.yml
+  priority: 2
+  text: "/ServerInfo/Guidebook/CMU14/UCMJ/AU14UCMJArrestingProcedure.xml"
+
+- type: guideEntry
+  parent: RMC
+  id: AU14UCMJDefinitionsandGlossary
+<<<<<<< HEAD:Resources/Prototypes/_CMU14/Entities/Objects/Guidebook/ucmj.yml
+  name: Определения и глоссарий
+=======
+  name: cmu-guide-entry-ucmj-definitions
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34:Content.CMU/Resources/Prototypes/CMU14/Entities/Objects/Guidebook/ucmj.yml
+  priority: 2
+  text: "/ServerInfo/Guidebook/CMU14/UCMJ/AU14UCMJDefinitionsandGlossary.xml"
+
+- type: guideEntry
+  parent: RMC
+  id: AU14UCMJDNR
+  name: cmu-guide-entry-ucmj-dnr
+  priority: 2
+  text: "/ServerInfo/Guidebook/CMU14/UCMJ/AU14UCMJDNR.xml"
+
+- type: guideEntry
+  parent: RMC
+  id: AU14UCMJExecutions
+  name: cmu-guide-entry-ucmj-executions
+  priority: 2
+  text: "/ServerInfo/Guidebook/CMU14/UCMJ/AU14UCMJExecutions.xml"
+
+- type: guideEntry
+  parent: RMC
+  id: AU14UCMJCriminalCode
+<<<<<<< HEAD:Resources/Prototypes/_CMU14/Entities/Objects/Guidebook/ucmj.yml
+  name: Уголовный кодекс
+  text: "/ServerInfo/Guidebook/_AU14/UCMJ/AU14UCMJCriminalCode.xml"
+=======
+  name: cmu-guide-entry-ucmj-criminal-code
+  text: "/ServerInfo/Guidebook/CMU14/UCMJ/AU14UCMJCriminalCode.xml"
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34:Content.CMU/Resources/Prototypes/CMU14/Entities/Objects/Guidebook/ucmj.yml
+  priority: 3
+  children:
+  - AU14UCMJOptionalCrimes
+  - AU14UCMJMinorCrimes
+  - AU14UCMJMajorCrimes
+  - AU14UCMJCapitalCrimes
+  - AU14UCMJPrecautionaryCharges
+
+- type: guideEntry
+  parent: RMC
+  id: AU14UCMJOptionalCrimes
+<<<<<<< HEAD:Resources/Prototypes/_CMU14/Entities/Objects/Guidebook/ucmj.yml
+  name: Дополнительные обвинения
+=======
+  name: cmu-guide-entry-ucmj-optional
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34:Content.CMU/Resources/Prototypes/CMU14/Entities/Objects/Guidebook/ucmj.yml
+  priority: 1
+  text: "/ServerInfo/Guidebook/CMU14/UCMJ/Crimes/AU14UCMJOptionalCrimes.xml"
+
+- type: guideEntry
+  parent: RMC
+  id: AU14UCMJMinorCrimes
+<<<<<<< HEAD:Resources/Prototypes/_CMU14/Entities/Objects/Guidebook/ucmj.yml
+  name: Незначительные преступления
+=======
+  name: cmu-guide-entry-ucmj-minor
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34:Content.CMU/Resources/Prototypes/CMU14/Entities/Objects/Guidebook/ucmj.yml
+  priority: 2
+  text: "/ServerInfo/Guidebook/CMU14/UCMJ/Crimes/AU14UCMJMinorCrimes.xml"
+
+- type: guideEntry
+  parent: RMC
+  id: AU14UCMJMajorCrimes
+<<<<<<< HEAD:Resources/Prototypes/_CMU14/Entities/Objects/Guidebook/ucmj.yml
+  name: Тяжкие преступления
+=======
+  name: cmu-guide-entry-ucmj-major
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34:Content.CMU/Resources/Prototypes/CMU14/Entities/Objects/Guidebook/ucmj.yml
+  priority: 3
+  text: "/ServerInfo/Guidebook/CMU14/UCMJ/Crimes/AU14UCMJMajorCrimes.xml"
+
+- type: guideEntry
+  parent: RMC
+  id: AU14UCMJCapitalCrimes
+<<<<<<< HEAD:Resources/Prototypes/_CMU14/Entities/Objects/Guidebook/ucmj.yml
+  name: Преступления, караемые смертной казнью
+=======
+  name: cmu-guide-entry-ucmj-capital
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34:Content.CMU/Resources/Prototypes/CMU14/Entities/Objects/Guidebook/ucmj.yml
+  priority: 4
+  text: "/ServerInfo/Guidebook/CMU14/UCMJ/Crimes/AU14UCMJCapitalCrimes.xml"
+
+- type: guideEntry
+  parent: RMC
+  id: AU14UCMJPrecautionaryCharges
+<<<<<<< HEAD:Resources/Prototypes/_CMU14/Entities/Objects/Guidebook/ucmj.yml
+  name: Превентивные меры
+=======
+  name: cmu-guide-entry-ucmj-precautionary
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34:Content.CMU/Resources/Prototypes/CMU14/Entities/Objects/Guidebook/ucmj.yml
+  priority: 5
+  text: "/ServerInfo/Guidebook/CMU14/UCMJ/Crimes/AU14UCMJPrecautionaryCharges.xml"

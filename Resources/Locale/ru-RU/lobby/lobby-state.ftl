@@ -36,3 +36,13 @@ lobby-state-playtime-comment-normal =
 lobby-state-playtime-comment-concerning = Сегодня вы наиграли { $hours } часов. Пожалуйста, отдохните.
 lobby-state-playtime-comment-grasstouchless = { $hours } часов. Подумайте о выходе из игры, чтобы заняться своими делами.
 lobby-state-playtime-comment-selfdestructive = { $hours } часов. Серьёзно?
+<<<<<<< HEAD
+=======
+
+
+# Compact forms for the lobby round-info table, where the ROUND TIME heading already provides
+# the context that the longer strings above spell out.
+lobby-state-round-time-short = {$hours}h {$minutes}m
+
+lobby-state-round-not-started-short = Not started
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34

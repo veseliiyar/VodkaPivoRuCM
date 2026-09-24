@@ -32,11 +32,13 @@ jobs:
     needs: changelog
     if: always() && (needs.changelog.result == 'success' || needs.changelog.result == 'skipped')
     runs-on: blacksmith-2vcpu-ubuntu-2404
+    timeout-minutes: 15
     outputs:
       already-published: ${{ steps.start.outputs.already-published }}
     steps:
-      - uses: actions/checkout@v6.0.2
+      - uses: actions/checkout@v7
         with:
+          ref: ${{ needs.changelog.outputs.commit_hash || github.sha }}
           persist-credentials: true
           submodules: false
           sparse-checkout: |
@@ -65,6 +67,7 @@ jobs:
       needs.publish_start.result == 'success' &&
       needs.publish_start.outputs.already-published != 'true'
     runs-on: ${{ matrix.runner }}
+    timeout-minutes: 20
     strategy:
       fail-fast: false
       matrix:
@@ -85,8 +88,9 @@ jobs:
             runner: blacksmith-4vcpu-ubuntu-2404
 
     steps:
-      - uses: actions/checkout@v6.0.2
+      - uses: actions/checkout@v7
         with:
+          ref: ${{ needs.changelog.outputs.commit_hash || github.sha }}
           persist-credentials: true
           submodules: false
 
@@ -97,7 +101,7 @@ jobs:
 
       - name: Checkout ColonialMarinesAudio
         if: ${{ env.AUDIO_REPO_TOKEN != '' }}
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v7
         with:
           repository: AU-14/ColonialMarinesAudio
           token: ${{ env.AUDIO_REPO_TOKEN }}
@@ -106,14 +110,14 @@ jobs:
       - name: Rsync CMAudio into Resources
         if: ${{ env.AUDIO_REPO_TOKEN != '' }}
         run: |
-          mkdir -p Resources/Audio/_CMU14/Private/
+          mkdir -p Content.CMU/Resources/Audio/CMU14/Private/
           rsync -a --delete \
             __audio-overlay/Resources/Audio/_CMU14/Private/ \
-            Resources/Audio/_CMU14/Private/
-          du -sh Resources/Audio/_CMU14/Private/
+            Content.CMU/Resources/Audio/CMU14/Private/
+          du -sh Content.CMU/Resources/Audio/CMU14/Private/
           rm -rf __audio-overlay
 
-      - uses: actions/setup-dotnet@v5.2.0
+      - uses: actions/setup-dotnet@v6.0.0
         with:
           dotnet-version: ${{ env.DOTNET_VERSION }}
           cache: true
@@ -133,7 +137,7 @@ jobs:
         run: dotnet run --project Content.Packaging --configuration ${{ env.CONFIGURATION }} --no-build --no-restore -- ${{ matrix.command }} --no-restore
 
       - name: Upload ${{ matrix.name }} package
-        uses: actions/upload-artifact@v7.0.1
+        uses: actions/upload-artifact@v7
         with:
           name: release-${{ matrix.name }}
           path: release/*.zip
@@ -153,10 +157,12 @@ jobs:
       needs.publish_start.result == 'success' &&
       needs.publish_start.outputs.already-published != 'true'
     runs-on: blacksmith-2vcpu-ubuntu-2404
+    timeout-minutes: 15
     needs: [publish_start, package]
     steps:
-      - uses: actions/checkout@v6.0.2
+      - uses: actions/checkout@v7
         with:
+          ref: ${{ needs.changelog.outputs.commit_hash || github.sha }}
           persist-credentials: true
           submodules: false
           sparse-checkout: Tools

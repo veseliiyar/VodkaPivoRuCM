@@ -1,0 +1,150 @@
+- type: guideEntry
+  parent: RMC
+  id: RMCOverview
+<<<<<<< HEAD:Resources/Prototypes/_CMU14/Entities/Objects/Guidebook/CMURules.yml
+  name: Обзор правил
+=======
+  name: cmu-guide-entry-rules-overview
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34:Content.CMU/Resources/Prototypes/CMU14/Entities/Objects/Guidebook/CMURules.yml
+  priority: 0
+  text: "/ServerInfo/Guidebook/_RMC14/Rules/RMCOverview.xml"
+  children:
+  - AU14RulesZeroTolerance
+  - AU14RulesGeneral
+  - AU14RulesRoleplay
+  - AU14GamemodeRulesOverview
+
+- type: guideEntry
+  parent: RMC
+  id: AU14RulesZeroTolerance
+<<<<<<< HEAD:Resources/Prototypes/_CMU14/Entities/Objects/Guidebook/CMURules.yml
+  name: Правила нулевой терпимости
+=======
+  name: cmu-guide-entry-rules-zero-tolerance
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34:Content.CMU/Resources/Prototypes/CMU14/Entities/Objects/Guidebook/CMURules.yml
+  priority: 1
+  text: "/ServerInfo/Guidebook/CMU14/Rules/AU14ZeroTolerance.xml"
+
+- type: guideEntry
+  parent: RMC
+  id: AU14RulesGeneral
+<<<<<<< HEAD:Resources/Prototypes/_CMU14/Entities/Objects/Guidebook/CMURules.yml
+  name: Основные правила
+=======
+  name: cmu-guide-entry-rules-general
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34:Content.CMU/Resources/Prototypes/CMU14/Entities/Objects/Guidebook/CMURules.yml
+  priority: 2
+  text: "/ServerInfo/Guidebook/CMU14/Rules/AU14GeneralRules.xml"
+
+- type: guideEntry
+  parent: RMC
+  id: AU14RulesRoleplay
+<<<<<<< HEAD:Resources/Prototypes/_CMU14/Entities/Objects/Guidebook/CMURules.yml
+  name: Правила ролевой игры
+=======
+  name: cmu-guide-entry-rules-roleplay
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34:Content.CMU/Resources/Prototypes/CMU14/Entities/Objects/Guidebook/CMURules.yml
+  priority: 3
+  text: "/ServerInfo/Guidebook/CMU14/Rules/AU14RoleplayRules.xml"
+  children:
+  - AU14HighRoleplayRoles
+
+- type: guideEntry
+  parent: RMC
+  id: AU14GamemodeRulesOverview
+<<<<<<< HEAD:Resources/Prototypes/_CMU14/Entities/Objects/Guidebook/CMURules.yml
+  name: Правила игровых режимов
+=======
+  name: cmu-guide-entry-rules-gamemodes
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34:Content.CMU/Resources/Prototypes/CMU14/Entities/Objects/Guidebook/CMURules.yml
+  priority: 4
+  text: "/ServerInfo/Guidebook/CMU14/Rules/Gamemodes/AU14GamemodeRulesOverview.xml"
+  children:
+  - AU14GamemodeRulesInsurgency
+  # - AU14GamemodeRulesForceOnForce
+  # - AU14GamemodeRulesDistressSignal
+  # - AU14GamemodeRulesColonyFall
+  # - AU14GamemodeRulesPrometheus
+
+- type: guideEntry
+  parent: RMC
+  id: AU14HighRoleplayRoles
+<<<<<<< HEAD:Resources/Prototypes/_CMU14/Entities/Objects/Guidebook/CMURules.yml
+  name: Роли с повышенными требованиями к отыгрышу
+=======
+  name: cmu-guide-entry-rules-high-roleplay
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34:Content.CMU/Resources/Prototypes/CMU14/Entities/Objects/Guidebook/CMURules.yml
+  priority: 5
+  text: "/ServerInfo/Guidebook/CMU14/Rules/AU14HighRoleplayRoles.xml"
+
+- type: guideEntry
+  parent: RMC
+  id: AU14GamemodeRulesInsurgency
+<<<<<<< HEAD:Resources/Prototypes/_CMU14/Entities/Objects/Guidebook/CMURules.yml
+  name: Правила режима Восстание
+=======
+  name: cmu-guide-entry-rules-insurgency
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34:Content.CMU/Resources/Prototypes/CMU14/Entities/Objects/Guidebook/CMURules.yml
+  priority: 6
+  text: "/ServerInfo/Guidebook/CMU14/Rules/Gamemodes/AU14GamemodeRulesInsurgency.xml"
+
+<<<<<<< HEAD:Resources/Prototypes/_CMU14/Entities/Objects/Guidebook/CMURules.yml
+- type: guideEntry
+  parent: RMC
+  id: AU14GamemodeRulesForceOnForce
+  name: Правила режима «Силы против сил»
+  priority: 7
+  text: "/ServerInfo/Guidebook/_AU14/Rules/Gamemodes/AU14GamemodeRulesForceOnForce.xml"
+
+- type: guideEntry
+  parent: RMC
+  id: AU14GamemodeRulesDistressSignal
+  name: Правила режима «Сигнал бедствия»
+  priority: 8
+  text: "/ServerInfo/Guidebook/_AU14/Rules/Gamemodes/AU14GamemodeRulesDistressSignal.xml"
+
+- type: guideEntry
+  parent: RMC
+  id: AU14GamemodeRulesColonyFall
+  name: Правила режима «Падение колонии»
+  priority: 9
+  text: "/ServerInfo/Guidebook/_AU14/Rules/Gamemodes/AU14GamemodeRulesColonyFall.xml"
+
+- type: guideEntry
+  parent: RMC
+  id: AU14GamemodeRulesPrometheus
+  name: Правила режима «Прометей»
+  priority: 10
+  text: "/ServerInfo/Guidebook/_AU14/Rules/Gamemodes/AU14GamemodeRulesPrometheus.xml"
+=======
+# Placeholder stubs below,
+# require actual rules
+#
+# - type: guideEntry
+#   parent: RMC
+#   id: AU14GamemodeRulesForceOnForce
+#   name: cmu-guide-entry-rules-force-on-force
+#   priority: 7
+#   text: "/ServerInfo/Guidebook/CMU14/Rules/Gamemodes/AU14GamemodeRulesForceOnForce.xml"
+#
+# - type: guideEntry
+#   parent: RMC
+#   id: AU14GamemodeRulesDistressSignal
+#   name: cmu-guide-entry-rules-distress-signal
+#   priority: 8
+#   text: "/ServerInfo/Guidebook/CMU14/Rules/Gamemodes/AU14GamemodeRulesDistressSignal.xml"
+               #
+# - type: guideEntry
+#   parent: RMC
+#   id: AU14GamemodeRulesColonyFall
+#   name: cmu-guide-entry-rules-colony-fall
+#   priority: 9
+#   text: "/ServerInfo/Guidebook/CMU14/Rules/Gamemodes/AU14GamemodeRulesColonyFall.xml"
+#
+# - type: guideEntry
+#   parent: RMC
+#   id: AU14GamemodeRulesPrometheus
+#   name: cmu-guide-entry-rules-prometheus
+#   priority: 10
+#   text: "/ServerInfo/Guidebook/CMU14/Rules/Gamemodes/AU14GamemodeRulesPrometheus.xml"
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34:Content.CMU/Resources/Prototypes/CMU14/Entities/Objects/Guidebook/CMURules.yml

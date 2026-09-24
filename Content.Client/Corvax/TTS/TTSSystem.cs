@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 using Content.Shared.Chat;
 using Content.Shared.Corvax.CCCVars;
 using Content.Shared.Corvax.TTS;
@@ -69,23 +70,77 @@ public sealed class TTSSystem : EntitySystem
 
         _sawmill = Logger.GetSawmill("tts");
         _cfg.OnValueChanged(CCCVars.TTSVolume, OnTtsVolumeChanged, true);
+=======
+using Content.Shared.Corvax.TTS;
+using Content.Shared.Corvax.CCCVars;
+using Robust.Client.Audio;
+using Robust.Client.ResourceManagement;
+using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems;
+using Robust.Shared.ContentPack;
+using Robust.Shared.Utility;
+using Robust.Shared.Configuration;
+using Content.Shared.Chat;
+using System.Linq;
+using Robust.Shared.Audio.Components;
+using Content.Shared.GameTicking;
+
+namespace Content.Client.Corvax.TTS;
+
+// RuCM TTS
+public sealed partial class TTSSystem : EntitySystem
+{
+    [Dependency] private readonly IResourceManager _res = default!;
+    [Dependency] private readonly AudioSystem _audio = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
+
+    private static readonly MemoryContentRoot ContentRoot = new();
+    private static readonly ResPath Prefix = ResPath.Root / "TTS";
+
+    private static bool _contentRootAdded;
+    private int _fileIndex;
+    private readonly Dictionary<EntityUid, (AudioStream Stream, bool Whisper)> _playing = new();
+
+    public override void Initialize()
+    {
+        base.Initialize();
+
+        if (!_contentRootAdded)
+        {
+            _contentRootAdded = true;
+            _res.AddRoot(Prefix, ContentRoot);
+        }
+
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34
         SubscribeNetworkEvent<PlayTTSEvent>(OnPlayTTS);
         SubscribeNetworkEvent<AddReferenceVoiceResponse>(OnReferenceVoiceResult);
         SubscribeNetworkEvent<ReferenceVoiceCatalogResponse>(OnReferenceVoiceCatalog);
         SubscribeNetworkEvent<ReferenceVoiceAccessResponse>(OnReferenceVoiceAccess);
         SubscribeNetworkEvent<DeleteReferenceVoiceResponse>(OnReferenceVoiceDeleteResult);
+<<<<<<< HEAD
+=======
+        SubscribeNetworkEvent<RoundRestartCleanupEvent>(_ => StopTTS());
+        _cfg.OnValueChanged(CCCVars.TTSVolume, OnVolumeChanged);
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34
     }
 
     public override void Shutdown()
     {
+<<<<<<< HEAD
         base.Shutdown();
         _cfg.UnsubValueChanged(CCCVars.TTSVolume, OnTtsVolumeChanged);
+=======
+        _cfg.UnsubValueChanged(CCCVars.TTSVolume, OnVolumeChanged);
+        StopTTS();
+        base.Shutdown();
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34
     }
 
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
 
+<<<<<<< HEAD
         foreach (var (playbackId, tracked) in _trackedPlayback.ToArray())
         {
             if (TryComp<AudioComponent>(tracked.Audio, out var audio) && (!audio.Started || audio.Playing))
@@ -96,11 +151,48 @@ public sealed class TTSSystem : EntitySystem
         }
     }
 
+=======
+        foreach (var (uid, sound) in _playing.ToArray())
+        {
+            if (Exists(uid) && HasComp<AudioComponent>(uid))
+                continue;
+
+            sound.Stream.Dispose();
+            _playing.Remove(uid);
+        }
+    }
+
+    private void StopTTS()
+    {
+        foreach (var (uid, sound) in _playing)
+        {
+            _audio.Stop(uid);
+            sound.Stream.Dispose();
+        }
+
+        _playing.Clear();
+
+        CleanupRadioEffect();
+    }
+
+    private void OnVolumeChanged(float volume)
+    {
+        if (!float.IsFinite(volume) || volume <= 0)
+        {
+            StopTTS();
+            return;
+        }
+        foreach (var (uid, sound) in _playing)
+            _audio.SetVolume(uid, SharedAudioSystem.GainToVolume(Math.Clamp(volume, 0f, 1f)) - (sound.Whisper ? 6f : 0f));
+    }
+
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34
     public void RequestPreviewTTS(string voiceId)
     {
         RaiseNetworkEvent(new RequestPreviewTTSEvent(voiceId));
     }
 
+<<<<<<< HEAD
     public void AddReferenceVoice(string speakerName, byte[] audio)
     {
         RaiseNetworkEvent(new AddReferenceVoiceRequest(speakerName, audio));
@@ -225,5 +317,83 @@ public sealed class TTSSystem : EntitySystem
     private float AdjustDistance(bool isWhisper)
     {
         return isWhisper ? SharedChatSystem.WhisperMuffledRange : SharedChatSystem.VoiceRange;
+=======
+    private void OnPlayTTS(PlayTTSEvent ev)
+    {
+        var volume = _cfg.GetCVar(CCCVars.TTSVolume);
+        if (!float.IsFinite(volume) || volume <= 0f || ev.Data.Length is < 12 or > 8388608 || _playing.Count >= 32)
+            return;
+
+        volume = Math.Clamp(volume, 0f, 1f);
+        var filePath = new ResPath($"{_fileIndex++}.wav");
+
+        ContentRoot.AddOrUpdateFile(filePath, ev.Data);
+        AudioStream? stream = null;
+
+        try
+        {
+            var audioResource = new AudioResource();
+            audioResource.Load(
+                IoCManager.Instance!,
+                Prefix / filePath);
+            stream = audioResource.AudioStream;
+
+            var soundSpecifier =
+                new ResolvedPathSpecifier(Prefix / filePath);
+
+            var audioParams = AudioParams.Default
+                .WithVolume(SharedAudioSystem.GainToVolume(volume) - (ev.IsWhisper ? 6f : 0f))
+                .WithMaxDistance(ev.IsWhisper ? SharedChatSystem.WhisperMuffledRange : SharedChatSystem.VoiceRange);
+
+            if (ev.SourceUid != null && !ev.IsRadio)
+            {
+                if (!TryGetEntity(ev.SourceUid.Value, out _))
+                    return;
+
+                var source = GetEntity(ev.SourceUid.Value);
+
+                var playback = _audio.PlayEntity(
+                    audioResource.AudioStream,
+                    source,
+                    soundSpecifier,
+                    audioParams);
+
+                if (playback is { } played)
+                {
+                    _playing.Add(played.Entity, (stream, ev.IsWhisper));
+                    stream = null;
+                }
+
+                return;
+            }
+
+            var globalPlayback = _audio.PlayGlobal(
+                audioResource.AudioStream,
+                soundSpecifier,
+                ev.IsRadio
+                    ? audioParams
+                        .WithPitchScale(0.98f)
+                        .WithVariation(0.015f)
+                    : audioParams);
+
+            if (globalPlayback is { } global)
+            {
+                if (ev.IsRadio)
+                    ApplyRadioEffect(global);
+
+                _playing.Add(global.Entity, (stream, ev.IsWhisper));
+                stream = null;
+            }
+        }
+        catch (Exception e)
+        {
+            Logger.Warning($"Could not play TTS audio: {e.Message}");
+        }
+        finally
+        {
+            stream?.Dispose();
+            ContentRoot.RemoveFile(filePath);
+        }
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34
     }
 }

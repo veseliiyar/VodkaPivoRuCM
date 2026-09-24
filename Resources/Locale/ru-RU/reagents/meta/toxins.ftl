@@ -87,3 +87,15 @@ reagent-desc-toxintrash = Ужасно пахнущая жижа, эффекти
 
 reagent-name-hemorrhinol = геморринол
 reagent-desc-hemorrhinol = Токсин, вызывающий серьезное повреждение кровеносных сосудов и быстрое кровотечение.
+<<<<<<< HEAD
+=======
+
+
+reagent-name-hivarol = hivarol
+
+reagent-desc-hivarol = A toxin that attacks specific types of cells in the body, damaging hivemind communication and causing severe pain if one is present.
+
+reagent-name-phosphoric-acid = phosphoric acid
+
+reagent-desc-phosphoric-acid = An acidic chemical often used in agriculture. Keep away from your eyes.
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34

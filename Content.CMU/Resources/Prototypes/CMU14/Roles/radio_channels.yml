@@ -1,0 +1,515 @@
+# ├──[ GOVFOR CHANNELS ]─────────────────────────────────────────────┤
+- type: radioChannel
+  id: radioGovforAlpha
+  name: chat-radio-govforalpha
+<<<<<<< HEAD:Resources/Prototypes/_CMU14/Roles/radio_channels.yml
+  keycode: "а"
+  frequency: 2502
+=======
+  keycode: "a"
+  localizedKeycode: "а"
+  frequency: 250.2
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34:Content.CMU/Resources/Prototypes/CMU14/Roles/radio_channels.yml
+  color: "#F0433E"
+  longRange: true
+  tower: true
+  faction: "govfor"
+  anchorGated: true
+
+- type: radioChannel
+  id: radioGovforBravo
+  name: chat-radio-govforbravo
+<<<<<<< HEAD:Resources/Prototypes/_CMU14/Roles/radio_channels.yml
+  keycode: "б"
+  frequency: 1606
+=======
+  keycode: "b"
+  localizedKeycode: "б"
+  frequency: 160.6
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34:Content.CMU/Resources/Prototypes/CMU14/Roles/radio_channels.yml
+  color: "#c7b646"
+  longRange: true
+  tower: true
+  faction: "govfor"
+  anchorGated: true
+
+- type: radioChannel
+  id: radioGovforCharlie
+  name: chat-radio-govforcharlie
+<<<<<<< HEAD:Resources/Prototypes/_CMU14/Roles/radio_channels.yml
+  keycode: "ч"
+  frequency: 1607
+=======
+  keycode: "c"
+  localizedKeycode: "ч"
+  frequency: 160.7
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34:Content.CMU/Resources/Prototypes/CMU14/Roles/radio_channels.yml
+  color: "#9D3EF0"
+  longRange: true
+  tower: true
+  faction: "govfor"
+  anchorGated: true
+
+- type: radioChannel
+  id: radioGovforCommand
+  name: chat-radio-govforcommand
+<<<<<<< HEAD:Resources/Prototypes/_CMU14/Roles/radio_channels.yml
+  keycode: "к"
+  frequency: 2592
+=======
+  keycode: "v"
+  localizedKeycode: "ш"
+  frequency: 259.2
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34:Content.CMU/Resources/Prototypes/CMU14/Roles/radio_channels.yml
+  color: "#5b96d4"
+  longRange: true
+  tower: true
+  faction: "govfor"
+  anchorGated: true
+
+- type: radioChannel
+  id: radioGovforIntel
+  name: chat-radio-govforintel
+<<<<<<< HEAD:Resources/Prototypes/_CMU14/Roles/radio_channels.yml
+  keycode: "й"
+  frequency: 1605
+=======
+  keycode: "y"
+  localizedKeycode: "й"
+  frequency: 160.5
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34:Content.CMU/Resources/Prototypes/CMU14/Roles/radio_channels.yml
+  color: "#e4860c"
+  longRange: true
+  tower: true
+  faction: "govfor"
+  anchorGated: true
+
+- type: radioChannel
+  id: radioGovforJTAC
+  name: chat-radio-govforjtac
+<<<<<<< HEAD:Resources/Prototypes/_CMU14/Roles/radio_channels.yml
+  keycode: "т"
+  frequency: 2598
+=======
+  keycode: "j"
+  localizedKeycode: "т"
+  frequency: 259.8
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34:Content.CMU/Resources/Prototypes/CMU14/Roles/radio_channels.yml
+  color: "#ad3b98"
+  longRange: true
+  tower: true
+  faction: "govfor"
+  anchorGated: true
+
+- type: radioChannel
+  id: radioGovforMILP
+  name: chat-radio-govformp
+<<<<<<< HEAD:Resources/Prototypes/_CMU14/Roles/radio_channels.yml
+  keycode: "п"
+  frequency: 2595
+=======
+  keycode: "p"
+  localizedKeycode: "п"
+  frequency: 259.5
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34:Content.CMU/Resources/Prototypes/CMU14/Roles/radio_channels.yml
+  color: "#E92211"
+  longRange: true
+  tower: true
+  faction: "govfor"
+  anchorGated: true
+
+# ├──[ OPFOR CHANNELS ]──────────────────────────────────────────────┤
+- type: radioChannel
+  id: radioOpforAlpha
+  name: chat-radio-opforalpha
+<<<<<<< HEAD:Resources/Prototypes/_CMU14/Roles/radio_channels.yml
+  keycode: "2"
+  frequency: 1601
+=======
+  keycode: "s"
+  localizedKeycode: "1"
+  frequency: 160.1
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34:Content.CMU/Resources/Prototypes/CMU14/Roles/radio_channels.yml
+  color: "#bb91d8"
+  longRange: true
+  tower: true
+  faction: "opfor"
+  anchorGated: true
+
+- type: radioChannel
+  id: radioOpforBravo
+  name: chat-radio-opforbravo
+<<<<<<< HEAD:Resources/Prototypes/_CMU14/Roles/radio_channels.yml
+  keycode: "3"
+  frequency: 1603
+=======
+  keycode: "t"
+  localizedKeycode: "5"
+  frequency: 160.3
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34:Content.CMU/Resources/Prototypes/CMU14/Roles/radio_channels.yml
+  color: "#c6c1a8"
+  longRange: true
+  tower: true
+  faction: "opfor"
+  anchorGated: true
+
+- type: radioChannel
+  id: radioOpforCharlie
+  name: chat-radio-opforcharlie
+<<<<<<< HEAD:Resources/Prototypes/_CMU14/Roles/radio_channels.yml
+  keycode: "4"
+  frequency: 1604
+=======
+  keycode: "u"
+  localizedKeycode: "6"
+  frequency: 160.4
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34:Content.CMU/Resources/Prototypes/CMU14/Roles/radio_channels.yml
+  color: "#bb44bd"
+  longRange: true
+  tower: true
+  faction: "opfor"
+  anchorGated: true
+
+- type: radioChannel
+  id: radioOpforCommand
+  name: chat-radio-opforcommand
+<<<<<<< HEAD:Resources/Prototypes/_CMU14/Roles/radio_channels.yml
+  keycode: "1"
+  frequency: 1479
+=======
+  keycode: "k"
+  localizedKeycode: "2"
+  frequency: 147.9
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34:Content.CMU/Resources/Prototypes/CMU14/Roles/radio_channels.yml
+  color: "#5b96d4"
+  longRange: true
+  tower: true
+  faction: "opfor"
+  anchorGated: true
+
+- type: radioChannel
+  id: radioOpforIntel
+  name: chat-radio-opforintel
+<<<<<<< HEAD:Resources/Prototypes/_CMU14/Roles/radio_channels.yml
+  keycode: "6"
+  frequency: 1602
+=======
+  keycode: "i"
+  localizedKeycode: "4"
+  frequency: 160.2
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34:Content.CMU/Resources/Prototypes/CMU14/Roles/radio_channels.yml
+  color: "#e4860c"
+  longRange: true
+  tower: true
+  faction: "opfor"
+  anchorGated: true
+
+- type: radioChannel
+  id: radioOpforJTAC
+  name: chat-radio-opforjtac
+  keycode: "d"
+  localizedKeycode: "3"
+  frequency: 147.4
+  color: "#ad3b98"
+  longRange: true
+  tower: true
+  faction: "opfor"
+  anchorGated: true
+
+- type: radioChannel
+  id: radioOpforMILP
+  name: chat-radio-opformp
+<<<<<<< HEAD:Resources/Prototypes/_CMU14/Roles/radio_channels.yml
+  keycode: "7"
+  frequency: 1477
+=======
+  keycode: "l"
+  localizedKeycode: "7"
+  frequency: 147.7
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34:Content.CMU/Resources/Prototypes/CMU14/Roles/radio_channels.yml
+  color: "#DD0055"
+  longRange: true
+  tower: true
+  faction: "opfor"
+  anchorGated: true
+
+# ├──[ INDFOR CHANNELS ]─────────────────────────────────────────────┤
+- type: radioChannel
+  id: radioProvost
+  name: chat-radio-provost
+  keycode: "0"
+  frequency: 186.3
+  color: "#5b96d4"
+  longRange: true
+  tower: true
+  faction: "indfor"
+  anchorGated: true
+
+# ├──[ COLONY ]──────────────────────────────────────────────────────┤
+- type: radioChannel
+  id: Colony
+  name: chat-radio-colony
+<<<<<<< HEAD:Resources/Prototypes/_CMU14/Roles/radio_channels.yml
+  keycode: "о"
+  frequency: 1469
+=======
+  keycode: "o"
+  localizedKeycode: "о"
+  frequency: 146.9
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34:Content.CMU/Resources/Prototypes/CMU14/Roles/radio_channels.yml
+  color: "#cf40a6"
+  longRange: true
+  tower: true
+
+- type: radioChannel
+  id: colonyAlert
+  name: chat-radio-alert
+<<<<<<< HEAD:Resources/Prototypes/_CMU14/Roles/radio_channels.yml
+  keycode: "ъ"
+  frequency: 1431
+=======
+  keycode: "2"
+  localizedKeycode: "ъ"
+  frequency: 143.1
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34:Content.CMU/Resources/Prototypes/CMU14/Roles/radio_channels.yml
+  color: "#318779"
+  longRange: true
+
+- type: radioChannel
+  id: radioWEYU
+  name: chat-radio-WEYU
+<<<<<<< HEAD:Resources/Prototypes/_CMU14/Roles/radio_channels.yml
+  keycode: "я"
+  frequency: 1231
+=======
+  keycode: "w"
+  localizedKeycode: "ю"
+  frequency: 123.1
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34:Content.CMU/Resources/Prototypes/CMU14/Roles/radio_channels.yml
+  color: "#fe9b24"
+  longRange: true
+  tower: true
+
+- type: radioChannel
+  id: radioCMB
+  name: chat-radio-CMB
+<<<<<<< HEAD:Resources/Prototypes/_CMU14/Roles/radio_channels.yml
+  keycode: "м"
+  frequency: 1220
+=======
+  keycode: "3"
+  localizedKeycode: "к"
+  frequency: 122.0
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34:Content.CMU/Resources/Prototypes/CMU14/Roles/radio_channels.yml
+  color: "#1b748c"
+  longRange: true
+  tower: true
+
+- type: radioChannel
+  id: radioCLF
+  name: chat-radio-CLF
+<<<<<<< HEAD:Resources/Prototypes/_CMU14/Roles/radio_channels.yml
+  keycode: "в"
+  frequency: 1886
+=======
+  keycode: "q"
+  localizedKeycode: "в"
+  frequency: 188.6
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34:Content.CMU/Resources/Prototypes/CMU14/Roles/radio_channels.yml
+  color: "#059705"
+  longRange: true
+  tower: true
+  faction: "clf"
+  anchorGated: true
+
+# cell command net. lives on the RTO pack only - no earpiece carries it, so the cell
+# leader talks to command through the operator's handset the same way GOVFOR does
+- type: radioChannel
+  id: radioCLFCommand
+  name: chat-radio-CLFCommand
+  keycode: "n"
+  frequency: 188.7
+  color: "#0b7a3d"
+  longRange: true
+  tower: true
+  faction: "clf"
+  anchorGated: true
+
+- type: radioChannel
+  id: radioMobFamily
+  name: chat-radio-mob
+<<<<<<< HEAD:Resources/Prototypes/_CMU14/Roles/radio_channels.yml
+  keycode: "р"
+  frequency: 1467
+=======
+  keycode: "f"
+  localizedKeycode: "р"
+  frequency: 146.7
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34:Content.CMU/Resources/Prototypes/CMU14/Roles/radio_channels.yml
+  color: "#318779"
+  longRange: true
+  # tower: true
+
+- type: radioChannel
+  id: radioAI
+  name: chat-radio-ai
+<<<<<<< HEAD:Resources/Prototypes/_CMU14/Roles/radio_channels.yml
+  keycode: "и"
+  frequency: 7676
+=======
+  keycode: "$"
+  localizedKeycode: "и"
+  frequency: 767.6
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34:Content.CMU/Resources/Prototypes/CMU14/Roles/radio_channels.yml
+  color: "#d39d22"
+  longRange: true
+
+# ├──[ MISCELLANEOUS ]───────────────────────────────────────────────┤
+- type: radioChannel
+  id: ColonyHandheld
+  name: chat-radio-colony-softwave
+  keycode: 'ñ' # unused - handhelds broadcast without key
+  frequency: 146.1
+  color: "#a6cf40"
+  longRange: true
+
+# ├──[ THIRD PARTY ]─────────────────────────────────────────────────┤
+- type: radioChannel
+  id: Hivemind
+  name: chat-radio-hivemind
+<<<<<<< HEAD:Resources/Prototypes/_CMU14/Roles/radio_channels.yml
+  keycode: "у"
+  frequency: 426
+=======
+  keycode: "h"
+  localizedKeycode: "у"
+  frequency: 42.6
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34:Content.CMU/Resources/Prototypes/CMU14/Roles/radio_channels.yml
+  color: "#8b36a6"
+  longRange: true
+
+- type: radioChannel
+  id: MyceliumLink
+  name: chat-radio-mycelium-link
+  keycode: "m"
+  frequency: 42.5
+  color: "#c2c38d"
+  longRange: true
+
+- type: radioChannel
+  id: ICSCSOF
+  name: chat-radio-icsc
+<<<<<<< HEAD:Resources/Prototypes/_CMU14/Roles/radio_channels.yml
+  keycode: "0"
+  frequency: 1558
+=======
+  keycode: "4"
+  localizedKeycode: "0"
+  frequency: 155.8
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34:Content.CMU/Resources/Prototypes/CMU14/Roles/radio_channels.yml
+  color: "#0b93b9"
+  longRange: true
+  tower: true
+
+- type: radioChannel
+  id: UASOF
+  name: chat-radio-uasof
+  keycode: "5"
+  localizedKeycode: "8"
+  frequency: 155.3
+  color: "#2e4f68"
+  longRange: true
+  tower: true
+
+- type: radioChannel
+  id: TWESOF
+  name: chat-radio-twe
+<<<<<<< HEAD:Resources/Prototypes/_CMU14/Roles/radio_channels.yml
+  keycode: "л"
+  frequency: 1557
+=======
+  keycode: "6"
+  localizedKeycode: "9"
+  frequency: 155.7
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34:Content.CMU/Resources/Prototypes/CMU14/Roles/radio_channels.yml
+  color: "#701ba7"
+  longRange: true
+  tower: true
+
+- type: radioChannel
+  id: UPPSOF
+  name: chat-radio-uppsof
+<<<<<<< HEAD:Resources/Prototypes/_CMU14/Roles/radio_channels.yml
+  keycode: "х"
+  frequency: 1533
+=======
+  keycode: "7"
+  frequency: 153.3
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34:Content.CMU/Resources/Prototypes/CMU14/Roles/radio_channels.yml
+  color: "#e4860c"
+  longRange: true
+  tower: true
+
+- type: radioChannel
+  id: CCASOF
+  name: chat-radio-cca
+  keycode: "8"
+  frequency: 153.7
+  color: "#ffae00"
+  longRange: true
+  tower: true
+
+- type: radioChannel
+  id: radioVAI
+  name: chat-radio-vai
+<<<<<<< HEAD:Resources/Prototypes/_CMU14/Roles/radio_channels.yml
+  keycode: "с"
+  frequency: 1559
+=======
+  keycode: "z"
+  localizedKeycode: "с"
+  frequency: 155.9
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34:Content.CMU/Resources/Prototypes/CMU14/Roles/radio_channels.yml
+  color: "#e3580e"
+  longRange: true
+  tower: true
+
+- type: radioChannel
+  id: PART
+  name: chat-radio-part
+<<<<<<< HEAD:Resources/Prototypes/_CMU14/Roles/radio_channels.yml
+  keycode: "ж"
+  frequency: 5571
+=======
+  keycode: "1"
+  localizedKeycode: "ж"
+  frequency: 557.1
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34:Content.CMU/Resources/Prototypes/CMU14/Roles/radio_channels.yml
+  color: "#92969A"
+  longRange: true
+  tower: true
+
+- type: radioChannel
+  id: ANPRCActiveChannel
+  name: chat-radio-anprc-sentinel
+  keycode: "r"
+  frequency: 0
+  color: "#3fcf8e"
+  longRange: true
+
+- type: radioChannel
+  id: TunableFrequencyChannel
+  name: chat-radio-tunable-sentinel
+  keycode: "x"
+  frequency: 0
+  color: "#5B9BD5"
+  longRange: false
+
+- type: radioChannel
+  id: UNISOF
+  name: chat-radio-unisc
+  keycode: 'ĝ' # collides with radioOpforCharlie (BUG-652); all letters and digits are taken
+  frequency: 176.5
+  color: "#3d82b8"
+  longRange: true
+  tower: true

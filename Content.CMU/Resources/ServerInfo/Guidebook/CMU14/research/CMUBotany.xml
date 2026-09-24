@@ -1,0 +1,112 @@
+<Document>
+# Исследовательская гидропоника
+В этом разделе описаны элементы гидропоники, важные для исследовательской работы.
+
+## Рабочие инструменты
+<Box>
+<GuideEntityEmbed Entity="CMWirecutter" Caption="Кусачки"/>
+<GuideEntityEmbed Entity="RMCToolSpade" Caption="Лопатка"/>
+<GuideEntityEmbed Entity="RMCToolHatchet" Caption="Топорик"/>
+<GuideEntityEmbed Entity="RMCToolMiniHoe" Caption="Мотыжка"/>
+<GuideEntityEmbed Entity="CMHandLabeler" Caption="Ручной этикетировщик"/>
+</Box>
+<Box>
+<GuideEntityEmbed Entity="SeedExtractor" Caption="Экстрактор семян"/>
+<GuideEntityEmbed Entity="RMCKitchenReagentGrinder" Caption="Измельчитель реагентов"/>
+</Box>
+<Box>
+<GuideEntityEmbed Entity="CMHydroponicsTray" Caption="Гидропонный лоток"/>
+</Box>
+
+	<Table Columns="3" MinForcedColumnWidth="64">
+		<ColorBox Color="#202028">
+			<Box Margin="4">[bold]Инструмент[/bold]</Box>
+		</ColorBox>
+		<ColorBox Color="#202028">
+			<Box Margin="4">[bold]Назначение[/bold]</Box>
+		</ColorBox>
+		<ColorBox Color="#202028">
+			<Box Margin="4">[bold]Источник[/bold]</Box>
+		</ColorBox>
+		<ColorBox><Box>Кусачки</Box></ColorBox><ColorBox><Box>Получение образцов семян с живых растений.</Box></ColorBox><ColorBox><Box>Автолат, ящики с инструментами</Box></ColorBox>
+		<ColorBox><Box>Лопатка</Box></ColorBox><ColorBox><Box>Удаление растений из гидропонных лотков.</Box></ColorBox><ColorBox><Box>Ящик гидропонного оборудования, NutriMax</Box></ColorBox>
+		<ColorBox><Box>Топорик</Box></ColorBox><ColorBox><Box>Сбор урожая «древесных» растений.</Box></ColorBox><ColorBox><Box>Ящик гидропонного оборудования, NutriMax</Box></ColorBox>
+		<ColorBox><Box>Мотыжка</Box></ColorBox><ColorBox><Box>Удаление сорняков.</Box></ColorBox><ColorBox><Box>Ящик гидропонного оборудования, NutriMax</Box></ColorBox>
+		<ColorBox><Box>Ручной этикетировщик</Box></ColorBox><ColorBox><Box>Маркировка важных семян и сохранение собственного рассудка.</Box></ColorBox><ColorBox><Box>Автолат</Box></ColorBox>
+		<ColorBox><Box>Экстрактор семян</Box></ColorBox><ColorBox><Box>Получение семян из собранного урожая.</Box></ColorBox><ColorBox><Box>Размещается на карте, администрация</Box></ColorBox>
+		<ColorBox><Box>Измельчитель реагентов</Box></ColorBox><ColorBox><Box>Извлечение химических веществ из урожая.</Box></ColorBox><ColorBox><Box>Размещается на карте, администрация</Box></ColorBox>
+		<ColorBox><Box>Гидропонный лоток</Box></ColorBox><ColorBox><Box>Посадка и выращивание растений.</Box></ColorBox><ColorBox><Box>ASRS</Box></ColorBox>
+	</Table>
+	
+## Мутации
+Мутации растений необходимы для получения веществ, требуемых сложными контрактами в [textlink="Терминале исследовательских данных" link="CMURDT"].
+Сначала это может казаться сложным, но на практике всё во многом сводится к удаче.
+
+### Проведение мутаций
+Чтобы вызвать мутацию растения, внесите нестабильный мутаген и надейтесь на удачу.
+Каждая попытка мутации имеет 15% шанс изменить вид растения и 20% шанс добавить новые химические вещества.
+Это происходит чаще, чем может показаться.
+Видовые и обычные мутации не исключают друг друга: обе могут произойти одновременно и часто именно так и происходит.
+
+При добавлении нового вещества к растению существует 40% шанс, что дополнительно появится особое вещество.
+«Особые» вещества есть только у некоторых растений; иногда сначала требуется получить подвид, у которого такое вещество вообще присутствует.
+Пример получения особого вещества:
+Яблоки -> мутация вида -> ядовитые яблоки -> мутация -> цианид
+
+
+### Важные подвиды растений
+<Table Columns="2" MinForcedColumnWidth="64">
+		<ColorBox Color="#202028">
+			<Box Margin="4">[bold]Растение[/bold]</Box>
+		</ColorBox>
+		<ColorBox Color="#202028">
+			<Box Margin="4">[bold]Подвид[/bold]</Box>
+		</ColorBox>
+		<ColorBox><Box>Яблоки</Box></ColorBox><ColorBox><Box>Золотые яблоки, ядовитые яблоки</Box></ColorBox>
+		<ColorBox><Box>Ягоды</Box></ColorBox><ColorBox><Box>Ягоды смерти, ядовитые ягоды</Box></ColorBox>
+		<ColorBox><Box>Крапива</Box></ColorBox><ColorBox><Box>Смертельная крапива</Box></ColorBox>
+	</Table>
+
+[italic]Золотые яблоки бесполезны.[/italic]
+
+### Особые вещества и их источники
+Вещества для сложных контрактов можно получить из следующих растений.
+«Мутировавший» означает, что растение необходимо подвергнуть мутации, чтобы оно начало вырабатывать это вещество.
+<Table Columns="2" MinForcedColumnWidth="64">
+		<ColorBox Color="#202028">
+			<Box Margin="4">[bold]Вещество[/bold]</Box>
+		</ColorBox>
+		<ColorBox Color="#202028">
+			<Box Margin="4">[bold]Источник[/bold]</Box>
+		</ColorBox>
+		<ColorBox><Box>Аматоксин</Box></ColorBox><ColorBox><Box>Линчжи/рейши, мухомор</Box></ColorBox>
+		<ColorBox><Box>Атропин</Box></ColorBox><ColorBox><Box>Мутировавший мак</Box></ColorBox>
+		<ColorBox><Box>Кониин</Box></ColorBox><ColorBox><Box>Мутировавшая морковь</Box></ColorBox>
+		<ColorBox><Box>Цианид</Box></ColorBox><ColorBox><Box>Мутировавшие ядовитые яблоки</Box></ColorBox>
+		<ColorBox><Box>Дигоксин</Box></ColorBox><ColorBox><Box>Мутировавшие «Слёзы Мессы»</Box></ColorBox>
+		<ColorBox><Box>Фенол</Box></ColorBox><ColorBox><Box>Мутировавшая морковь</Box></ColorBox>
+		<ColorBox><Box>Псорален</Box></ColorBox><ColorBox><Box>Мутировавшая капуста</Box></ColorBox>
+		<ColorBox><Box>Тимол</Box></ColorBox><ColorBox><Box>Мутировавшие ягоды смерти, мутировавшие ядовитые ягоды</Box></ColorBox>
+		<ColorBox><Box>Урушиол</Box></ColorBox><ColorBox><Box>Мутировавшая смертельная крапива</Box></ColorBox>
+		<ColorBox><Box>Зигацин</Box></ColorBox><ColorBox><Box>Мутировавший линчжи/рейши</Box></ColorBox>
+	</Table>
+
+
+### Вещества, воздействующие на растения
+При работе с мутациями растений в первую очередь важны следующие вещества.
+<Table Columns="3" MinForcedColumnWidth="64">
+<ColorBox Color="#202028">
+			<Box Margin="4">[bold]Вещество[/bold]</Box>
+		</ColorBox>
+		<ColorBox Color="#202028">
+			<Box Margin="4">[bold]Эффект[/bold]</Box>
+		</ColorBox>
+		<ColorBox Color="#202028">
+			<Box Margin="4">[bold]Рецепт[/bold]</Box>
+		</ColorBox>
+		<ColorBox><Box>Нестабильный мутаген</Box></ColorBox><ColorBox><Box>Вызывает мутации и повреждает растения.</Box></ColorBox><ColorBox><Box>Радий + хлор + фосфор</Box></ColorBox>
+		<ColorBox><Box>Диловен</Box></ColorBox><ColorBox><Box>Лечит растения.</Box></ColorBox><ColorBox><Box>Кремний + калий + азот</Box></ColorBox>
+		<ColorBox><Box>Диэтиламин</Box></ColorBox><ColorBox><Box>Питает растения.</Box></ColorBox><ColorBox><Box>Аммиак + этанол</Box></ColorBox>
+		<ColorBox><Box>Аммиак</Box></ColorBox><ColorBox><Box>Питает и повреждает растения.</Box></ColorBox><ColorBox><Box>Азот + 3 водорода</Box></ColorBox>
+</Table>
+</Document>

@@ -1,5 +1,6 @@
 # Last match in file takes precedence.
 
+<<<<<<< HEAD
 # Ping for all PRs
 * @DrSmugleaf
 
@@ -9,3 +10,32 @@
 /Resources/Lobby/ @QuietlyWhisper
 /Resources/Audio/ @QuietlyWhisper
 /Resources/Textures/ @QuietlyWhisper
+=======
+# troytroy400 (host/owner) & AK5intow (co-host), Twinkle (head moderator)
+# maertayn & TheHellFireo (code maintainers)
+# Nzzy (sprite maintainer), Vencallium (map maintainer)
+
+# Code zones and bulk content directories are exempt.
+* @maertayn @TheHellFireo
+/Content.CMU/ 
+/Content.Server/ 
+/Content.Client/ 
+/Content.Shared/ 
+/Content.Tests/ 
+/Content.IntegrationTests/ 
+/Resources/ServerInfo/ 
+/Resources/Prototypes/ 
+/Resources/Audio/ 
+/Resources/Locale/ 
+/Resources/Maps/ 
+/Resources/Textures/ 
+
+/Resources/Textures/ @NzzyFk
+/Content.CMU/Resources/Textures/ @NzzyFk
+
+/Resources/Maps/ @Vencallium
+/Content.CMU/Resources/Maps/ @Vencallium
+
+/Resources/ServerInfo/ @troytroy400 @AK5intow @twinklezzzz
+/Content.CMU/Resources/ServerInfo/ @troytroy400 @AK5intow @twinklezzzz
+>>>>>>> ee5c3f07eab149fc5eabc97c0cc1d76ed75fab34
